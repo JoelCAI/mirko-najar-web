@@ -1,0 +1,79 @@
+.footer {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: var(--space-16) 0 var(--space-8) 0;
+  width: 100%;
+}
+
+.footerContainer {
+  /* Usamos el container global para alinear con el texto de la Home */
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  
+  display: grid;
+  grid-template-columns: 1fr; /* Una columna en móvil */
+  gap: var(--space-10);
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-8);
+  list-style: none;
+  padding: 0;
+}
+
+.links a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 500;
+  opacity: 0.8;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.links a:hover {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+/* Línea de copyright centrada al final */
+.bottomBar {
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-size: var(--text-sm);
+  opacity: 0.6;
+}
+
+.firmaAutor {
+  font-family: var(--font-branding);
+  font-size: 2rem; /* O la medida que prefieras */
+  color: var(--color-white);
+  margin: 0;
+}
+
+/* Ajustes para Desktop */
+@media (min-width: 768px) {
+  .footerContainer {
+    grid-template-columns: 1fr auto; /* Texto a la izquierda, links a la derecha */
+    align-items: center;
+  }
+  
+  .mainInfo {
+    align-items: flex-start;
+  }
+  
+  .links {
+    justify-content: flex-end;
+  }
+}

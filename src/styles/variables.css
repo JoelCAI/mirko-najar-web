@@ -1,0 +1,68 @@
+/* src/styles/variables.css */
+:root {
+
+    /* Ancho máximo para garantizar legibilidad y centrado en pantallas grandes */
+    --container-max-width: 1200px; 
+
+    /* --- Brand Colors (Madera Premium) --- */
+    --color-primary: #5D4037;
+    --color-primary-dark: #3E2723;
+    --color-secondary: #D4A373;
+    --color-accent: #8B5E3C;
+    
+    /* --- UI Colors --- */
+    --color-white: #ffffff;
+    --color-background: #FDFCFB;
+    --color-surface: #F5F1ED;
+    --color-text: #2C2420;
+    --color-text-light: #795548;
+    --color-border: #E7E0D9;
+
+    /* --- Typography (Pairing: Lato + Roboto Condensed) --- */
+    /* Lato para cuerpo (legible) y Roboto Condensed para títulos (robusto) */
+    --font-primary: 'Lato', system-ui, sans-serif;
+    --font-secondary: 'Roboto Condensed', sans-serif;
+    --font-branding: 'Parisienne', cursive;
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 2rem;
+    --text-4xl: 3rem;
+
+    /* --- Spacing System (Escala completa) --- */
+    --space-1: 0.25rem; /* 4px */
+    --space-2: 0.5rem;  /* 8px */
+    --space-3: 0.75rem; /* 12px */
+    --space-4: 1rem;    /* 16px */
+    --space-6: 1.5rem;  /* 24px */
+    --space-8: 2rem;    /* 32px */
+    --space-12: 3rem;   /* 48px */
+    --space-16: 4rem;   /* 64px */
+    --space-20: 5rem;   /* 80px */
+    --space-24: 6rem;   /* 96px */
+    --space-32: 8rem;   /* 128px */
+
+    /* --- Shadows (Elevación prolija) --- */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    /* --- Borders --- */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+
+    /* --- Z-Index Stack (Sistema de Capas) --- */
+    --z-below: -1;
+    --z-base: 1;
+    --z-header: 1000;      /* El header siempre arriba del contenido */
+    --z-drawer: 1500;      /* Menú lateral móvil */
+    --z-overlay: 2000;     /* Fondo oscurecido para pop-ups/modales */
+    --z-modal: 2100;       /* Ventana del pop-up */
+    --z-tooltip: 3000;     /* Mensajes flotantes */
+    --z-max: 9999;         /* Emergencias absolutas */
+}

@@ -1,0 +1,57 @@
+/* 1. RESET GENERAL (Siempre arriba) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. ELEMENTOS BASE */
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.6;
+  background-color: var(--color-bg);
+  /* Esto hace que las letras se vean mucho más nítidas */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit; /* Evita que los botones cambien la letra */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 3. TIPOGRAFÍA */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* 4. CLASES DE UTILIDAD (Abajo para que tengan prioridad) */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+

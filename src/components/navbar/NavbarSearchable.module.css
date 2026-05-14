@@ -1,0 +1,138 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+  padding: var(--space-4) 0;
+  min-height: 70px; 
+  margin-top: 0;
+  border: none;
+  outline: none;
+}
+
+.navTransparent {
+  background-color: var(--color-white);
+}
+
+.navSolid {
+  background-color: var(--color-white);
+  padding: var(--space-4) 0;
+}
+
+.container {
+  max-width: 100%;
+  padding: 0 var(--space-20);
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 900; /* Más grosor para que no se vea flaco */
+  letter-spacing: 0.1rem; /* Un poco más apretado se ve más moderno */
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  white-space: nowrap; /* Evita que Woodcraft se parta en dos líneas */
+}
+
+/* Menú Desktop */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.navLink {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-primary-dark);
+  padding: var(--space-2) 0;
+  position: relative;
+}
+
+/* El Hover unificado para Catálogo, Proyectos y Contacto */
+.navLink:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* Búsqueda */
+.searchDesktop {
+  display: block;
+  flex: 1; /* Esto hace que tome el espacio disponible */
+  max-width: 400px; /* Pero que no se pase de largo */
+  margin: 0 var(--space-8);
+}
+
+.searchMobile {
+  display: none;
+  width: 100%;
+  margin-bottom: var(--space-6);
+}
+
+/* Botón Sandwich / X */
+.menuToggle {
+  display: none;
+  z-index: 2001; /* Por encima de la cortina del menú */
+  color: var(--color-primary-dark);
+}
+
+.firmaAutor {
+  font-family: var(--font-branding);
+  font-size: 40px; 
+  color: var(--color-primary-dark);
+  margin: 0;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+
+  .container {
+    padding: 0 var(--space-6);
+  }
+
+  .menuToggle {
+    display: block;
+  }
+
+  .searchDesktop {
+    display: none;
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background-color: white;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-10);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2000;
+  }
+
+  .menuOpen {
+    right: 0;
+  }
+
+  .searchMobile {
+    display: block;
+  }
+
+  .firmaAutor {
+  font-size: var(--text-3xl); 
+  }
+
+  .navLink {
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  
+}

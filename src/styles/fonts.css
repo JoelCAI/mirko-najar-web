@@ -1,0 +1,37 @@
+/* src/styles/fonts.css */
+
+/* LATO REGULAR */
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/lato-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* LATO BOLD */
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/lato-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ROBOTO CONDENSED BOLD */
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('../assets/fonts/roboto-condensed-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PARISIENNE REGULAR - BRANDING */
+@font-face {
+  font-family: 'Parisienne'; /* Este es el nombre interno */
+  src: url('../assets/fonts/Parisienne-Regular.ttf') format('truetype');
+  font-weight: 400; /* Regular suele ser 400 */
+  font-style: normal;
+  font-display: swap; /* Esto ayuda al performance: muestra una fuente base mientras carga la pro */
+}
