@@ -6,7 +6,6 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
         <div className={styles.mainInfo}>
-          <h3>WOODCRAFT</h3>
           <ul className={styles.links}>
             <li><Link to="/catalogo">Catálogo</Link></li>
             <li><Link to="/proyectos">Proyectos</Link></li>

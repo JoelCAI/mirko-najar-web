@@ -10,7 +10,6 @@
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 var(--space-6);
-  
   display: grid;
   grid-template-columns: 1fr; /* Una columna en móvil */
   gap: var(--space-10);

@@ -38,7 +38,9 @@ const NavbarSearchable = () => {
         </button>
 
         <ul className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ''}`}>
-          <li className={styles.searchMobile}><SearchBar /></li>
+          <li className={styles.searchMobile}>
+            <SearchBar />
+          </li>
           <li><Link to="/catalogo" className={styles.navLink}>Catálogo</Link></li>
           <li><Link to="/proyectos" className={styles.navLink}>Proyectos</Link></li>
           <li><Link to="/contacto" className={styles.navLink}>Contacto</Link></li>

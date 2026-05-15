@@ -87,11 +87,10 @@
   margin: 0;
 }
 
-/* Responsividad */
-@media (max-width: 768px) {
-
+/* --- RESPONSIVIDAD GENERAL (Móvil y Tablet hasta 1024px) --- */
+@media (max-width: 1024px) {
   .container {
-    padding: 0 var(--space-6);
+    padding: 0 var(--space-8);
   }
 
   .menuToggle {
@@ -106,33 +105,70 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
+    width: 70%; /* Ancho para Tablets */
+    max-width: 450px; 
     height: 100vh;
-    background-color: white;
+    background-color: var(--color-white);
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: var(--space-10);
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 100px;
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 2000;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.08);
   }
 
   .menuOpen {
     right: 0;
   }
 
+  /* --- SEARCHBAR PARA AMBOS (Móvil y Tablet) --- */
   .searchMobile {
     display: block;
-  }
-
-  .firmaAutor {
-  font-size: var(--text-3xl); 
+    /* En lugar de 100%, usamos un ancho que deje aire a los lados */
+    width: 90%; 
+    max-width: 340px; /* Límite para que en tablets no se vea gigante */
+    margin-bottom: var(--space-12);
+    position: relative;
+    /* Centrado automático dentro del flex column del menú */
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .navLink {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     width: 100%;
     text-align: center;
+    padding: var(--space-6) 0;
+    color: var(--color-primary-dark);
+  }
+}
+
+/* --- AJUSTE ESPECÍFICO PARA MÓVIL (Menor a 600px) --- */
+  @media (max-width: 600px) {
+    .menu {
+      width: 100%; /* Más ancho para aprovechar la pantalla pequeña */
+    }
+
+    .searchMobile {
+      max-width: 320px; /* Un poco más estrecho para que respire en móviles */
+      margin-bottom: var(--space-8);
+    }
+
+    .navLink {
+      font-size: 1.4rem;
+      padding: var(--space-4) 0;
+    }
+    
+    .firmaAutor {
+      font-size: var(--text-2xl);
+    }
   }
 
+
+
+
   
-}

@@ -43,7 +43,8 @@
 @media (max-width: 768px) {
   .textSection {
     text-align: center; /* Centramos el texto en móviles para mejor estética */
-    padding: var(--space-10) var(--space-6);
+    padding: var(--space-10) var(--space-8);
+    width: 90%;
   }
   
   .textSection p {
