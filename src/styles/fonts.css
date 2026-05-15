@@ -3,7 +3,7 @@
 /* LATO REGULAR */
 @font-face {
   font-family: 'Lato';
-  src: url('../assets/fonts/Lato-Regular.ttf') format('truetype'); /* C con Mayúsculas */
+  src: url('../assets/fonts/Lato-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -12,7 +12,7 @@
 /* LATO BOLD */
 @font-face {
   font-family: 'Lato';
-  src: url('../assets/fonts/Lato-Bold.ttf') format('truetype'); /* C con Mayúsculas */
+  src: url('../assets/fonts/Lato-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -21,7 +21,7 @@
 /* ROBOTO CONDENSED BOLD */
 @font-face {
   font-family: 'Roboto Condensed';
-  src: url('../assets/fonts/RobotoCondensed-Bold.ttf') format('truetype'); /* Todo junto y Mayúsculas */
+  src: url('../assets/fonts/RobotoCondensed-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -30,7 +30,7 @@
 /* PARISIENNE REGULAR - BRANDING */
 @font-face {
   font-family: 'Parisienne';
-  src: url('../assets/fonts/Parisienne-Regular.ttf') format('truetype'); /* Ya estaba bien, por eso esta sí cargaba en el celular */
+  src: url('../assets/fonts/Parisienne-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
