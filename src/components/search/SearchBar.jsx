@@ -6,7 +6,7 @@ const SearchBar = () => {
     <div className={styles.searchContainer}>
       <input 
         type="text" 
-        placeholder="Buscar muebles, lámparas, mesas..." 
+        placeholder="Buscar..." 
         className={styles.searchInput}
       />
       <button className={styles.searchButton}>

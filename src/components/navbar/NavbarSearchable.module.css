@@ -151,11 +151,12 @@
   @media (max-width: 600px) {
     .menu {
       width: 100%; /* Más ancho para aprovechar la pantalla pequeña */
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
     }
 
     .searchMobile {
-      max-width: 320px; /* Un poco más estrecho para que respire en móviles */
-      margin-bottom: var(--space-8);
+      max-width: 90%; /* Un poco más estrecho para que respire en móviles */
     }
 
     .navLink {
