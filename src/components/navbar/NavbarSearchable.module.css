@@ -411,6 +411,25 @@
     transform: none; /* Quitamos traslación en móviles */
   }
 
+  .navLinkContainer,
+  .navLink {
+    /* Elimina por completo el flash celeste nativo de Android e iOS */
+    -webkit-tap-highlight-color: transparent; 
+  }
+
+  /* Cuando el usuario mantiene presionado un link directo (como Catálogo) o el contenedor de un dropdown */
+  .navLink:active,
+  .navLinkContainer:active {
+    background-color: var(--color-border);
+    border-radius: 6px; /* Para que las esquinas del fondo queden redondeadas y estéticas */
+  }
+
+  /* Ajuste opcional de padding para que el fondo pintado no quede pegado a las letras */
+  .navLinkContainer:active {
+    padding-left: var(--space-2, 8px);
+    padding-right: var(--space-2, 8px);
+  }
+
   /* Acordeones Colapsables en Mobile */
   .dropdown {
     display: none;
@@ -435,6 +454,11 @@
     align-items: center;
     padding: var(--space-3) 0;
     border-bottom: 1px solid #fafafa;
+  }
+
+  .subLinkWrapper:active {
+    background-color: var(--color-border);
+    border-radius: 4px;
   }
 
   .dropdownItem a {
