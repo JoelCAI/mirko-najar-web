@@ -1,3 +1,4 @@
+/* src/components/navbar/NavbarSearchable.module.css */
 .nav {
   position: fixed;
   top: 0;
@@ -26,23 +27,29 @@
   padding: 0 var(--space-20);
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 
-.logo {
-  font-size: 1.6rem;
-  font-weight: 900; /* Más grosor para que no se vea flaco */
-  letter-spacing: 0.1rem; /* Un poco más apretado se ve más moderno */
-  color: var(--color-primary-dark);
-  text-transform: uppercase;
-  white-space: nowrap; /* Evita que Woodcraft se parta en dos líneas */
-}
-
-/* Menú Desktop */
+/* Menú Desktop Base */
 .menu {
   display: flex;
   align-items: center;
   gap: var(--space-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  position: relative;
+  list-style: none;
+}
+
+.navLinkContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
 }
 
 .navLink {
@@ -51,19 +58,26 @@
   color: var(--color-primary-dark);
   padding: var(--space-2) 0;
   position: relative;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-/* El Hover unificado para Catálogo, Proyectos y Contacto */
-.navLink:hover {
+.navLink:hover, .navLinkContainer:hover .navLink {
   color: var(--color-accent);
   transform: translateY(-2px);
 }
 
-/* Búsqueda */
+.arrow {
+  color: var(--color-primary-dark);
+  transition: transform 0.2s ease;
+}
+
+/* Búsqueda Desktop */
 .searchDesktop {
   display: block;
-  flex: 1; /* Esto hace que tome el espacio disponible */
-  max-width: 400px; /* Pero que no se pase de largo */
+  flex: 1;
+  max-width: 400px;
   margin: 0 var(--space-8);
 }
 
@@ -73,11 +87,17 @@
   margin-bottom: var(--space-6);
 }
 
-/* Botón Sandwich / X */
+.mobileActions {
+  display: none;
+}
+
 .menuToggle {
   display: none;
-  z-index: 2001; /* Por encima de la cortina del menú */
+  z-index: 2001;
   color: var(--color-primary-dark);
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .firmaAutor {
@@ -85,12 +105,235 @@
   font-size: 40px; 
   color: var(--color-primary-dark);
   margin: 0;
+  text-decoration: none;
 }
 
-/* --- RESPONSIVIDAD GENERAL (Móvil y Tablet hasta 1024px) --- */
+.subIcon {
+    margin-right: var(--space-3);
+    color: var(--color-accent);
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   ESTILOS EXCLUSIVOS DESKTOP (Hover y Despliegues Izquierda)
+   ========================================================================== */
+@media (min-width: 1025px) {
+  /* --- PRIMER NIVEL DROPDOWN --- */
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--color-white, #ffffff);
+    border: 1px solid var(--color-border, #e0e0e0);
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    padding: var(--space-2) 0;
+    min-width: 220px;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  .hasDropdown:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .hasDropdown:hover .arrow {
+    transform: rotate(180deg);
+  }
+
+  .dropdownItem {
+    position: relative;
+    list-style: none;
+  }
+
+  .subLinkWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .dropdownItem a {
+    display: flex;
+    align-items: center;
+    color: var(--color-primary-dark);
+    text-decoration: none;
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .dropdownItem:hover {
+    background-color: var(--color-border);
+  }
+
+  /* --- SEGUNDO NIVEL: APERTURA ESTRICTA A LA IZQUIERDA --- */
+  .subSubmenu {
+    position: absolute;
+    top: 0;
+    right: 100%; /* Empuja el menú hacia la izquierda de la caja contenedora */
+    margin-right: 4px;
+    background: var(--color-white, #ffffff);
+    border: 1px solid var(--color-border, #e0e0e0);
+    border-radius: 6px;
+    box-shadow: -6px 6px 16px rgba(0,0,0,0.08);
+    padding: var(--space-2) 0;
+    min-width: 190px;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  .hasSubSub:hover .subSubmenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .leftArrowSub {
+    color: var(--color-text-muted, #ccc);
+  }
+
+  .subSubItem {
+    list-style: none;
+  }
+ 
+  .subSubItem:hover {
+    background-color: var(--color-border);
+  }
+
+
+  .subSubItem a {
+    padding: var(--space-2) var(--space-4);
+    font-size: 14px;
+  }
+
+  /* --- PERFIL USUARIO DESKTOP --- */
+  .desktopUserMenu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: var(--space-4);
+  }
+
+  .userIconWrapper {
+    background: #f5f5f5;
+    padding: var(--space-2);
+    border-radius: 50%;
+    color: var(--color-primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .desktopUserMenu:hover .userIconWrapper {
+    background: var(--color-accent);
+    color: var(--color-white);
+  }
+
+  .userDropdownDesktop {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--color-white, #ffffff);
+    border: 1px solid var(--color-border, #e0e0e0);
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    padding: var(--space-2) 0;
+    min-width: 160px;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  .desktopUserMenu:hover .userDropdownDesktop {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .userDropdownDesktop a {
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-primary-dark);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .userDropdownDesktop li:hover {
+    background: #f5f5f5;
+  }
+}
+
+/* ==========================================================================
+   ESTILOS RESPONSIVIDAD (Móvil y Tablet hasta 1024px)
+   ========================================================================== */
 @media (max-width: 1024px) {
   .container {
     padding: 0 var(--space-8);
+  }
+
+  .desktopUserMenu {
+    display: none; /* Ocultado del flujo principal en PC */
+  }
+
+  .mobileActions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  /* Botón de usuario a la izquierda */
+  .mobileUserBtn {
+    background: none;
+    border: none;
+    position: relative;
+    color: var(--color-primary-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2, 8px);
+    border-radius: 50%; /* Lo hace circular */
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .activeUserBtn {
+    background-color: var(--color-accent) !important;
+    color: var(--color-white) !important;
+  }
+
+  .mobileUserDropdown {
+    position: absolute;
+    top: 40px;
+    left: -40px;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    list-style: none;
+    padding: var(--space-2) 0;
+    min-width: 140px;
+    z-index: 2002;
+  }
+
+  .mobileUserDropdown a {
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-primary-dark);
+    text-decoration: none;
+    font-size: 14px;
+    text-align: left;
   }
 
   .menuToggle {
@@ -101,11 +344,12 @@
     display: none;
   }
 
+  /* Desplegable lateral de navegación */
   .menu {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 70%; /* Ancho para Tablets */
+    width: 70%; 
     max-width: 450px; 
     height: 100vh;
     background-color: var(--color-white);
@@ -113,63 +357,140 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 100px;
+    padding-top: 75px;
     padding-left: var(--space-8);
     padding-right: var(--space-8);
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 2000;
     box-shadow: -5px 0 15px rgba(0,0,0,0.08);
+    overflow-y: auto;
   }
 
   .menuOpen {
     right: 0;
   }
 
-  /* --- SEARCHBAR PARA AMBOS (Móvil y Tablet) --- */
+  /* --- SEARCHBAR MÓVIL OPTIMIZADA PARA TECLADO --- */
   .searchMobile {
     display: block;
-    /* En lugar de 100%, usamos un ancho que deje aire a los lados */
     width: 90%; 
-    max-width: 340px; /* Límite para que en tablets no se vea gigante */
-    margin-bottom: var(--space-12);
+    max-width: 340px; 
+    
+    /* SOLUCIÓN: Usamos un margen superior ligeramente negativo para pegarla bien arriba, */
+    /* dejando libre toda la mitad inferior de la pantalla para las sugerencias y el teclado */
+    margin-top: -10px;
+    margin-bottom: var(--space-6); /* Reducimos el espacio de abajo para que los links suban también */
+    
     position: relative;
-    /* Centrado automático dentro del flex column del menú */
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .navItem {
+    width: 100%;
+  }
+
+  .navLinkContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #f5f5f5;
+    padding: var(--space-2) 0;
   }
 
   .navLink {
     font-size: 1.6rem;
     width: 100%;
-    text-align: center;
-    padding: var(--space-6) 0;
+    text-align: left;
+    padding: var(--space-4) 0;
     color: var(--color-primary-dark);
+  }
+
+  .navLink:hover {
+    transform: none; /* Quitamos traslación en móviles */
+  }
+
+  /* Acordeones Colapsables en Mobile */
+  .dropdown {
+    display: none;
+    list-style: none;
+    padding-left: var(--space-4);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .dropdownActiveMobile {
+    display: block;
+  }
+
+  .dropdownItem {
+    list-style: none;
+    width: 100%;
+  }
+
+  .subLinkWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid #fafafa;
+  }
+
+  .dropdownItem a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: var(--color-primary-dark);
+    text-decoration: none;
+    font-size: 1.4rem;
+  }
+
+  .leftArrowSub {
+    transform: rotate(-90deg); /* Apunta hacia abajo en móvil al colapsar */
+    color: var(--color-primary-dark);
+  }
+
+  .subSubmenu {
+    display: none;
+    list-style: none;
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--color-accent);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  .subSubmenuActiveMobile {
+    display: block;
+  }
+
+  .subSubItem a {
+    display: block;
+    padding: var(--space-2) 0;
+    font-size: 1.3rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
   }
 }
 
 /* --- AJUSTE ESPECÍFICO PARA MÓVIL (Menor a 600px) --- */
-  @media (max-width: 600px) {
-    .menu {
-      width: 100%; /* Más ancho para aprovechar la pantalla pequeña */
-      padding-left: var(--space-4);
-      padding-right: var(--space-4);
-    }
-
-    .searchMobile {
-      max-width: 90%; /* Un poco más estrecho para que respire en móviles */
-    }
-
-    .navLink {
-      font-size: 1.4rem;
-      padding: var(--space-4) 0;
-    }
-    
-    .firmaAutor {
-      font-size: var(--text-2xl);
-    }
+@media (max-width: 600px) {
+  .menu {
+    width: 100%;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
   }
 
+  .searchMobile {
+    max-width: 90%;
+  }
 
-
-
+  .navLink {
+    font-size: 1.4rem;
+    padding: var(--space-3) 0;
+  }
   
+  .firmaAutor {
+    font-size: var(--text-2xl);
+  }
+}

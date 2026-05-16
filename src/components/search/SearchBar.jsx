@@ -44,7 +44,7 @@ const SearchBar = () => {
       <div className={styles.searchContainer}>
         <input 
           type="text" 
-          placeholder="Buscar productos, servicios o promociones..." 
+          placeholder="Buscar productos, servicios y más..." 
           className={styles.searchInput}
           value={query}
           onChange={handleSearch}
