@@ -472,6 +472,10 @@
     text-decoration: none;
   }
 
+  .navLinkContainer, .navLink, .subLinkWrapper a {
+  -webkit-tap-highlight-color: transparent;
+  }
+
   /* Aseguramos que el texto cambie de color inmediatamente en cualquier nivel */
   .menu .linkFocused,
   .menu .navItem .linkFocused,
