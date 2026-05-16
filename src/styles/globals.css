@@ -55,3 +55,19 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 var(--space-6);
 }
 
+/* Desactivar el flash celeste nativo en todo el sitio para pantallas táctiles */
+@media (max-width: 1024px) {
+  /* El selector universal * asegura que entre hasta el rincón más profundo */
+  *, 
+  *::before, 
+  *::after,
+  a, 
+  button,
+  span,
+  div[class*="navLinkContainer"],
+  [role="button"] {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-user-select: none; /* Evita que el texto se sombree accidentalmente al mantener presionado */
+    user-select: none;
+  }
+}
