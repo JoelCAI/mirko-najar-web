@@ -29,6 +29,12 @@ const NavbarSearchable = () => {
       setIsMenuOpen(false); // Link directo: cierra la cortina mobile
       return;
     }
+    
+    // SOLUCIÓN: Si cambia de menú principal, reseteamos el tercer nivel para que no se cruce
+    if (activeMobileSubmenu !== index) {
+      setActiveMobileSubSubmenu(null);
+    }
+    
     setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
   };
 
@@ -94,6 +100,7 @@ const NavbarSearchable = () => {
           {navigationMenu.map((item, index) => {
             // Regla de oro: Es un dropdown real solo si tiene más de 0 elementos
             const hasSubmenu = item.submenu && item.submenu.length > 0;
+            const isCurrentActive = activeMobileSubmenu === index;
 
             return (
               <li 
@@ -106,8 +113,14 @@ const NavbarSearchable = () => {
                     className={styles.navLinkContainer}
                     onClick={() => handleNavClick(index, hasSubmenu)}
                   >
-                    <span className={styles.navLink}>{item.title}</span>
-                    <ChevronDown size={16} className={styles.arrow} />
+                    {/* Aplica color de acento si el menú está desplegado */}
+                    <span className={`${styles.navLink} ${isCurrentActive ? styles.linkFocused : ''}`}>
+                      {item.title}
+                    </span>
+                    <ChevronDown 
+                      size={16} 
+                      className={`${styles.arrow} ${isCurrentActive ? styles.arrowFocused : ''}`} 
+                    />
                   </div>
                 ) : (
                   <Link 
@@ -121,10 +134,11 @@ const NavbarSearchable = () => {
 
                 {/* PRIMER NIVEL DROPDOWN (Nosotros / Servicios) */}
                 {hasSubmenu && (
-                  <ul className={`${styles.dropdown} ${activeMobileSubmenu === index ? styles.dropdownActiveMobile : ''}`}>
+                  <ul className={`${styles.dropdown} ${isCurrentActive ? styles.dropdownActiveMobile : ''}`}>
                     {item.submenu.map((subItem, subIndex) => {
                       const Icon = subItem.icon;
                       const hasSubSub = subItem.subSubmenu && subItem.subSubmenu.length > 0;
+                      const isSubActive = activeMobileSubSubmenu === subIndex;
 
                       return (
                         <li 
@@ -133,7 +147,7 @@ const NavbarSearchable = () => {
                           onClick={(e) => {
                             if (hasSubSub) {
                               e.stopPropagation(); // Evita que se cierre el dropdown padre al clickear el hijo
-                              setActiveMobileSubSubmenu(activeMobileSubSubmenu === subIndex ? null : subIndex);
+                              setActiveMobileSubSubmenu(isSubActive ? null : subIndex);
                             }
                           }}
                         >
@@ -141,16 +155,27 @@ const NavbarSearchable = () => {
                             <Link 
                               to={hasSubSub ? '#' : subItem.path} 
                               onClick={() => !hasSubSub && setIsMenuOpen(false)}
+                              className={isSubActive ? styles.linkFocused : ''}
                             >
-                              {Icon && <Icon size={18} className={styles.subIcon} />}
-                              {subItem.label}
+                              {Icon && (
+                                <Icon 
+                                  size={18} 
+                                  className={`${styles.subIcon} ${isSubActive ? styles.iconFocused : ''}`} 
+                                />
+                              )}
+                              <span>{subItem.label}</span>
                             </Link>
-                            {hasSubSub && <ChevronLeft size={16} className={styles.leftArrowSub} />}
+                            {hasSubSub && (
+                              <ChevronLeft 
+                                size={16} 
+                                className={`${styles.leftArrowSub} ${isSubActive ? styles.arrowFocused : ''}`} 
+                              />
+                            )}
                           </div>
 
                           {/* SEGUNDO NIVEL DROPDOWN (Acabados Finos -> Abre a la izquierda en PC) */}
                           {hasSubSub && (
-                            <ul className={`${styles.subSubmenu} ${activeMobileSubSubmenu === subIndex ? styles.subSubmenuActiveMobile : ''}`}>
+                            <ul className={`${styles.subSubmenu} ${isSubActive ? styles.subSubmenuActiveMobile : ''}`}>
                               {subItem.subSubmenu.map((subSub, ssIndex) => (
                                 <li key={ssIndex} className={styles.subSubItem}>
                                   <Link to={subSub.path} onClick={() => setIsMenuOpen(false)}>

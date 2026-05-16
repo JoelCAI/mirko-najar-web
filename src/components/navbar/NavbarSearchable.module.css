@@ -411,25 +411,6 @@
     transform: none; /* Quitamos traslación en móviles */
   }
 
-  .navLinkContainer,
-  .navLink {
-    /* Elimina por completo el flash celeste nativo de Android e iOS */
-    -webkit-tap-highlight-color: transparent; 
-  }
-
-  /* Cuando el usuario mantiene presionado un link directo (como Catálogo) o el contenedor de un dropdown */
-  .navLink:active,
-  .navLinkContainer:active {
-    background-color: var(--color-border);
-    border-radius: 6px; /* Para que las esquinas del fondo queden redondeadas y estéticas */
-  }
-
-  /* Ajuste opcional de padding para que el fondo pintado no quede pegado a las letras */
-  .navLinkContainer:active {
-    padding-left: var(--space-2, 8px);
-    padding-right: var(--space-2, 8px);
-  }
-
   /* Acordeones Colapsables en Mobile */
   .dropdown {
     display: none;
@@ -454,11 +435,6 @@
     align-items: center;
     padding: var(--space-3) 0;
     border-bottom: 1px solid #fafafa;
-  }
-
-  .subLinkWrapper:active {
-    background-color: var(--color-border);
-    border-radius: 4px;
   }
 
   .dropdownItem a {
@@ -495,6 +471,32 @@
     color: var(--color-text-muted);
     text-decoration: none;
   }
+
+  /* Aseguramos que el texto cambie de color inmediatamente en cualquier nivel */
+  .menu .linkFocused,
+  .menu .navItem .linkFocused,
+  .menu .dropdownItem .linkFocused {
+    color: var(--color-accent) !important;
+    font-weight: 500; /* Le da un leve cuerpo extra al estar activo */
+  }
+
+  /* El icono también se acopla con fuerza al color activo */
+  .menu .iconFocused {
+    color: var(--color-accent) !important;
+  }
+
+  /* Forzamos el color activo también en las flechas correspondientes */
+  .menu .arrowFocused {
+    color: var(--color-accent) !important;
+    transform: rotate(180deg);
+  }
+
+  /* Ajuste para la subflecha del tercer nivel en móvil */
+  .menu .leftArrowSub.arrowFocused {
+    transform: rotate(-90deg) !important;
+    color: var(--color-accent) !important;
+  }
+
 }
 
 /* --- AJUSTE ESPECÍFICO PARA MÓVIL (Menor a 600px) --- */
