@@ -48,11 +48,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* 4. CLASES DE UTILIDAD (Abajo para que tengan prioridad) */
-.container {
-  width: 100%;
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-6);
+.siteLayoutWrapper {
+  width: var(--site-wrapper-width);
+  max-width: var(--site-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--site-gutter);
+  padding-right: var(--site-gutter);
+  box-sizing: border-box;
 }
 
 /* Desactivar el flash celeste nativo en todo el sitio para pantallas táctiles */
@@ -70,4 +73,15 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-user-select: none; /* Evita que el texto se sombree accidentalmente al mantener presionado */
     user-select: none;
   }
+}
+
+/* Ejemplo en tu CSS global para cualquier componente del sitio */
+body.light-theme {
+  background-color: var(--color-white);
+  color: var(--color-primary-dark);
+}
+
+body.dark-theme {
+  background-color: #110E0D; /* O el fondo oscuro de tu paleta */
+  color: #FDFCFB;
 }

@@ -1,37 +1,58 @@
 /* src/components/navbar/NavbarSearchable.module.css */
 .nav {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
-  height: 70px; /* Cambiado de padding/min-height a una altura fija limpia */
+  z-index: var(--z-header);
+  transition: background-color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, color 0.3s ease;
+  height: 70px; 
   display: flex;
   align-items: center;
-  margin-top: 0;
-  border: none;
-  outline: none;
 }
 
+.isTransparentLayout { position: fixed; }
+.isNormalLayout { position: relative; }
+
 .navTransparent {
-  background-color: var(--color-white);
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom: 1px solid transparent;
 }
 
 .navSolid {
-  background-color: var(--color-white);
+  background-color: var(--dynamic-bg-solid);
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--dynamic-border-color);
 }
 
 .container {
-  max-width: 100%;
-  padding: 0 var(--space-20);
+  width: var(--site-wrapper-width);
+  max-width: var(--site-max-width);
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%; /* Asegura que ocupe todo el ancho interno */
+  box-sizing: border-box;
 }
 
-/* Menú Desktop Base */
+.brandWrapper {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.firmaAutor {
+  font-family: var(--font-branding);
+  font-size: clamp(var(--typo-desktop-logo-min), var(--typo-desktop-logo-curr), var(--typo-desktop-logo-max)); 
+  color: var(--dynamic-brand-text);
+  margin: 0;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
 .menu {
   display: flex;
   align-items: center;
@@ -41,22 +62,14 @@
   padding: 0;
 }
 
-.navItem {
-  position: relative;
-  list-style: none;
-}
-
-.navLinkContainer {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-}
+.navItem { position: relative; list-style: none; }
+.navLinkContainer { display: flex; align-items: center; gap: 4px; cursor: pointer; }
 
 .navLink {
-  font-size: var(--text-lg);
+  font-family: var(--font-primary);
+  font-size: clamp(var(--typo-desktop-menu-min), var(--typo-desktop-menu-curr), var(--typo-desktop-menu-max));
   font-weight: 500;
-  color: var(--color-primary-dark);
+  color: var(--dynamic-text-menu-color);
   padding: var(--space-2) 0;
   position: relative;
   text-decoration: none;
@@ -65,70 +78,76 @@
 }
 
 .navLink:hover, .navLinkContainer:hover .navLink {
-  color: var(--color-accent);
+  color: var(--dynamic-text-menu-color-hover);
   transform: translateY(-2px);
 }
 
 .arrow {
-  color: var(--color-primary-dark);
-  transition: transform 0.2s ease;
+  color: var(--dynamic-text-menu-color);
+  transition: transform 0.2s ease, color 0.3s ease;
 }
 
-/* Búsqueda Desktop */
 .searchDesktop {
   display: block;
   flex: 1;
-  max-width: 400px;
-  margin: 0 var(--space-8);
+  max-width: 380px;
+  margin: 0 var(--space-6);
 }
 
-.searchMobile {
-  display: none;
-  width: 100%;
-  margin-bottom: var(--space-6);
-}
-
-.mobileActions {
-  display: none;
-}
+.searchMobile { display: none; }
+.mobileActions { display: none; }
 
 .menuToggle {
-  display: none;
-  z-index: 2001;
-  color: var(--color-primary-dark);
   background: none;
   border: none;
   cursor: pointer;
+  display: none;
 }
 
-.firmaAutor {
-  font-family: var(--font-branding);
-  font-size: 40px; 
-  color: var(--color-primary-dark);
-  margin: 0;
-  text-decoration: none;
+/* Estilos de escritorio base para el botón de tema */
+.themeToggleBtn {
+  background-color: var(--dynamic-bg-icon-toggle);
+  border: none;
+  color: var(--dynamic-color-icon-toggle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.themeToggleBtn:hover {
+  color: var(--dynamic-color-icon-toggle-hover);
+  background-color: var(--dynamic-bg-icon-toggle-hover);
+}
+
+.themeToggleBtn:active {
+  background-color: var(--dynamic-bg-icon-toggle-active);
+  color: var(--dynamic-color-icon-toggle-hover);
 }
 
 .subIcon {
-    margin-right: var(--space-3);
-    color: var(--color-accent);
-    flex-shrink: 0;
+  margin-right: var(--space-3);
+  color: var(--dynamic-text-menu-color-hover);
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
-   ESTILOS EXCLUSIVOS DESKTOP (Hover y Despliegues Izquierda)
+   VERSION EN ESCRITORIO (Desktop > 1025px)
    ========================================================================== */
 @media (min-width: 1025px) {
-  /* --- PRIMER NIVEL DROPDOWN --- */
   .dropdown {
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    background: var(--color-white, #ffffff);
-    border: 1px solid var(--color-border, #e0e0e0);
-    border-radius: 6px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    background: var(--dynamic-bg-solid);
+    border: 1px solid var(--dynamic-border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
     padding: var(--space-2) 0;
     min-width: 220px;
     list-style: none;
@@ -143,14 +162,8 @@
     transform: translateX(-50%) translateY(0);
   }
 
-  .hasDropdown:hover .arrow {
-    transform: rotate(180deg);
-  }
-
-  .dropdownItem {
-    position: relative;
-    list-style: none;
-  }
+  .hasDropdown:hover .arrow { transform: rotate(180deg); }
+  .dropdownItem { position: relative; list-style: none; }
 
   .subLinkWrapper {
     display: flex;
@@ -162,26 +175,23 @@
   .dropdownItem a {
     display: flex;
     align-items: center;
-    color: var(--color-primary-dark);
+    color: var(--dynamic-text-menu-color);
     text-decoration: none;
     font-size: 15px;
     width: 100%;
   }
 
-  .dropdownItem:hover {
-    background-color: var(--color-border);
-  }
+  .dropdownItem:hover { background-color: var(--dynamic-hover-row); }
 
-  /* --- SEGUNDO NIVEL: APERTURA ESTRICTA A LA IZQUIERDA --- */
   .subSubmenu {
     position: absolute;
     top: 0;
-    right: 100%; /* Empuja el menú hacia la izquierda de la caja contenedora */
+    right: 100%; 
     margin-right: 4px;
-    background: var(--color-white, #ffffff);
-    border: 1px solid var(--color-border, #e0e0e0);
-    border-radius: 6px;
-    box-shadow: -6px 6px 16px rgba(0,0,0,0.08);
+    background: var(--dynamic-bg-solid);
+    border: 1px solid var(--dynamic-border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
     padding: var(--space-2) 0;
     min-width: 190px;
     list-style: none;
@@ -197,57 +207,62 @@
     transform: translateX(0);
   }
 
-  .leftArrowSub {
-    color: var(--color-text-muted, #ccc);
-  }
-
-  .subSubItem {
-    list-style: none;
-  }
- 
-  .subSubItem:hover {
-    background-color: var(--color-border);
-  }
-
+  .leftArrowSub { color: var(--dynamic-text-menu-color); }
+  .subSubItem { list-style: none; }
+  .subSubItem:hover { background-color: var(--dynamic-hover-row); }
 
   .subSubItem a {
     padding: var(--space-2) var(--space-4);
     font-size: 14px;
+    color: var(--dynamic-text-menu-color);
+    display: block;
+    text-decoration: none;
   }
 
-  /* --- PERFIL USUARIO DESKTOP --- */
+  .desktopThemeMenu {
+    display: flex;
+    align-items: center;
+    margin-left: var(--space-2);
+  }
+
   .desktopUserMenu {
     position: relative;
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin-left: var(--space-4);
   }
 
   .userIconWrapper {
-    background: #f5f5f5;
+    background-color: var(--dynamic-bg-icon-user); 
     padding: var(--space-2);
     border-radius: 50%;
-    color: var(--color-primary-dark);
+    color: var(--dynamic-color-icon-user);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s, color 0.2s;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    width: 40px;
+    height: 40px;
   }
 
   .desktopUserMenu:hover .userIconWrapper {
-    background: var(--color-accent);
-    color: var(--color-white);
+    background-color: var(--dynamic-bg-icon-user-hover);
+    color: var(--dynamic-color-icon-user-hover);
+  }
+
+  .desktopUserMenu:active .userIconWrapper {
+    background-color: var(--dynamic-bg-icon-user-active);
+    color: var(--dynamic-color-icon-user-hover);
   }
 
   .userDropdownDesktop {
     position: absolute;
     top: 100%;
     right: 0;
-    background: var(--color-white, #ffffff);
-    border: 1px solid var(--color-border, #e0e0e0);
-    border-radius: 6px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    background: var(--dynamic-bg-solid);
+    border: 1px solid var(--dynamic-border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
     padding: var(--space-2) 0;
     min-width: 160px;
     list-style: none;
@@ -266,166 +281,171 @@
   .userDropdownDesktop a {
     display: block;
     padding: var(--space-2) var(--space-4);
-    color: var(--color-primary-dark);
+    color: var(--dynamic-text-menu-color);
     text-decoration: none;
     font-size: 14px;
   }
 
-  .userDropdownDesktop li:hover {
-    background: #f5f5f5;
-  }
+  .userDropdownDesktop li:hover { background: var(--dynamic-hover-row); }
 }
 
 /* ==========================================================================
-   ESTILOS RESPONSIVIDAD (Móvil y Tablet hasta 1024px)
+   VERSION RESPONSIVE (Móviles y Tablets <= 1024px)
    ========================================================================== */
 @media (max-width: 1024px) {
   .container {
-    padding: 0 var(--space-8);
+    width: 100%;
+    padding: 0 var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .desktopUserMenu {
-    display: none; /* Ocultado del flujo principal en PC */
-  }
+  .desktopUserMenu, .desktopThemeMenu { display: none; }
 
   .mobileActions {
     display: flex;
     align-items: center;
-    gap: var(--space-2); /* Reducido un poco para mayor elegancia */
+    gap: var(--space-1);
+    flex-shrink: 0;
   }
 
-  /* Botón de usuario a la izquierda */
+  /* Redefinición quirúrgica para aislar móviles */
+  .themeToggleBtn {
+    width: 44px;
+    height: 44px;
+    color: var(--dynamic-color-icon-toggle);
+    background-color: transparent; /* Por defecto sin fondo en móvil */
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Desactivamos el active nativo para que no se quede pegado tras el tap */
+  .themeToggleBtn:active {
+    background-color: transparent;
+  }
+
+  /* Esta clase controla el destello de fondo por 0.4s únicamente en móvil */
+  .themeToggleActiveMobile {
+    background-color: var(--dynamic-bg-icon-toggle-active) !important;
+    color: var(--dynamic-color-icon-toggle-hover) !important;
+    transform: scale(0.92); /* Feedback táctil de hundimiento */
+  }
+
   .mobileUserBtn {
-    background: none;
+    background-color: var(--dynamic-bg-icon-user); 
     border: none;
     position: relative;
-    color: var(--color-primary-dark);
+    color: var(--dynamic-color-icon-user);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    width: 44px;  /* Forzamos caja cuadrada perfecta */
-    height: 44px; /* Forzamos caja cuadrada perfecta */
-    padding: 0;   /* Eliminamos paddings fantasmas */
+    width: 44px;  
+    height: 44px; 
+    transition: background-color 0.15s ease, color 0.15s ease;
   }
 
-  .activeUserBtn {
-    background-color: var(--color-accent) !important;
-    color: var(--color-white) !important;
+  .mobileUserBtn:active, .activeUserBtn {
+    background-color: var(--dynamic-bg-icon-user-active) !important;
+    color: var(--dynamic-color-icon-user-hover) !important;
   }
 
   .mobileUserDropdown {
     position: absolute;
-    top: 40px;
-    left: -40px;
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 6px;
+    top: 50px;
+    right: 0; 
+    background: var(--dynamic-bg-solid);
+    border: 1px solid var(--dynamic-border-color);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
     list-style: none;
     padding: var(--space-2) 0;
-    min-width: 140px;
-    z-index: 2002;
+    min-width: 150px;
+    z-index: var(--z-drawer);
   }
 
   .mobileUserDropdown a {
     display: block;
-    padding: var(--space-2) var(--space-4);
-    color: var(--color-primary-dark);
+    padding: var(--space-3) var(--space-4);
+    color: var(--dynamic-text-menu-mobile);
     text-decoration: none;
     font-size: 14px;
     text-align: left;
   }
 
-  /* Botón Hamburguesa/X móvil unificado */
   .menuToggle {
-    display: flex;       /* Cambiado de block a flex */
+    display: flex;       
     align-items: center;
     justify-content: center;
-    z-index: 2001;
-    color: var(--color-primary-dark);
-    background: none;
-    border: none;
-    cursor: pointer;
-    width: 44px;  /* Misma anchura exacta que el botón user */
-    height: 44px; /* Misma altura exacta que el botón user */
-    padding: 0;   /* Eliminamos paddings fantasmas */
+    color: var(--dynamic-mobile-toggle-color);
+    width: 44px;  
+    height: 44px; 
+    position: relative;
+    z-index: calc(var(--z-drawer) + 10);
+    transition: color 0.15s ease;
   }
 
-  .searchDesktop {
-    display: none;
+  .menuToggle:active, .menuToggleOpen {
+    color: var(--dynamic-mobile-toggle-color-active) !important;
   }
 
-  /* Desplegable lateral de navegación */
+  .searchDesktop { display: none; }
+
   .menu {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 70%; 
-    max-width: 450px; 
+    width: 80%;   
+    max-width: 320px; 
     height: 100vh;
-    background-color: var(--color-white);
+    background-color: var(--dynamic-bg-solid);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 75px;
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2000;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+    overflow-x: hidden;
     overflow-y: auto;
+    padding: 85px var(--space-6) var(--space-6) var(--space-6);
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: var(--z-drawer);
+    box-shadow: var(--shadow-lg);
   }
 
   .menuOpen {
     right: 0;
   }
 
-  /* --- SEARCHBAR MÓVIL OPTIMIZADA PARA TECLADO --- */
   .searchMobile {
     display: block;
-    width: 90%; 
-    max-width: 340px; 
-    
-    /* SOLUCIÓN: Usamos un margen superior ligeramente negativo para pegarla bien arriba, */
-    /* dejando libre toda la mitad inferior de la pantalla para las sugerencias y el teclado */
-    margin-top: -10px;
-    margin-bottom: var(--space-6); /* Reducimos el espacio de abajo para que los links suban también */
-    
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%; 
+    margin-bottom: var(--space-6); 
   }
 
-  .navItem {
-    width: 100%;
-  }
+  .navItem { width: 100%; }
 
   .navLinkContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    border-bottom: 1px solid #f5f5f5;
-    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--dynamic-border-color);
   }
 
   .navLink {
-    font-size: 1.6rem;
+    font-size: var(--typo-mobile-menu);
     width: 100%;
     text-align: left;
     padding: var(--space-4) 0;
-    color: var(--color-primary-dark);
+    color: var(--dynamic-text-menu-mobile);
+    transition: color 0.15s ease;
   }
 
-  .navLink:hover {
-    transform: none; /* Quitamos traslación en móviles */
+  .navLinkContainer:active .navLink,
+  .navLink:active {
+    color: var(--dynamic-text-menu-mobile-active);
   }
 
-  /* Acordeones Colapsables en Mobile */
   .dropdown {
     display: none;
     list-style: none;
@@ -434,103 +454,82 @@
     box-sizing: border-box;
   }
 
-  .dropdownActiveMobile {
-    display: block;
-  }
-
-  .dropdownItem {
-    list-style: none;
-    width: 100%;
-  }
+  .dropdownActiveMobile { display: block; }
+  .dropdownItem { list-style: none; width: 100%; }
 
   .subLinkWrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: var(--space-3) 0;
-    border-bottom: 1px solid #fafafa;
+    border-bottom: 1px solid var(--dynamic-border-color);
   }
 
   .dropdownItem a {
     display: flex;
     align-items: center;
     width: 100%;
-    color: var(--color-primary-dark);
+    color: var(--dynamic-text-menu-mobile);
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+  }
+  
+  .dropdownItem:active a {
+    color: var(--dynamic-text-menu-mobile-active);
   }
 
   .leftArrowSub {
-    transform: rotate(-90deg); /* Apunta hacia abajo en móvil al colapsar */
-    color: var(--color-primary-dark);
+    transform: rotate(-90deg); 
+    color: var(--dynamic-text-menu-mobile);
   }
 
   .subSubmenu {
     display: none;
     list-style: none;
     padding-left: var(--space-4);
-    border-left: 2px solid var(--color-accent);
+    border-left: 2px solid var(--dynamic-text-menu-color-hover);
     margin-top: var(--space-2);
     margin-bottom: var(--space-2);
   }
 
-  .subSubmenuActiveMobile {
-    display: block;
-  }
+  .subSubmenuActiveMobile { display: block; }
 
   .subSubItem a {
     display: block;
     padding: var(--space-2) 0;
-    font-size: 1.3rem;
-    color: var(--color-text-muted);
+    font-size: 1rem;
+    color: var(--dynamic-text-menu-mobile);
     text-decoration: none;
+    opacity: 0.8;
+  }
+  
+  .subSubItem:active a {
+    color: var(--dynamic-text-menu-mobile-active);
+    opacity: 1;
   }
 
-  /* Aseguramos que el texto cambie de color inmediatamente en cualquier nivel */
   .menu .linkFocused,
   .menu .navItem .linkFocused,
   .menu .dropdownItem .linkFocused {
-    color: var(--color-accent) !important;
-    font-weight: 500; /* Le da un leve cuerpo extra al estar activo */
+    color: var(--dynamic-text-menu-mobile-active) !important;
   }
 
-  /* El icono también se acopla con fuerza al color activo */
-  .menu .iconFocused {
-    color: var(--color-accent) !important;
+  .menu .iconFocused, .menu .arrowFocused {
+    color: var(--dynamic-text-menu-mobile-active) !important;
   }
 
-  /* Forzamos el color activo también en las flechas correspondientes */
-  .menu .arrowFocused {
-    color: var(--color-accent) !important;
-    transform: rotate(180deg);
-  }
-
-  /* Ajuste para la subflecha del tercer nivel en móvil */
   .menu .leftArrowSub.arrowFocused {
     transform: rotate(-90deg) !important;
-    color: var(--color-accent) !important;
+    color: var(--dynamic-text-menu-mobile-active) !important;
   }
-
 }
 
-/* --- AJUSTE ESPECÍFICO PARA MÓVIL (Menor a 600px) --- */
+/* ==========================================================================
+   BREAKPOINTS EXTRA PEQUEÑOS 
+   ========================================================================== */
 @media (max-width: 600px) {
-  .menu {
-    width: 100%;
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
+  .firmaAutor { 
+    font-size: var(--typo-mobile-logo); 
   }
-
-  .searchMobile {
-    max-width: 90%;
-  }
-
-  .navLink {
-    font-size: 1.4rem;
-    padding: var(--space-3) 0;
-  }
-  
-  .firmaAutor {
-    font-size: 30px;
-  }
+  .menu { width: 85%; }
 }

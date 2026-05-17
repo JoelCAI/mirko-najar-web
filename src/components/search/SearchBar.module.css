@@ -8,24 +8,19 @@
   display: flex;
   align-items: stretch; /* Mantiene el input y el botón estirados al mismo alto */
   width: 100%;
-  background: var(--color-surface, #ffffff);
+  background: var(--color-border);
   border-radius: var(--radius-md);
-  
-  /* SOLUCIÓN: Declaramos el borde de 1px fijo y permanente para que no haya saltos de tamaño */
-  
   height: 40px;
   box-sizing: border-box;
-  overflow: hidden; /* Evita que el fondo del botón desborde el redondeado del contenedor */
+  overflow: hidden; /* Evita que el botón desborde las esquinas redondeadas */
   
-  /* Suaviza la transición de color del borde al hacer clic */
+  /* CORRECCIÓN PROTECTORA: Añadimos un borde transparente inicial para que al hacer focus */
+  /* el contenedor no "tiemble" ni recalcule su altura empujando el texto hacia abajo */
   transition: border-color 0.2s ease, box-shadow 0.2s ease; 
 }
 
 .searchContainer:focus-within {
-  /* Al hacer clic dentro, SOLO cambia el color del borde, la estructura se queda intacta */
-  border-color: var(--color-accent); 
-  border: 1px solid var(--color-accent); 
-  /* Opcional: un sutil reflejo para darle un efecto premium sin alterar el tamaño */
+  border: 1px solid var(--dynamic-search-border-focus);
 }
 
 .searchInput {
@@ -33,29 +28,46 @@
   min-width: 0;
   height: 100%;
   border: none;
- 
   background: transparent;
   padding: 0 var(--space-4, 16px);
   outline: none;
   font-size: var(--text-sm, 14px);
-  color: var(--color-text);
+  color: var(--color-primary-dark);
   box-sizing: border-box;
+
+  /* CORRECCIÓN DE CENTRADO: Forzamos comportamiento Flex y alineación vertical exacta */
+  display: flex;
+  align-items: center;
+  line-height: normal; /* Normaliza interpretaciones raras de alturas de fuente de navegadores */
 }
 
+/* CORRECCIÓN OPCIONAL EXTRA: Asegura el centrado vertical del placeholder en Safari/iOS */
+.searchInput::placeholder {
+  line-height: normal;
+  display: flex;
+  align-items: center;
+}
+
+/* El fondo del botón de la lupa es --color-accent y el icono es --color-white */
 .searchButton {
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--color-accent);
-  border: var(--color-accent);
+  border: none;
   width: 45px;
-  height: auto; /* Deja que el stretch del contenedor asigne los 38px internos exactos */
+  height: auto; 
   cursor: pointer;
-  color: var(--color-white, #ffffff);
+  color: var(--color-white, #ffffff); 
   flex-shrink: 0;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: background-color 0.15s ease;
+}
+
+.searchButton:hover {
+  filter: brightness(0.92);
 }
 
 .statusFeedbackContainer {
@@ -74,12 +86,13 @@
   animation: fadeIn 0.2s ease;
 }
 
+/* DESPLEGABLE DE RESULTADOS */
 .dropdownResults {
   position: absolute;
   top: 45px;
   left: 0;
   width: 100%;
-  background: var(--color-surface, #fff);
+  background: var(--color-white, #fff);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
@@ -91,7 +104,7 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  max-height: 186px; /* Altura máxima controlada para 3 ítems simultáneos */
+  max-height: 186px; 
   overflow-y: auto;
 }
 
@@ -99,10 +112,10 @@
   width: 6px;
 }
 .resultsList::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--color-surface);
 }
 .resultsList::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: var(--color-accent);
   border-radius: 3px;
 }
 
@@ -114,10 +127,11 @@
   transition: background-color 0.15s ease;
   cursor: pointer;
   box-sizing: border-box;
+  background-color: var(--color-border);
 }
 
 .searchItem:hover {
-  background-color: var(--color-bg-hover, #f9f9f9);
+  filter: brightness(0.97);
 }
 
 .searchItemImg {
@@ -138,10 +152,10 @@
 }
 
 .searchItemName {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--font-primary);
   font-weight: 700;
   font-size: var(--text-sm, 14px);
-  color: var(--color-text);
+  color: var(--color-primary-dark);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -149,7 +163,8 @@
 
 .searchItemCategory {
   font-size: 11px;
-  color: var(--color-text-muted, #757575);
+  color: var(--color-primary-dark);
+  font-weight: 400;
   margin-top: 2px;
 }
 
@@ -158,20 +173,22 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--space-2, 8px) var(--space-4, 16px);
-  background-color: var(--color-bg-alt, #f5f5f5);
+  background-color: var(--color-surface); 
   font-size: 12px;
-  color: var(--color-text-muted);
+  color: var(--color-primary-dark);    
+  font-weight: 400; 
   border-top: 1px solid var(--color-border);
 }
 
 .footerLink {
   background: none;
   border: none;
-  color: var(--color-accent);
-  font-weight: 700;
+  color: var(--color-primary-dark); 
+  font-weight: 600;
   cursor: pointer;
   padding: 2px 6px;
   border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
 }
 
 .footerLink:hover {
@@ -182,7 +199,7 @@
   padding: var(--space-4);
   text-align: center;
   font-size: var(--text-sm);
-  color: var(--color-text-muted);
+  color: var(--color-primary-dark);
 }
 
 @keyframes fadeIn {

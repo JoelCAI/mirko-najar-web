@@ -1,8 +1,9 @@
 /* src/styles/variables.css */
 :root {
-
-    /* Ancho máximo para garantizar legibilidad y centrado en pantallas grandes */
-    --container-max-width: 1200px; 
+    /* --- ARQUITECTURA DE CONTENIDO --- */
+    --site-wrapper-width: 92%;       /* Ocupa el 92% del ancho de la pantalla */
+    --site-max-width: 1440px;        /* Límite premium para pantallas grandes */
+    --site-gutter: var(--space-4);   /* Colchón interno mínimo (16px) */ 
 
     /* --- Brand Colors (Madera Premium) --- */
     --color-primary: #5D4037;
@@ -19,7 +20,6 @@
     --color-border: #E7E0D9;
 
     /* --- Typography (Pairing: Lato + Roboto Condensed) --- */
-    /* Lato para cuerpo (legible) y Roboto Condensed para títulos (robusto) */
     --font-primary: 'Lato', system-ui, sans-serif;
     --font-secondary: 'Roboto Condensed', sans-serif;
     --font-branding: 'Parisienne', cursive;
@@ -46,7 +46,7 @@
     --space-24: 6rem;   /* 96px */
     --space-32: 8rem;   /* 128px */
 
-    /* --- Shadows (Elevación prolija) --- */
+    /* --- Shadows --- */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -59,10 +59,10 @@
     /* --- Z-Index Stack (Sistema de Capas) --- */
     --z-below: -1;
     --z-base: 1;
-    --z-header: 1000;      /* El header siempre arriba del contenido */
-    --z-drawer: 1500;      /* Menú lateral móvil */
-    --z-overlay: 2000;     /* Fondo oscurecido para pop-ups/modales */
-    --z-modal: 2100;       /* Ventana del pop-up */
-    --z-tooltip: 3000;     /* Mensajes flotantes */
-    --z-max: 9999;         /* Emergencias absolutas */
+    --z-header: 1000;      
+    --z-drawer: 1500;      
+    --z-overlay: 2000;     
+    --z-modal: 2100;       
+    --z-tooltip: 3000;     
+    --z-max: 9999;         
 }

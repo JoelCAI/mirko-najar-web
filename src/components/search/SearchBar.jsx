@@ -32,7 +32,6 @@ const SearchBar = () => {
     });
   };
 
-  // Función para limpiar el buscador y colapsar el menú en móviles/escritorio
   const handleClear = () => {
     setQuery('');
     setFiltered([]);
@@ -44,13 +43,13 @@ const SearchBar = () => {
       <div className={styles.searchContainer}>
         <input 
           type="text" 
-          placeholder="Buscar productos, servicios y más..." 
+          placeholder="Buscar productos y más..." 
           className={styles.searchInput}
           value={query}
           onChange={handleSearch}
           disabled={loading || error}
         />
-        <button className={styles.searchButton} type="button">
+        <button className={styles.searchButton} type="button" aria-label="Buscar">
           <Search size={20} />
         </button>
       </div>

@@ -1,19 +1,34 @@
 // src/components/navbar/NavbarSearchable.jsx
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, User as UserIcon, ChevronDown, ChevronLeft } from 'lucide-react'; 
+import { Menu, X, User as UserIcon, ChevronDown, ChevronLeft, Sun, Moon } from 'lucide-react'; 
 import styles from './NavbarSearchable.module.css';
 import SearchBar from '../search/SearchBar';
-import { navigationMenu, userMenuOptions } from '../../config/navigationConfig';
+import { 
+  brandConfig, 
+  themeConfig, 
+  navigationMenu, 
+  userMenuOptions, 
+  navbarColorLight, 
+  navbarColorDark,
+  typographyLimits 
+} from '../../config/navigationConfig';
 
 const NavbarSearchable = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  // Control de estados de clicks exclusivos para Mobile/Tablet
+  const [currentTheme, setCurrentTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('themePersistence');
+    return savedTheme ? savedTheme : themeConfig.theme;
+  });
+  
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
   const [activeMobileSubSubmenu, setActiveMobileSubSubmenu] = useState(null);
   const [userDropdownOpenMobile, setUserDropdownOpenMobile] = useState(false);
+
+  // Nuevo estado para controlar el feedback visual con delay en móvil
+  const [isTransitioningTheme, setIsTransitioningTheme] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,50 +38,147 @@ const NavbarSearchable = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Maneja el toggle de los menús condicionales en entornos táctiles
+  useEffect(() => {
+    document.body.classList.remove('light-theme', 'dark-theme');
+    document.body.classList.add(`${currentTheme}-theme`);
+  }, [currentTheme]);
+
   const handleNavClick = (index, hasSubmenu) => {
     if (!hasSubmenu) {
-      setIsMenuOpen(false); // Link directo: cierra la cortina mobile
+      setIsMenuOpen(false);
       return;
     }
-    
-    // SOLUCIÓN: Si cambia de menú principal, reseteamos el tercer nivel para que no se cruce
     if (activeMobileSubmenu !== index) {
       setActiveMobileSubSubmenu(null);
     }
-    
     setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
   };
 
+  // Lógica con delay de 0.4s (400ms) para móviles
+  const toggleTheme = () => {
+    if (isTransitioningTheme) return;
+    
+    setIsTransitioningTheme(true);
+
+    setTimeout(() => {
+      setCurrentTheme(prev => {
+        const nextTheme = prev === 'light' ? 'dark' : 'light';
+        localStorage.setItem('themePersistence', nextTheme);
+        return nextTheme;
+      });
+      setIsTransitioningTheme(false);
+    }, 400);
+  };
+
+  const activePalette = currentTheme === 'light' ? navbarColorLight : navbarColorDark;
+
+  const themeStyles = {
+    '--dynamic-bg-solid': activePalette.bgSolid,
+    '--dynamic-brand-text': activePalette.brandText,
+    '--dynamic-text-menu-color': activePalette.textMenuColor,
+    '--dynamic-text-menu-color-hover': activePalette.textMenuColorHover,
+    '--dynamic-text-menu-mobile': activePalette.textMenuMobile,
+    '--dynamic-text-menu-mobile-active': activePalette.textMenuMobileActive,
+    
+    '--dynamic-bg-icon-user': activePalette.backgroundIconUser,
+    '--dynamic-bg-icon-user-hover': activePalette.backgroundIconUserHover,
+    '--dynamic-bg-icon-user-active': activePalette.backgroundIconUserActive,
+    '--dynamic-color-icon-user': activePalette.colorIconUser,
+    '--dynamic-color-icon-user-hover': activePalette.colorIconUserHover,
+    
+    '--dynamic-bg-icon-toggle': activePalette.backgroundIconToggle,
+    '--dynamic-bg-icon-toggle-hover': activePalette.backgroundIconToggleHover,
+    '--dynamic-bg-icon-toggle-active': activePalette.backgroundIconToggleActive,
+    '--dynamic-color-icon-toggle': activePalette.colorIconToggle,
+    '--dynamic-color-icon-toggle-hover': activePalette.colorIconToggleHover,
+
+    '--dynamic-mobile-toggle-color': activePalette.mobileMenuToggleColor,
+    '--dynamic-mobile-toggle-color-active': activePalette.mobileMenuToggleColorActive,
+    
+    '--dynamic-search-container-bg': activePalette.searchContainerBg,
+    '--dynamic-search-button-bg': activePalette.searchButtonBg,
+    '--dynamic-search-button-bg-hover': activePalette.searchButtonBgHover,
+    '--dynamic-search-button-color': activePalette.searchButtonColor,
+    
+    '--dynamic-border-color': activePalette.borderColor,
+    '--dynamic-hover-row': activePalette.hoverRow,
+
+    '--typo-desktop-logo-curr': typographyLimits.desktop.logo.current,
+    '--typo-desktop-logo-min': typographyLimits.desktop.logo.min,
+    '--typo-desktop-logo-max': typographyLimits.desktop.logo.max,
+    
+    '--typo-desktop-menu-curr': typographyLimits.desktop.menuItems.current,
+    '--typo-desktop-menu-min': typographyLimits.desktop.menuItems.min,
+    '--typo-desktop-menu-max': typographyLimits.desktop.menuItems.max,
+
+    '--typo-mobile-logo': typographyLimits.mobile.logo,
+    '--typo-mobile-menu': typographyLimits.mobile.menuItems,
+
+    '--dynamic-search-border-focus': activePalette.searchBorderFocus,
+
+  };
+
+  const backgroundStyleClass = isScrolled 
+    ? styles.navSolid 
+    : (themeConfig.isTransparent ? styles.navTransparent : styles.navSolid);
+
+  const positionStyleClass = themeConfig.isTransparent ? styles.isTransparentLayout : styles.isNormalLayout;
+
   return (
-    <nav className={`${styles.nav} ${isScrolled ? styles.navSolid : styles.navTransparent}`}>
+    <nav 
+      style={themeStyles} 
+      className={`${styles.nav} ${backgroundStyleClass} ${positionStyleClass}`}
+      aria-label="Navegación Principal"
+    >
       <div className={styles.container}>
         
         {/* LOGO / BRANDING */}
-        <Link to="/" className={styles.firmaAutor}>Mirko Najar</Link>
+        <Link to="/" className={styles.brandWrapper}>
+          {brandConfig.type === 'image' ? (
+            <img 
+              src={brandConfig.image.src} 
+              alt={brandConfig.image.alt} 
+              style={{ 
+                height: brandConfig.image.height, 
+                width: brandConfig.image.width,
+                display: 'block'
+              }} 
+            />
+          ) : (
+            <span className={styles.firmaAutor}>{brandConfig.text.title}</span>
+          )}
+        </Link>
         
         {/* BUSCADOR DESKTOP */}
         <div className={styles.searchDesktop}>
           <SearchBar />
         </div>
 
-        {/* CONTENEDOR ACCIONES MÓVILES: Icono Usuario (Izquierda) + Hamburguesa (Derecha) */}
+        {/* CONTROLES MÓVILES */}
         <div className={styles.mobileActions}>
           <button 
+            type="button" 
+            className={`${styles.themeToggleBtn} ${isTransitioningTheme ? styles.themeToggleActiveMobile : ''}`} 
+            onClick={toggleTheme}
+            aria-label="Cambiar tema visual"
+          >
+            {currentTheme === 'light' ? <Moon size={22} strokeWidth={1.5} /> : <Sun size={22} strokeWidth={1.5} />}
+          </button>
+
+          <button 
             type="button"
-            /* Inyecta la clase activeUserBtn si el menú está abierto */
             className={`${styles.mobileUserBtn} ${userDropdownOpenMobile ? styles.activeUserBtn : ''}`}
             onClick={() => setUserDropdownOpenMobile(!userDropdownOpenMobile)}
             aria-label="Menú de usuario"
           >
-            <UserIcon size={26} strokeWidth={1.5} />
+            <UserIcon size={24} strokeWidth={1.5} />
             {userDropdownOpenMobile && (
-              <ul className={styles.mobileUserDropdown}>
+              <ul className={styles.mobileUserDropdown} role="menu">
                 {userMenuOptions.map((opt, i) => (
-                  <li key={i}>
-                    <Link to={opt.path} onClick={() => {
+                  <li key={i} role="none">
+                    <Link to={opt.path} role="menuitem" onClick={() => {
                       setIsMenuOpen(false);
-                      setUserDropdownOpenMobile(false); // Cierra al hacer click en una opción
+                      setUserDropdownOpenMobile(false);
                     }}>
                       {opt.label}
                     </Link>
@@ -77,64 +189,42 @@ const NavbarSearchable = () => {
           </button>
 
           <button 
-            className={styles.menuToggle} 
+            type="button"
+            className={`${styles.menuToggle} ${isMenuOpen ? styles.menuToggleOpen : ''}`} 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
           >
-            {isMenuOpen ? (
-              <X size={32} strokeWidth={1.2} /> 
-            ) : (
-              <Menu size={32} strokeWidth={1.2} />
-            )}
+            {isMenuOpen ? <X size={28} strokeWidth={1.5} /> : <Menu size={28} strokeWidth={1.5} />}
           </button>
         </div>
 
-        {/* MENÚ DE NAVEGACIÓN Y CORTINA RESPONSIVE */}
-        <ul className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ''}`}>
-          
-          {/* BUSCADOR MÓVIL */}
-          <li className={styles.searchMobile}>
+        {/* MENÚ PRINCIPAL */}
+        <ul className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ''}`} role="menubar">
+          <li className={styles.searchMobile} role="none">
             <SearchBar />
           </li>
 
-          {/* GENERACIÓN DINÁMICA DEL MENÚ INSTITUCIONAL */}
           {navigationMenu.map((item, index) => {
-            // Regla de oro: Es un dropdown real solo si tiene más de 0 elementos
             const hasSubmenu = item.submenu && item.submenu.length > 0;
             const isCurrentActive = activeMobileSubmenu === index;
 
             return (
-              <li 
-                key={index} 
-                className={`${styles.navItem} ${hasSubmenu ? styles.hasDropdown : ''}`}
-              >
+              <li key={index} className={`${styles.navItem} ${hasSubmenu ? styles.hasDropdown : ''}`} role="none">
                 {hasSubmenu ? (
-                  // Contenedor interactivo (Hover en PC / Click en Mobile)
-                  <div 
-                    className={styles.navLinkContainer}
-                    onClick={() => handleNavClick(index, hasSubmenu)}
-                  >
-                    {/* Aplica color de acento si el menú está desplegado */}
+                  <div className={styles.navLinkContainer} onClick={() => handleNavClick(index, hasSubmenu)}>
                     <span className={`${styles.navLink} ${isCurrentActive ? styles.linkFocused : ''}`}>
                       {item.title}
                     </span>
-                    <ChevronDown 
-                      size={16} 
-                      className={`${styles.arrow} ${isCurrentActive ? styles.arrowFocused : ''}`} 
-                    />
+                    <ChevronDown size={16} className={`${styles.arrow} ${isCurrentActive ? styles.arrowFocused : ''}`} />
                   </div>
                 ) : (
-                  <Link 
-                    to={item.path} 
-                    className={styles.navLink} 
-                    onClick={() => setIsMenuOpen(false)}
-                  >
+                  <Link to={item.path} className={styles.navLink} role="menuitem" onClick={() => setIsMenuOpen(false)}>
                     {item.title}
                   </Link>
                 )}
 
-                {/* PRIMER NIVEL DROPDOWN (Nosotros / Servicios) */}
                 {hasSubmenu && (
-                  <ul className={`${styles.dropdown} ${isCurrentActive ? styles.dropdownActiveMobile : ''}`}>
+                  <ul className={`${styles.dropdown} ${isCurrentActive ? styles.dropdownActiveMobile : ''}`} role="menu">
                     {item.submenu.map((subItem, subIndex) => {
                       const Icon = subItem.icon;
                       const hasSubSub = subItem.subSubmenu && subItem.subSubmenu.length > 0;
@@ -144,9 +234,10 @@ const NavbarSearchable = () => {
                         <li 
                           key={subIndex} 
                           className={`${styles.dropdownItem} ${hasSubSub ? styles.hasSubSub : ''}`}
+                          role="none"
                           onClick={(e) => {
                             if (hasSubSub) {
-                              e.stopPropagation(); // Evita que se cierre el dropdown padre al clickear el hijo
+                              e.stopPropagation();
                               setActiveMobileSubSubmenu(isSubActive ? null : subIndex);
                             }
                           }}
@@ -154,31 +245,21 @@ const NavbarSearchable = () => {
                           <div className={styles.subLinkWrapper}>
                             <Link 
                               to={hasSubSub ? '#' : subItem.path} 
+                              role="menuitem"
                               onClick={() => !hasSubSub && setIsMenuOpen(false)}
                               className={isSubActive ? styles.linkFocused : ''}
                             >
-                              {Icon && (
-                                <Icon 
-                                  size={18} 
-                                  className={`${styles.subIcon} ${isSubActive ? styles.iconFocused : ''}`} 
-                                />
-                              )}
+                              {Icon && <Icon size={18} className={`${styles.subIcon} ${isSubActive ? styles.iconFocused : ''}`} />}
                               <span>{subItem.label}</span>
                             </Link>
-                            {hasSubSub && (
-                              <ChevronLeft 
-                                size={16} 
-                                className={`${styles.leftArrowSub} ${isSubActive ? styles.arrowFocused : ''}`} 
-                              />
-                            )}
+                            {hasSubSub && <ChevronLeft size={16} className={`${styles.leftArrowSub} ${isSubActive ? styles.arrowFocused : ''}`} />}
                           </div>
 
-                          {/* SEGUNDO NIVEL DROPDOWN (Acabados Finos -> Abre a la izquierda en PC) */}
                           {hasSubSub && (
-                            <ul className={`${styles.subSubmenu} ${isSubActive ? styles.subSubmenuActiveMobile : ''}`}>
+                            <ul className={`${styles.subSubmenu} ${isSubActive ? styles.subSubmenuActiveMobile : ''}`} role="menu">
                               {subItem.subSubmenu.map((subSub, ssIndex) => (
-                                <li key={ssIndex} className={styles.subSubItem}>
-                                  <Link to={subSub.path} onClick={() => setIsMenuOpen(false)}>
+                                <li key={ssIndex} className={styles.subSubItem} role="none">
+                                  <Link to={subSub.path} role="menuitem" onClick={() => setIsMenuOpen(false)}>
                                     {subSub.label}
                                   </Link>
                                 </li>
@@ -194,15 +275,26 @@ const NavbarSearchable = () => {
             );
           })}
 
-          {/* ICONO USUARIO EXCLUSIVO DESKTOP (Aparece estático al final de la lista) */}
-          <li className={`${styles.navItem} ${styles.desktopUserMenu}`}>
+          {/* CONTROLES ESCRITORIO (Se mantienen limpios e intactos) */}
+          <li className={`${styles.navItem} ${styles.desktopThemeMenu}`} role="none">
+            <button 
+              type="button" 
+              className={styles.themeToggleBtn} 
+              onClick={toggleTheme}
+              aria-label="Cambiar tema visual"
+            >
+              {currentTheme === 'light' ? <Moon size={20} strokeWidth={1.8} /> : <Sun size={20} strokeWidth={1.8} />}
+            </button>
+          </li>
+
+          <li className={`${styles.navItem} ${styles.desktopUserMenu}`} role="none">
             <div className={styles.userIconWrapper}>
               <UserIcon size={20} />
             </div>
-            <ul className={styles.userDropdownDesktop}>
+            <ul className={styles.userDropdownDesktop} role="menu">
               {userMenuOptions.map((opt, i) => (
-                <li key={i}>
-                  <Link to={opt.path}>{opt.label}</Link>
+                <li key={i} role="none">
+                  <Link to={opt.path} role="menuitem">{opt.label}</Link>
                 </li>
               ))}
             </ul>
