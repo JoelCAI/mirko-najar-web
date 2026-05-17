@@ -310,7 +310,7 @@
     flex-shrink: 0;
   }
 
-  /* Redefinición quirúrgica para aislar móviles */
+  /* Redefinición para aislar móviles y evitar fondos pegados */
   .themeToggleBtn {
     width: 44px;
     height: 44px;
@@ -320,16 +320,24 @@
     -webkit-tap-highlight-color: transparent;
   }
   
-  /* Desactivamos el active nativo para que no se quede pegado tras el tap */
+  /* Desactivamos el active nativo para evitar solapamientos persistentes */
   .themeToggleBtn:active {
     background-color: transparent;
   }
 
-  /* Esta clase controla el destello de fondo por 0.4s únicamente en móvil */
+  /* Controla el destello controlado por 0.4s de JS únicamente en móvil */
   .themeToggleActiveMobile {
     background-color: var(--dynamic-bg-icon-toggle-active) !important;
     color: var(--dynamic-color-icon-toggle-hover) !important;
     transform: scale(0.92); /* Feedback táctil de hundimiento */
+  }
+
+  /* MODIFICACIÓN: Fuerza a transparente si el dispositivo móvil simula un hover errático */
+  @media (hover: none) {
+    .themeToggleBtn:hover {
+      background-color: transparent !important;
+      color: var(--dynamic-color-icon-toggle) !important;
+    }
   }
 
   .mobileUserBtn {
@@ -393,12 +401,13 @@
 
   .searchDesktop { display: none; }
 
+  /* MODIFICACIÓN: Ancho base fijo de 600px para pantallas intermedias/tablets */
   .menu {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;   
-    max-width: 320px; 
+    width: 600px;   
+    max-width: 100%; /* Evita desbordamiento si la pantalla llega a ser menor */
     height: 100vh;
     background-color: var(--dynamic-bg-solid);
     display: flex;
@@ -531,5 +540,10 @@
   .firmaAutor { 
     font-size: var(--typo-mobile-logo); 
   }
-  .menu { width: 85%; }
+  
+  /* MODIFICACIÓN: El menú pasa a ocupar el 100% de la pantalla del celular de forma limpia */
+  .menu { 
+    width: 100%; 
+    max-width: 100%;
+  }
 }
