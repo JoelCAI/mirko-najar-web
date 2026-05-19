@@ -1,0 +1,92 @@
+/* src/components/ui/Button.module.css */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary, sans-serif);
+  font-weight: 600;
+  border-radius: var(--radius-md, 6px);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  box-sizing: border-box;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- VARIANTES --- */
+.primary {
+  background-color: var(--color-accent);
+  color: var(--color-white, #ffffff);
+}
+.primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.primary:active {
+  transform: translateY(0);
+  filter: brightness(0.95);
+}
+
+.secondary {
+  background-color: var(--color-border);
+  color: var(--color-primary-dark);
+}
+.secondary:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.outline {
+  background-color: transparent;
+  border-color: var(--color-primary-dark);
+  color: var(--color-primary-dark);
+}
+.outline:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+/* --- TAMAÑOS --- */
+.sm {
+  padding: var(--space-2, 6px) var(--space-4, 12px);
+  font-size: 13px;
+  height: 34px;
+}
+
+.md {
+  padding: var(--space-3, 10px) var(--space-6, 20px);
+  font-size: var(--text-sm, 14px);
+  height: 42px;
+}
+
+.lg {
+  padding: var(--space-4, 14px) var(--space-8, 28px);
+  font-size: 16px;
+  height: 50px;
+}
+
+/* --- ESTADOS --- */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  filter: none !important;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

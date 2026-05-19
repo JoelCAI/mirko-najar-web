@@ -1,29 +1,28 @@
+// src/layouts/MainLayout.jsx
 import { Outlet } from 'react-router-dom';
+import { NAVBAR_REGISTRY } from './ComponentRegistry';
 import styles from './MainLayout.module.css';
-import NavbarSearchable from '../components/navbar/NavbarSearchable';
-import FloatingSearch from '../components/search/FloatingSearch';
-import Footer from '../components/footer/Footer'; // Importamos el nuevo Footer
 
-const MainLayout = ({ showFooter = true }) => {
+// Esto simula la base de datos o el estado que controlará tu CMS más adelante
+const mockCmsConfig = {
+  activeNavbar: 'navbar_searchable', // Si cambias esto a otro string, montará otro Lego
+};
+
+const MainLayout = () => {
+  // Buscamos el componente en el catálogo, si no existe ponemos el NavbarSearchable por defecto
+  const SelectedNavbar = NAVBAR_REGISTRY[mockCmsConfig.activeNavbar] || NAVBAR_REGISTRY.navbar_searchable;
+
   return (
-    <div className={styles.layoutWrapper}>
-      <header className={styles.header}>
-        <NavbarSearchable />
-      </header>
+    <div className={styles.layoutContainer}>
+      {/* Renderizado dinámico del Navbar elegido */}
+      <SelectedNavbar />
 
-      <FloatingSearch />
-
+      {/* Aquí caerá el contenido de las páginas de tu AppRouter (Home, etc.) */}
       <main className={styles.mainContent}>
-        <Outlet /> 
+        <Outlet />
       </main>
 
-      {/* Envolvemos el Footer en un div con la clase del grid o 
-          pasamos la clase directamente si el componente la acepta */}
-      {showFooter && (
-        <div className={styles.footerArea}>
-          <Footer />
-        </div>
-      )}
+      {/* Aquí irá tu SelectedFooter en el futuro */}
     </div>
   );
 };

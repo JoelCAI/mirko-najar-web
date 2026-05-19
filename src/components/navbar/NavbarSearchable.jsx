@@ -1,9 +1,11 @@
 // src/components/navbar/NavbarSearchable.jsx
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, User as UserIcon, ChevronDown, ChevronLeft, Sun, Moon } from 'lucide-react'; 
+import { Menu, X, User as UserIcon, ChevronDown, ChevronLeft } from 'lucide-react'; 
 import styles from './NavbarSearchable.module.css';
 import SearchBar from '../search/SearchBar';
+import ThemeToggle from '../ui/ThemeToggle'; // <-- Ruta corregida a ui/
+import { useTheme } from '../../hooks/useTheme'; // <-- ¡CONEXIÓN AL SATÉLITE GLOBAL!
 import { 
   brandConfig, 
   themeConfig, 
@@ -14,21 +16,14 @@ import {
   typographyLimits 
 } from '../../config/navigationConfig';
 
-const NavbarSearchable = () => {
+const NavbarSearchable = () => { // <-- Eliminamos las props viejas inactivas
+  const { theme } = useTheme(); // <-- Escuchamos directamente el estado real del hook
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  const [currentTheme, setCurrentTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('themePersistence');
-    return savedTheme ? savedTheme : themeConfig.theme;
-  });
   
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
   const [activeMobileSubSubmenu, setActiveMobileSubSubmenu] = useState(null);
   const [userDropdownOpenMobile, setUserDropdownOpenMobile] = useState(false);
-
-  // Nuevo estado para controlar el feedback visual con delay en móvil
-  const [isTransitioningTheme, setIsTransitioningTheme] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,11 +32,6 @@ const NavbarSearchable = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    document.body.classList.remove('light-theme', 'dark-theme');
-    document.body.classList.add(`${currentTheme}-theme`);
-  }, [currentTheme]);
 
   const handleNavClick = (index, hasSubmenu) => {
     if (!hasSubmenu) {
@@ -54,23 +44,8 @@ const NavbarSearchable = () => {
     setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
   };
 
-  // Lógica con delay de 0.4s (400ms) para móviles
-  const toggleTheme = () => {
-    if (isTransitioningTheme) return;
-    
-    setIsTransitioningTheme(true);
-
-    setTimeout(() => {
-      setCurrentTheme(prev => {
-        const nextTheme = prev === 'light' ? 'dark' : 'light';
-        localStorage.setItem('themePersistence', nextTheme);
-        return nextTheme;
-      });
-      setIsTransitioningTheme(false);
-    }, 400);
-  };
-
-  const activePalette = currentTheme === 'light' ? navbarColorLight : navbarColorDark;
+  // Usamos el 'theme' global directo del hook para cambiar la paleta
+  const activePalette = theme === 'light' ? navbarColorLight : navbarColorDark;
 
   const themeStyles = {
     '--dynamic-bg-solid': activePalette.bgSolid,
@@ -115,7 +90,6 @@ const NavbarSearchable = () => {
     '--typo-mobile-menu': typographyLimits.mobile.menuItems,
 
     '--dynamic-search-border-focus': activePalette.searchBorderFocus,
-
   };
 
   const backgroundStyleClass = isScrolled 
@@ -156,14 +130,10 @@ const NavbarSearchable = () => {
 
         {/* CONTROLES MÓVILES */}
         <div className={styles.mobileActions}>
-          <button 
-            type="button" 
-            className={`${styles.themeToggleBtn} ${isTransitioningTheme ? styles.themeToggleActiveMobile : ''}`} 
-            onClick={toggleTheme}
-            aria-label="Cambiar tema visual"
-          >
-            {currentTheme === 'light' ? <Moon size={22} strokeWidth={1.5} /> : <Sun size={22} strokeWidth={1.5} />}
-          </button>
+          {/* Se pasa isMobile={true} para heredar tu delay visual táctil de 400ms */}
+          <div className={styles.themeToggleWrapperMobile}>
+            <ThemeToggle isMobile={true} />
+          </div>
 
           <button 
             type="button"
@@ -249,7 +219,11 @@ const NavbarSearchable = () => {
                               onClick={() => !hasSubSub && setIsMenuOpen(false)}
                               className={isSubActive ? styles.linkFocused : ''}
                             >
-                              {Icon && <Icon size={18} className={`${styles.subIcon} ${isSubActive ? styles.iconFocused : ''}`} />}
+                              {Icon && (
+                                <span className={styles.mobileOnlyIconWrapper}>
+                                  <Icon size={18} className={`${styles.subIcon} ${isSubActive ? styles.iconFocused : ''}`} />
+                                </span>
+                              )}
                               <span>{subItem.label}</span>
                             </Link>
                             {hasSubSub && <ChevronLeft size={16} className={`${styles.leftArrowSub} ${isSubActive ? styles.arrowFocused : ''}`} />}
@@ -275,16 +249,10 @@ const NavbarSearchable = () => {
             );
           })}
 
-          {/* CONTROLES ESCRITORIO (Se mantienen limpios e intactos) */}
+          {/* CONTROLES ESCRITORIO */}
           <li className={`${styles.navItem} ${styles.desktopThemeMenu}`} role="none">
-            <button 
-              type="button" 
-              className={styles.themeToggleBtn} 
-              onClick={toggleTheme}
-              aria-label="Cambiar tema visual"
-            >
-              {currentTheme === 'light' ? <Moon size={20} strokeWidth={1.8} /> : <Sun size={20} strokeWidth={1.8} />}
-            </button>
+            {/* Por defecto isMobile es false, toma el diseño limpio de escritorio */}
+            <ThemeToggle />
           </li>
 
           <li className={`${styles.navItem} ${styles.desktopUserMenu}`} role="none">

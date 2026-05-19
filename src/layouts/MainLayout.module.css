@@ -1,13 +1,22 @@
+/* src/layouts/MainLayout.module.css */
 .layoutWrapper {
   display: grid;
-  /* 0px para el header (porque es fixed), 1fr (todo el espacio), auto (lo que mida el footer) */
-  grid-template-rows: 0 1fr auto; 
   grid-template-areas: 
     "header"
     "main"
     "footer";
   min-height: 100vh;
   width: 100%;
+}
+
+/* CASO 1: Si NO es transparente, la primera fila mide 70px (lo que mide tu Navbar) */
+.layoutNormal {
+  grid-template-rows: 70px 1fr auto;
+}
+
+/* CASO 2: Si SÍ es transparente, la primera fila mide 0px para que el main suba al píxel 0 */
+.layoutTransparent {
+  grid-template-rows: 0px 1fr auto;
 }
 
 .header {
@@ -23,7 +32,6 @@
 .mainContent {
   grid-area: main;
   width: 100%;
-  /* Esto asegura que el main siempre empuje al footer hacia abajo */
   min-height: 100vh; 
 }
 
@@ -32,12 +40,13 @@
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  .layoutWrapper {
-    grid-template-rows: auto 1fr auto; /* El header ya no es 0 si quieres que empuje */
+@media (max-width: 1024px) {
+  /* En móviles/tablets forzamos a que siempre empuje para evitar bugs de solapamiento */
+  .layoutNormal, .layoutTransparent {
+    grid-template-rows: auto 1fr auto; 
   }
   
   .header {
-    position: sticky; /* A veces es mejor sticky en móvil para evitar bugs de tapado */
+    position: sticky; 
   }
 }

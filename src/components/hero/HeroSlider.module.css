@@ -1,0 +1,215 @@
+/* Añade esto dentro de tu src/components/hero/HeroSlider.module.css */
+
+/* --- CAPA DE PROTECCIÓN INTELIGENTE PARA EL NAVBAR --- */
+.navbarProtectionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140px; /* Altura ideal que cubre el navbar y su zona de lectura */
+  z-index: 5;    /* Por encima de las imágenes y el overlay general, por debajo del Navbar real */
+  pointer-events: none; /* No interrumpe los clics ni el hover del menú */
+  transition: background 0.4s ease;
+}
+
+/* Si el tema es oscuro, genera un degradado negro sutil hacia transparente */
+.navbarOverlayDark {
+  background: linear-gradient(
+    to bottom, 
+    rgba(17, 14, 13, 0.8) 0%, 
+    rgba(17, 14, 13, 0.3) 50%, 
+    rgba(17, 14, 13, 0) 100%
+  );
+}
+
+/* Si el tema es claro, genera un degradado blanco/hueso sutil hacia transparente */
+.navbarOverlayLight {
+  background: linear-gradient(
+    to bottom, 
+    rgba(255, 255, 255, 0.85) 0%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* El resto de tus estilos (.sliderContainer, .arrowBtn, etc.) se mantienen exactamente iguales */
+.sliderContainer {
+  position: relative;
+  width: 100%;
+  height: clamp(550px, 80vh, 900px);
+  overflow: hidden;
+  background-color: #000;
+}
+
+.sliderTrack {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.slideImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.4) 100%);
+  z-index: 2;
+}
+
+.contentArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.textCard {
+  max-width: 550px;
+  padding: var(--space-4);
+  color: #ffffff;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.textCardLight {
+  color: var(--color-primary-dark, #110E0D);
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 400;
+  margin-bottom: var(--space-6);
+  opacity: 0.9;
+}
+
+.pos-top-left       { align-items: flex-start; justify-content: flex-start; }
+.pos-top-center     { align-items: flex-start; justify-content: center; }
+.pos-top-right      { align-items: flex-start; justify-content: flex-end; }
+
+.pos-center-left    { align-items: center;     justify-content: flex-start; }
+.pos-center-center  { align-items: center;     justify-content: center; }
+.pos-center-right   { align-items: center;     justify-content: flex-end; }
+
+.pos-bottom-left    { align-items: flex-end;   justify-content: flex-start; }
+.pos-bottom-center  { align-items: flex-end;   justify-content: center; }
+.pos-bottom-right   { align-items: flex-end;   justify-content: flex-end; }
+
+.arrowBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-primary-dark, #110E0D);
+  color: var(--color-white, #ffffff);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border: none;
+  cursor: pointer;
+}
+
+.leftArrow { left: var(--space-6, 24px); }
+.rightArrow { right: var(--space-6, 24px); }
+
+.arrowBtn:hover {
+  background-color: var(--color-accent, #ff5722);
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.arrowBtn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.dotsContainer {
+  position: absolute;
+  bottom: var(--space-6, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-3, 12px);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.35);
+  padding: 8px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid var(--color-accent, #ff5722);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.dotActive {
+  background-color: var(--color-accent, #ff5722);
+  transform: scale(1.25);
+  box-shadow: 0 0 10px var(--color-accent, #ff5722);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .sliderContainer { height: 60vh; }
+  .arrowBtn { width: 44px; height: 44px; }
+  .leftArrow  { left: var(--space-3, 12px); }
+  .rightArrow { right: var(--space-3, 12px); }
+}
+
+@media (max-width: 600px) {
+  .sliderContainer { height: 500px; }
+  .contentArea { align-items: flex-end !important; justify-content: center !important; }
+  .textCard { text-align: center; padding-bottom: 60px; }
+}

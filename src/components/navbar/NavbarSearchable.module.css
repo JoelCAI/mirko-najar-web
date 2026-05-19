@@ -415,7 +415,7 @@
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 85px var(--space-6) var(--space-6) var(--space-6);
+    padding: 70px var(--space-6) var(--space-6) var(--space-6);
     transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: var(--z-drawer);
     box-shadow: var(--shadow-lg);
@@ -428,7 +428,7 @@
   .searchMobile {
     display: block;
     width: 100%; 
-    margin-bottom: var(--space-6); 
+    margin-bottom: var(--space-3); 
   }
 
   .navItem { width: 100%; }
@@ -545,5 +545,22 @@
   .menu { 
     width: 100%; 
     max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   ADICIONES EXCLUSIVAS PARA INTEGRACION Y ADAPTACION DE ICONOS
+   ========================================================================== */
+.themeToggleWrapperMobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1025px) {
+  /* Oculta los iconos de Lucide dinámicos que causaban duplicidad en Escritorio, 
+     dejando que actúe el sistema hover original de tu CSS */
+  .mobileOnlyIconWrapper {
+    display: none !important;
   }
 }

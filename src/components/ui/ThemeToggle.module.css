@@ -1,0 +1,56 @@
+/* src/components/ui/ThemeToggle.module.css */
+
+.themeToggleBtn {
+  background-color: var(--dynamic-bg-icon-toggle);
+  border: none;
+  color: var(--dynamic-color-icon-toggle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.themeToggleBtn:hover {
+  color: var(--dynamic-color-icon-toggle-hover);
+  background-color: var(--dynamic-bg-icon-toggle-hover);
+}
+
+.themeToggleBtn:active {
+  background-color: var(--dynamic-bg-icon-toggle-active);
+  color: var(--dynamic-color-icon-toggle-hover);
+}
+
+/* ==========================================================================
+   ADAPTACIÓN PARA MÓVILES (Heredado de tus Media Queries)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .themeToggleBtn {
+    width: 44px;
+    height: 44px;
+    background-color: transparent; /* Sin fondo por defecto en móvil */
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .themeToggleBtn:active {
+    background-color: transparent;
+  }
+
+  /* Tu destello controlado de 0.4s en móvil */
+  .themeToggleActiveMobile {
+    background-color: var(--dynamic-bg-icon-toggle-active) !important;
+    color: var(--dynamic-color-icon-toggle-hover) !important;
+    transform: scale(0.92); /* Feedback táctil de hundimiento */
+  }
+}
+
+@media (hover: none) {
+  .themeToggleBtn:hover {
+    background-color: transparent !important;
+    color: var(--dynamic-color-icon-toggle) !important;
+  }
+}

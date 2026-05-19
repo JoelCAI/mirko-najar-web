@@ -1,53 +1,7 @@
-.homePage {
+/* src/pages/Home.module.css */
+.homeWrapper {
   width: 100%;
-  overflow-x: hidden;
-  /* Espaciado superior para el Navbar fixed */
-  padding-top: var(--space-20); 
-}
-
-/* Contenedor de texto con márgenes de seguridad */
-.textSection {
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  padding: var(--space-12) var(--space-6); /* Aire a los lados en móvil */
-  text-align: left;
-}
-
-.textSection h1 {
-  font-size: clamp(2rem, 8vw, 3.5rem); /* Tamaño fluido según pantalla */
-  line-height: 1.1;
-  margin-bottom: var(--space-4);
-}
-
-.textSection p {
-  font-size: var(--text-lg);
-  max-width: 600px; /* Evita líneas de texto demasiado largas en desktop */
-  color: var(--color-text-light);
-}
-
-/* Sección de imagen 100% real */
-.imageSection {
-  width: 100%;
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  padding: var(--space-8) var(--space-6);;
-}
-
-.fullWidthImg {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: var(--radius-md);
-}
-
-@media (max-width: 768px) {
-  .textSection {
-    text-align: center; /* Centramos el texto en móviles para mejor estética */
-    padding: var(--space-10) var(--space-8);
-    width: 90%;
-  }
-  
-  .textSection p {
-    margin: 0 auto;
-  }
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
 }
