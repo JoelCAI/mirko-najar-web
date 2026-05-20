@@ -1,4 +1,4 @@
-/* Añade esto dentro de tu src/components/hero/HeroSlider.module.css */
+/* src/components/hero/HeroSlider.module.css */
 
 /* --- CAPA DE PROTECCIÓN INTELIGENTE PARA EL NAVBAR --- */
 .navbarProtectionOverlay {
@@ -6,13 +6,12 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 140px; /* Altura ideal que cubre el navbar y su zona de lectura */
-  z-index: 5;    /* Por encima de las imágenes y el overlay general, por debajo del Navbar real */
-  pointer-events: none; /* No interrumpe los clics ni el hover del menú */
+  height: 140px; 
+  z-index: 5;    
+  pointer-events: none; 
   transition: background 0.4s ease;
 }
 
-/* Si el tema es oscuro, genera un degradado negro sutil hacia transparente */
 .navbarOverlayDark {
   background: linear-gradient(
     to bottom, 
@@ -22,7 +21,6 @@
   );
 }
 
-/* Si el tema es claro, genera un degradado blanco/hueso sutil hacia transparente */
 .navbarOverlayLight {
   background: linear-gradient(
     to bottom, 
@@ -32,27 +30,35 @@
   );
 }
 
-/* El resto de tus estilos (.sliderContainer, .arrowBtn, etc.) se mantienen exactamente iguales */
+/* --- CONTENEDOR PRINCIPAL DEL SLIDER --- */
 .sliderContainer {
   position: relative;
   width: 100%;
+  max-width: 100vw; 
   height: clamp(550px, 80vh, 900px);
-  overflow: hidden;
+  overflow: hidden !important;
   background-color: #000;
 }
 
+/* --- RIEL DE DESPLAZAMIENTO (TRACK) --- */
 .sliderTrack {
   display: flex;
-  width: 100%;
   height: 100%;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%; 
+  overflow: visible; 
+  touch-action: pan-y; 
+  will-change: transform;
 }
 
+/* --- SLIDE INDIVIDUAL --- */
 .slide {
   min-width: 100%;
+  width: 100%;
   height: 100%;
   position: relative;
   box-sizing: border-box;
+  flex-shrink: 0; 
+  overflow: hidden;
 }
 
 .slideImage {
@@ -66,66 +72,141 @@
   z-index: 1;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.4) 100%);
-  z-index: 2;
-}
-
+/* --- ÁREA DE MAQUETACIÓN DE TEXTOS (CONTENIDO) --- */
 .contentArea {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  max-width: 100vw;
   height: 100%;
   z-index: 3;
   display: flex;
   box-sizing: border-box;
 }
 
+/* Tarjeta estructural limpia */
 .textCard {
-  max-width: 550px;
-  padding: var(--space-4);
-  color: #ffffff;
-  animation: fadeInUp 0.5s ease forwards;
+  max-width: 750px;
+  background: transparent;
+  position: relative;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
 }
 
-.textCardLight {
-  color: var(--color-primary-dark, #110E0D);
+/* --- GRUPO DE TEXTOS --- */
+.textGroup {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
 }
 
+/* --- EFECTO ULTRA-GLOW TIPOGRÁFICO SIMÉTRICO --- */
+.textSmartGlowDark {
+  text-shadow: 
+    1px  1px 2px rgba(17, 14, 13, var(--scrim-custom-opacity, 0.6)),
+   -1px  1px 2px rgba(17, 14, 13, var(--scrim-custom-opacity, 0.6)),
+    1px -1px 2px rgba(17, 14, 13, var(--scrim-custom-opacity, 0.6)),
+   -1px -1px 2px rgba(17, 14, 13, var(--scrim-custom-opacity, 0.6)),
+    0px  3px 3px rgba(17, 14, 13, calc(var(--scrim-custom-opacity, 0.6) * 0.85)),
+    0px -3px 3px rgba(17, 14, 13, calc(var(--scrim-custom-opacity, 0.6) * 0.85)),
+    3px  0px 3px rgba(17, 14, 13, calc(var(--scrim-custom-opacity, 0.6) * 0.85)),
+   -3px  0px 3px rgba(17, 14, 13, calc(var(--scrim-custom-opacity, 0.6) * 0.85)),
+    2px  3px 5px rgba(17, 14, 13, calc(var(--scrim-custom-opacity, 0.6) * 0.6)),
+   -2px  3px 5px rgba(17, 14, 13, calc(var(--scrim-custom-opacity, 0.6) * 0.6)),
+    3px -2px 5px rgba(17, 14, 13, calc(var(--scrim-custom-opacity, 0.6) * 0.6)),
+   -3px -2px 5px rgba(17, 14, 13, calc(var(--scrim-custom-opacity, 0.6) * 0.6));
+}
+
+.textSmartGlowLight {
+  text-shadow: 
+    1px  1px 2px rgba(255, 255, 255, var(--scrim-custom-opacity, 0.75)),
+   -1px  1px 2px rgba(255, 255, 255, var(--scrim-custom-opacity, 0.75)),
+    1px -1px 2px rgba(255, 255, 255, var(--scrim-custom-opacity, 0.75)),
+   -1px -1px 2px rgba(255, 255, 255, var(--scrim-custom-opacity, 0.75)),
+    0px  3px 3px rgba(255, 255, 255, calc(var(--scrim-custom-opacity, 0.75) * 0.85)),
+    0px -3px 3px rgba(255, 255, 255, calc(var(--scrim-custom-opacity, 0.75) * 0.85)),
+    3px  0px 3px rgba(255, 255, 255, calc(var(--scrim-custom-opacity, 0.75) * 0.85)),
+   -3px  0px 3px rgba(255, 255, 255, calc(var(--scrim-custom-opacity, 0.75) * 0.85)),
+    2px  3px 5px rgba(255, 255, 255, calc(var(--scrim-custom-opacity, 0.75) * 0.5)),
+   -2px  3px 5px rgba(255, 255, 255, calc(var(--scrim-custom-opacity, 0.75) * 0.5)),
+    3px -2px 5px rgba(255, 255, 255, calc(var(--scrim-custom-opacity, 0.75) * 0.5)),
+   -3px -2px 5px rgba(255, 255, 255, calc(var(--scrim-custom-opacity, 0.75) * 0.5));
+}
+
+.buttonWrapper {
+  position: relative;
+  z-index: 6; 
+  margin-top: var(--space-4, 16px);
+}
+
+/* --- TIPOGRAFÍAS --- */
 .title {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(2.0rem, 4.0vw, 3.2rem);
   font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: var(--space-4);
+  line-height: 1.25; 
+  margin-bottom: var(--space-1, 4px);
   text-transform: uppercase;
   letter-spacing: -0.5px;
 }
 
 .subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
   font-weight: 400;
-  margin-bottom: var(--space-6);
-  opacity: 0.9;
+  margin-bottom: 0;
+  line-height: 1.5;
 }
 
-.pos-top-left       { align-items: flex-start; justify-content: flex-start; }
-.pos-top-center     { align-items: flex-start; justify-content: center; }
-.pos-top-right      { align-items: flex-start; justify-content: flex-end; }
+/* Colores Tipográficos Puros */
+.titleDark { color: var(--color-primary-dark, #110E0D); }
+.titleLight { color: var(--color-white, #ffffff); }
+.subtitleDark { color: var(--color-primary-dark, #110E0D); }
+.subtitleLight { color: var(--color-white, #ffffff); }
 
-.pos-center-left    { align-items: center;     justify-content: flex-start; }
-.pos-center-center  { align-items: center;     justify-content: center; }
-.pos-center-right   { align-items: center;     justify-content: flex-end; }
+/* --- MATRIZ DE POSICIONAMIENTO DINÁMICO (DESKTOP) --- */
+@media (min-width: 601px) {
+  .pos-top-left       { align-items: flex-start; justify-content: flex-start; }
+  .pos-top-center      { align-items: flex-start; justify-content: center; }
+  .pos-top-right       { align-items: flex-start; justify-content: flex-end; }
 
-.pos-bottom-left    { align-items: flex-end;   justify-content: flex-start; }
-.pos-bottom-center  { align-items: flex-end;   justify-content: center; }
-.pos-bottom-right   { align-items: flex-end;   justify-content: flex-end; }
+  .pos-center-left    { align-items: center;     justify-content: flex-start; }
+  .pos-center-center  { align-items: center;     justify-content: center; }
+  .pos-center-right   { align-items: center;     justify-content: flex-end; }
 
+  .pos-bottom-left    { align-items: flex-end;   justify-content: flex-start; }
+  .pos-bottom-center  { align-items: flex-end;   justify-content: center; }
+  .pos-bottom-right   { align-items: flex-end;   justify-content: flex-end; }
+
+  .pos-top-center .textCard, .pos-center-center .textCard, .pos-bottom-center .textCard { text-align: center; align-items: center; }
+  .pos-top-right .textCard, .pos-center-right .textCard, .pos-bottom-right .textCard { text-align: right; align-items: flex-end; }
+
+  .pos-top-center .textGroup, .pos-center-center .textGroup, .pos-bottom-center .textGroup { align-items: center; text-align: center; }
+  .pos-top-right .textGroup, .pos-center-right .textGroup, .pos-bottom-right .textGroup { align-items: flex-end; text-align: right; }
+
+  /* 
+    CORRECCIÓN 1: Evitar colisión de flechas laterales y puntos de paginación en Escritorio.
+    Empujamos la tarjeta de texto hacia adentro usando márgenes inteligentes según la posición.
+  */
+  .pos-center-left .textCard {
+    margin-left: 90px;
+  }
+
+  .pos-center-right .textCard {
+    margin-right: 90px;
+  }
+
+  /* Si está centrado abajo, le agregamos un margen inferior para que el botón no pise los dots */
+  .pos-bottom-center .textCard {
+    margin-bottom: 50px;
+  }
+}
+
+/* --- CONTROLES MANUALES (FLECHAS) --- */
 .arrowBtn {
   position: absolute;
   top: 50%;
@@ -138,7 +219,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 12;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   border: none;
@@ -148,16 +229,7 @@
 .leftArrow { left: var(--space-6, 24px); }
 .rightArrow { right: var(--space-6, 24px); }
 
-.arrowBtn:hover {
-  background-color: var(--color-accent, #ff5722);
-  color: #ffffff;
-  transform: translateY(-50%) scale(1.08);
-}
-
-.arrowBtn:active {
-  transform: translateY(-50%) scale(0.95);
-}
-
+/* --- CÍRCULOS DE NAV (DOTS) --- */
 .dotsContainer {
   position: absolute;
   bottom: var(--space-6, 24px);
@@ -165,7 +237,7 @@
   transform: translateX(-50%);
   display: flex;
   gap: var(--space-3, 12px);
-  z-index: 10;
+  z-index: 12;
   background-color: rgba(0, 0, 0, 0.35);
   padding: 8px 16px;
   border-radius: 20px;
@@ -176,40 +248,77 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid var(--color-accent, #ff5722);
+  background-color: transparent; 
+  border: 2px solid var(--color-accent, #ff5722); 
   cursor: pointer;
   transition: all 0.25s ease;
   padding: 0;
-  box-sizing: border-box;
 }
 
 .dotActive {
-  background-color: var(--color-accent, #ff5722);
+  background-color: var(--color-surface, #ffffff); 
   transform: scale(1.25);
-  box-shadow: 0 0 10px var(--color-accent, #ff5722);
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* --- RESPONSIVE / MEDIA QUERIES --- */
 @media (max-width: 1024px) {
   .sliderContainer { height: 60vh; }
   .arrowBtn { width: 44px; height: 44px; }
-  .leftArrow  { left: var(--space-3, 12px); }
-  .rightArrow { right: var(--space-3, 12px); }
 }
 
 @media (max-width: 600px) {
-  .sliderContainer { height: 500px; }
-  .contentArea { align-items: flex-end !important; justify-content: center !important; }
-  .textCard { text-align: center; padding-bottom: 60px; }
+  .sliderContainer { height: 520px; }
+  
+  /* Flechas ocultas en móvil */
+  .arrowBtn {
+    display: none !important;
+  }
+
+  /* Contenedor base centrado en móviles */
+  .contentArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Configuración de la tarjeta */
+  .textCard { 
+    text-align: center; 
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    box-sizing: border-box;
+    margin: 0 !important; 
+    transition: transform 0.3s ease;
+  }
+
+  .textGroup {
+    align-items: center !important;
+    text-align: center !important;
+    width: 100%;
+  }
+
+  /* --- LOGIC DE POSICIONAMIENTO MÓVIL --- */
+  
+  /* 
+    DINÁMICO: Aplica el transform usando el valor exacto 
+    que escribas en la propiedad 'mobileYOffset' del objeto.
+  */
+  .mob-top-center .textCard { 
+    transform: translateY(var(--mobile-y-offset)); 
+  }
+  
+  /* ESTÁTICO: Centro geométrico puro del slider */
+  .mob-center-center .textCard { 
+    transform: translateY(0px);
+  }
+  
+  /* ESTÁTICO: Posición inferior fija resguardando los dots */
+  .mob-bottom-center .textCard { 
+    transform: translateY(80px);
+  }
 }
