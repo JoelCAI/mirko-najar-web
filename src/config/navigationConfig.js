@@ -4,11 +4,11 @@ import { User, Phone, Wrench, Hammer, Paintbrush } from 'lucide-react';
 export const brandConfig = {
   type: 'text', // Opciones válidas: 'text' o 'image'
   text: {
-    title: "Mirko Najar"
+    title: "Mi Hogar"
   },
   image: {
     src: "/assets/logo.svg", // Puedes cambiarlo a .png, .jpg o lo que requiera el cliente
-    alt: "Mirko Najar Arquitectura de Interiores",
+    alt: "Mi Hogar Arquitectura de Interiores",
     height: "42px",          // Control de escala vertical adaptable
     width: "auto"            // Mantiene la proporción horizontal intacta
   }

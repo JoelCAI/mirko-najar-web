@@ -6,9 +6,9 @@
     --site-gutter: var(--space-4);   /* Colchón interno mínimo (16px) */ 
 
     /* --- Brand Colors (Madera Premium) --- */
-    --color-primary: #5D4037;
-    --color-primary-dark: #3E2723;
-    --color-secondary: #D4A373;
+    --color-primary:  #4E342E;
+    --color-primary-dark: #2D1B17;
+    --color-secondary: #C08A5B;
     --color-accent: #8B5E3C;
     
     /* --- UI Colors --- */
@@ -18,6 +18,29 @@
     --color-text: #2C2420;
     --color-text-light: #795548;
     --color-border: #E7E0D9;
+
+    /* --- UI Colors --- 2.0 */
+    --color-natura: #6B8E23;
+    --color-natura-hover-light: #7FAE2E;
+    --color-natura-hover-dark: #556B1D;
+
+    --color-ocean: #2E5B6F;
+    --color-ocean-hover-light: #3B7188;
+    --color-ocean-hover-dark: #244857;
+
+    --color-river: #6FAFC7;
+    --color-river-hover-light: #86C3D9;
+    --color-river-hover-dark: #5A95AB;
+
+    /* --- Clay / Arcilla --- */
+    --color-clay: #B36A4C;
+    --color-clay-hover-light: #C57D60;
+    --color-clay-hover-dark: #94543B;
+
+    /* --- Light Wood / Madera Clara --- */
+    --color-light-wood: #D6B08C;
+    --color-light-wood-hover-light: #E3C2A3;
+    --color-light-wood-hover-dark: #BC9470;
 
     /* --- Typography (Pairing: Lato + Roboto Condensed) --- */
     --font-primary: 'Lato', system-ui, sans-serif;

@@ -216,7 +216,15 @@ const HeroSlider = ({ slides = [], currentTheme }) => {
                       <Button 
                         to={slide.buttonLink} 
                         variant={slide.buttonVariant || 'primary'} 
-                        size="lg"
+                        size={slide.buttonSize || 'md'} /* Leemos el tamaño del config de forma dinámica */
+                        style={{
+                          '--custom-btn-bg': slide.btnBg,
+                          '--custom-btn-bg-hover': slide.btnBgHover,
+                          '--custom-btn-text': slide.btnTextColor,
+                          '--custom-btn-text-hover': slide.btnTextColorHover,
+                          '--custom-btn-border': slide.btnBorder,
+                          '--custom-btn-border-hover': slide.btnBorderHover,
+                        }}
                       >
                         {slide.buttonText}
                       </Button>
