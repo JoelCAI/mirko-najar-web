@@ -82,6 +82,6 @@ body.light-theme {
 }
 
 body.dark-theme {
-  background-color: #110E0D; /* O el fondo oscuro de tu paleta */
-  color: #FDFCFB;
+  background-color: var(--color-primary-dark); /* O el fondo oscuro de tu paleta */
+  color: var(--color-white);
 }

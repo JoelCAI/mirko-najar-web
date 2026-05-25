@@ -76,15 +76,56 @@ export const heroSliders = [
     duration: 15000
   },
   {
+    id: 'slide-simplicidad',
+    themeVisibility: 'light',
+    imageDesktop: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80',
+    imageMobile: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80',
+    title: 'LA MADERA NOS INSPIRA',
+    subtitle: 'Creamos piezas artesanales de hermosa textura y pasión por los acabados.',
+    
+    // --- Posicionamiento y Layout ---
+    textPosition: 'center-center',
+    textPositionMobile: 'center-center',
+    // mobileYOffset: '-90px',
+    
+    // --- Variaciones de Contenedores y Textos ---
+    titleVariant: 'light',
+    subtitleVariant: 'light',
+    showDegradeBox: true,
+    degradeBoxVariant: 'dark',
+    degradeBoxOpacity: 0.6,
+    
+    // --- Configuración Atómica del Botón ---
+    buttonText: 'Ver Proyectos',
+    buttonLink: '/registro',
+    buttonVariant: 'doubleCurtainSplit',
+    buttonSize: 'md',                  // 'sm' (H:34px) | 'md' (H:42px) | 'lg' (H:50px)
+    
+    // --- Animación Inteligente en Móviles (UX Premium) ---
+    // mobileAnimationInterval: 4000,   // Comentado por defecto si no se quiere aplicar a este objeto
+    
+    // --- Control Total de Colores y Estilos (Opcionales - Descomentar para activar) ---
+    btnBg: 'var(--color-natura)',
+    btnBgHover: 'var(--color-primary-dark, #110E0D)',
+    btnTextColor: 'var(--color-white, #ffffff)',
+    btnTextColorHover: 'var(--color-primary-light, #f5f5f5)',
+    btnBorder: '2px solid var(--color-white, #ffffff)',
+    btnBorderHover: '2px solid var(--color-primary-dark, #110E0D)',
+    // btnWidth: '100%',
+    
+    // --- Tiempos del Slide ---
+    duration: 15000
+  },
+  {
     id: 'slide-sistemas',
     themeVisibility: 'both',
     imageDesktop: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1920&q=80',
     imageMobile: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=600&q=80',
-    title: 'SISTEMAS INMERSIVOS',
-    subtitle: 'Diseño conceptual aplicado al control total de datos.',
+    title: 'PIEZAS QUE PERDURAN',
+    subtitle: 'Colecciones creadas para habitar tus espacios con belleza, calidez y armonía',
     
     // --- Posicionamiento y Layout ---
-    textPosition: 'bottom-right',
+    textPosition: 'center-right',
     textPositionMobile: 'bottom-center',
     // mobileYOffset: '-40px',
     
@@ -96,7 +137,7 @@ export const heroSliders = [
     degradeBoxOpacity: 0.8,
     
     // --- Configuración Atómica del Botón ---
-    buttonText: 'Explorar Soluciones',
+    buttonText: 'Ver Catálogo',
     buttonLink: '/soluciones',
     buttonVariant: 'premiumGradient',
     buttonSize: 'md',                  // 'sm' (H:34px) | 'md' (H:42px) | 'lg' (H:50px)
@@ -111,47 +152,6 @@ export const heroSliders = [
     btnTextColorHover: 'var(--color-white, #ffffff)',
     btnBorder: 'none',
     btnBorderHover: 'none',
-    // btnWidth: '100%',
-    
-    // --- Tiempos del Slide ---
-    duration: 15000
-  },
-  {
-    id: 'slide-simplicidad',
-    themeVisibility: 'light',
-    imageDesktop: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80',
-    imageMobile: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80',
-    title: 'SIMPLICIDAD ABSOLUTA',
-    subtitle: 'Espacios limpios donde la información fluye sin interrupciones.',
-    
-    // --- Posicionamiento y Layout ---
-    textPosition: 'center-right',
-    textPositionMobile: 'top-center',
-    // mobileYOffset: '-90px',
-    
-    // --- Variaciones de Contenedores y Textos ---
-    titleVariant: 'light',
-    subtitleVariant: 'light',
-    showDegradeBox: true,
-    degradeBoxVariant: 'dark',
-    degradeBoxOpacity: 0.6,
-    
-    // --- Configuración Atómica del Botón ---
-    buttonText: 'Comenzar',
-    buttonLink: '/registro',
-    buttonVariant: 'secondary',
-    buttonSize: 'md',                  // 'sm' (H:34px) | 'md' (H:42px) | 'lg' (H:50px)
-    
-    // --- Animación Inteligente en Móviles (UX Premium) ---
-    // mobileAnimationInterval: 4000,   // Comentado por defecto si no se quiere aplicar a este objeto
-    
-    // --- Control Total de Colores y Estilos (Opcionales - Descomentar para activar) ---
-    btnBg: 'transparent',
-    btnBgHover: 'var(--color-primary-dark, #110E0D)',
-    btnTextColor: 'var(--color-white, #ffffff)',
-    btnTextColorHover: 'var(--color-primary-light, #f5f5f5)',
-    btnBorder: '2px solid var(--color-white, #ffffff)',
-    btnBorderHover: '2px solid var(--color-primary-dark, #110E0D)',
     // btnWidth: '100%',
     
     // --- Tiempos del Slide ---

@@ -1,10 +1,18 @@
 /* src/config/navigationConfig.js */
 import { User, Phone, Wrench, Hammer, Paintbrush } from 'lucide-react';
 
+export const TYPOGRAPHY_SCALE = {
+  xs: "14px",
+  sm: "16px",
+  md: "18px",
+  lg: "20px",
+  xl: "24px"
+};
+
 export const brandConfig = {
   type: 'text', // Opciones válidas: 'text' o 'image'
   text: {
-    title: "Mi Hogar"
+    title: "Muebles Hogar"
   },
   image: {
     src: "/assets/logo.svg", // Puedes cambiarlo a .png, .jpg o lo que requiera el cliente
@@ -21,7 +29,7 @@ export const themeConfig = {
 
 // --- MOTOR DE DISEÑO DINÁMICO: PALETA MÓDULO LIGHT ---
 export const navbarColorLight = {
-  bgSolid: "var(--color-white)",
+  bgSolid: "var(--color-surface)",
   brandText: "var(--color-primary-dark)",
   textMenuColor: "var(--color-primary-dark)",
   textMenuColorHover: "var(--color-accent)",
