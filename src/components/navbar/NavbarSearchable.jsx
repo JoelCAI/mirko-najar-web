@@ -95,14 +95,13 @@ const NavbarSearchable = () => { // <-- Eliminamos las props viejas inactivas
   const backgroundStyleClass = isScrolled 
     ? styles.navSolid 
     : (themeConfig.isTransparent ? styles.navTransparent : styles.navSolid);
-
-  const positionStyleClass = themeConfig.isTransparent ? styles.isTransparentLayout : styles.isNormalLayout;
-
+  
+  
   return (
     <nav 
-      style={themeStyles} 
-      className={`${styles.nav} ${backgroundStyleClass} ${positionStyleClass}`}
-      aria-label="Navegación Principal"
+    style={themeStyles} 
+    className={`${styles.nav} ${backgroundStyleClass}`} 
+    aria-label="Navegación Principal"
     >
       <div className={styles.container}>
         

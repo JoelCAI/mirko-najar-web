@@ -3,9 +3,9 @@ import { TYPOGRAPHY_SCALE } from './navigationConfig';
 
 export const footerConfig = {
   brand: {
-    logoText: "MADERA HOGAR",
+    logoText: "MUEBLES HOGAR",
     description: "Pasión por el Diseño",
-    copyright: `© ${new Date().getFullYear()} Madera Hogar. Todos los derechos reservados.`
+    copyright: `© ${new Date().getFullYear()} Muebles Hogar. Todos los derechos reservados.`
   },
   
   // CONTROL TIPOGRÁFICO DE COMPONENTE

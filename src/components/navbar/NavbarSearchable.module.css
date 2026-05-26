@@ -1,17 +1,21 @@
 /* src/components/navbar/NavbarSearchable.module.css */
 .nav {
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
   z-index: var(--z-header);
-  transition: background-color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, color 0.3s ease;
+  /* Reducimos la velocidad y quitamos filtros pesados para evitar lag compuesto en celular */
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
   height: 70px; 
   display: flex;
   align-items: center;
-}
 
-.isTransparentLayout { position: fixed; }
-.isNormalLayout { position: relative; }
+  /* SELLO ANTI-RENDIJAS: Absorbe el redondeo de píxeles del renderizado de imágenes */
+  box-shadow: 0 0 0 1px var(--dynamic-bg-solid);
+  transform: none !important;
+  will-change: auto !important;
+}
 
 .navTransparent {
   background-color: transparent;
@@ -308,6 +312,8 @@
     align-items: center;
     gap: var(--space-1);
     flex-shrink: 0;
+    height: 44px; /* <--- Altura fija exacta detectada en la auditoría */
+    overflow: hidden; /* <--- Evita que los iconos provoquen micro-desbordamientos */
   }
 
   /* Redefinición para aislar móviles y evitar fondos pegados */
@@ -384,15 +390,16 @@
   }
 
   .menuToggle {
-    display: flex;       
+    display: flex;        
     align-items: center;
     justify-content: center;
     color: var(--dynamic-mobile-toggle-color);
     width: 44px;  
     height: 44px; 
     position: relative;
-    z-index: calc(var(--z-drawer) + 10);
+    z-index: calc(var(--z-drawer) + 20); /* Asegura que quede por encima de cualquier capa compuesta */
     transition: color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .menuToggle:active, .menuToggleOpen {
@@ -403,26 +410,37 @@
 
   /* MODIFICACIÓN: Ancho base fijo de 600px para pantallas intermedias/tablets */
   .menu {
-    position: fixed;
-    top: 0;
+    position: fixed !important;
+    top: 0 !important;      /* Bloqueado arriba pase lo que pase */
     right: -100%;
-    width: 600px;   
-    max-width: 100%; /* Evita desbordamiento si la pantalla llega a ser menor */
+    width: 100%;            /* Ocupa el 100% exacto de la pantalla del celular */
+    max-width: 100vw;
     height: 100vh;
+    height: -webkit-fill-available; /* Evita saltos por la barra de navegación de Chrome/Safari móvil */
     background-color: var(--dynamic-bg-solid);
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
+    
+    /* Asegura que el padding interno compense la altura del header limpiamente */
     padding: 70px var(--space-6) var(--space-6) var(--space-6);
-    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: var(--z-drawer);
+    
+    /* ANIMACIÓN NATIVA: Eliminamos cualquier interpolación errática */
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: var(--z-drawer) !important;
     box-shadow: var(--shadow-lg);
+
+    /* El truco maestro: Evita que el scroll del fondo interactúe con el menú lateral */
+    overscroll-behavior: contain;
+    transform: none !important;
   }
 
+  /* Forzamos que la apertura sea plana y no use sub-capas decimales */
   .menuOpen {
-    right: 0;
+    right: 0 !important;
+    transform: none !important;
   }
 
   .searchMobile {
