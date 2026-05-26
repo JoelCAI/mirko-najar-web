@@ -313,7 +313,7 @@
     gap: var(--space-1);
     flex-shrink: 0;
     height: 44px; /* <--- Altura fija exacta detectada en la auditoría */
-    overflow: hidden; /* <--- Evita que los iconos provoquen micro-desbordamientos */
+    
   }
 
   /* Redefinición para aislar móviles y evitar fondos pegados */
