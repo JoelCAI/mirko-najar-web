@@ -1,60 +1,5 @@
 /* src/styles/variables.css */
 :root {
-    /* --- ARQUITECTURA DE CONTENIDO --- */
-    --site-wrapper-width: 92%;       /* Ocupa el 92% del ancho de la pantalla */
-    --site-max-width: 1440px;        /* Límite premium para pantallas grandes */
-    --site-gutter: var(--space-4);   /* Colchón interno mínimo (16px) */ 
-
-    /* --- Brand Colors (Madera Premium) --- */
-    --color-primary:  #4E342E;
-    --color-primary-dark: #2D1B17;
-    --color-secondary: #C08A5B;
-    --color-accent: #8B5E3C;
-    
-    /* --- UI Colors --- */
-    --color-white: #ffffff;
-    --color-background: #FDFCFB;
-    --color-surface: #F5F1ED;
-    --color-text: #2C2420;
-    --color-text-light: #795548;
-    --color-border: #E7E0D9;
-
-    /* --- UI Colors --- 2.0 */
-    --color-natura: #6B8E23;
-    --color-natura-hover-light: #7FAE2E;
-    --color-natura-hover-dark: #556B1D;
-
-    --color-ocean: #2E5B6F;
-    --color-ocean-hover-light: #3B7188;
-    --color-ocean-hover-dark: #244857;
-
-    --color-river: #6FAFC7;
-    --color-river-hover-light: #86C3D9;
-    --color-river-hover-dark: #5A95AB;
-
-    /* --- Clay / Arcilla --- */
-    --color-clay: #B36A4C;
-    --color-clay-hover-light: #C57D60;
-    --color-clay-hover-dark: #94543B;
-
-    /* --- Light Wood / Madera Clara --- */
-    --color-light-wood: #D6B08C;
-    --color-light-wood-hover-light: #E3C2A3;
-    --color-light-wood-hover-dark: #BC9470;
-
-    /* --- Typography (Pairing: Lato + Roboto Condensed) --- */
-    --font-primary: 'Lato', system-ui, sans-serif;
-    --font-secondary: 'Roboto Condensed', sans-serif;
-    --font-branding: 'Parisienne', cursive;
-
-    --text-xs: 0.75rem;
-    --text-sm: 0.875rem;
-    --text-base: 1rem;
-    --text-lg: 1.125rem;
-    --text-xl: 1.25rem;
-    --text-2xl: 1.5rem;
-    --text-3xl: 2rem;
-    --text-4xl: 3rem;
 
     /* --- Spacing System (Escala completa) --- */
     --space-1: 0.25rem; /* 4px */
@@ -68,6 +13,101 @@
     --space-20: 5rem;   /* 80px */
     --space-24: 6rem;   /* 96px */
     --space-32: 8rem;   /* 128px */
+
+    /* --- ARQUITECTURA DE CONTENIDO --- */
+    --site-wrapper-width: 92%;       /* Ocupa el 92% del ancho de la pantalla */
+    --site-max-width: 1440px;        /* Límite premium para pantallas grandes */
+    --site-gutter: var(--space-4);   /* Colchón interno mínimo (16px) */ 
+
+    /* --- Brand Colors --- */
+    --color-primary:  #4E342E;
+    --color-primary-dark: #2D1B17;
+    --color-secondary: #C08A5B;
+    --color-accent: #8B5E3C;
+    
+    /* --- UI Colors --- */
+    --color-border: #E7E0D9;
+    --color-surface: #F5F1ED;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    
+    /* --- Text Colors --- */
+    --color-text-dark: #2C2420;
+    --color-text-dark-muted: rgba(44, 36, 32, 0.65);
+    --color-text-light: #F7F5F4; 
+    --color-text-light-muted: rgba(247, 245, 244, 0.6);
+   
+    /* --- Semantic Colors --- */
+
+    /* --- FAMILIA A: PRIMARY PALETTE (Antes Verde/Natura) --- */
+    /* Regla de Oro: +20%L / Base / -11%L */
+    --palette-primary-300: #A2C856;
+    --palette-primary-500: #6B8E23;
+    --palette-primary-700: #4B6418;
+
+    /* --- FAMILIA B: SECONDARY PALETTE (Antes Azul/Ocean) --- */
+    /* Regla de Oro: +20%L / Base / -11%L */
+    --palette-secondary-300: #5290AB;
+    --palette-secondary-500: #2E5B6F;
+    --palette-secondary-700: #1E3B48;
+
+    /* --- FAMILIA C: TERTIARY PALETTE (Antes Roble/Oak / Roland Garros) --- */
+    /* Regla de Oro: +20%L / Base / -11%L */
+    --palette-tertiary-300: #F49F6A;   
+    --palette-tertiary-500: #EA580C;   
+    --palette-tertiary-700: #B6430A;   
+
+    /* --- FAMILIA D: QUATERNARY PALETTE (Antes Luz Amarilla/Glow) --- */
+    /* Regla de Oro: +20%L / Base / -11%L */
+    --palette-quaternary-300: #FEF396;  
+    --palette-quaternary-500: #FDE047;  
+    --palette-quaternary-700: #CDB004;  
+
+    /* Operational Status Colors (Regla: +20%L / Base / -11%L) --- */
+
+    /* Edit / Info (Base #2563EB) */
+    --palette-edit-300: #709BF4;
+    --palette-edit-500: #2563EB;
+    --palette-edit-700: #1244B9;
+
+    /* Warning / Danger (Base #DC2626) */
+    --palette-warning-300: #E76E6E;
+    --palette-warning-500: #DC2626;
+    --palette-warning-700: #A21515;
+
+    /* Success (Base #16A34A) */
+    --palette-success-300: #4ADE80;
+    --palette-success-500: #16A34A;
+    --palette-success-700: #0E682F;
+   
+    /* --- Typography (Pairing: Lato + Roboto Condensed) --- */
+    --font-primary: 'Lato', system-ui, sans-serif;
+    --font-secondary: 'Roboto Condensed', sans-serif;
+    --font-branding: 'Parisienne', cursive;
+
+    /* Grupo 1: Textos de Lectura y Micro-copia (Saltos de 2px a 3px) */
+    --text-xs: 0.706rem;   /* ~12px (Badges de descuento, TyC, microtags) */
+    --text-sm: 0.823rem;   /* ~14px (Fechas, descripciones muted, subtítulos de cards) */
+    --text-base: 1rem;     /* ~17px (Texto base lectura del sitio, H6 en Bold) */
+    --text-lg: 1.176rem;   /* ~20px (Introducciones, H5) */
+    /* 15px - 16px: Es el estándar clásico (un poco denso, estilo Amazon */
+
+    /* Grupo 2: Títulos Medianos y de Componentes (Saltos de 4px) */
+    --text-xl: 1.411rem;   /* ~24px (H4 / Títulos de bloques internos) */
+    --text-2xl: 1.647rem;  /* ~28px (H3 / Títulos principales de Cards) */
+    /* 17px - 18px: Es el punto dulce premium actual (estilo Apple, interfaces modernas, limpio, respira bien). */
+
+    /* Grupo 3: Grandes Títulos e Impacto (Saltos de 8px a 12px) */
+    --text-3xl: 2.117rem;  /* ~36px (H2 / Títulos de secciones) */
+    --text-4xl: 2.823rem;  /* ~48px (H1 / Títulos Hero principales) */
+    /* 19px - 20px: Es el límite máximo absoluto */
+    /* para personas con problemas severos de vista */
+
+    /* Typography Weights (Escala Semántica Estándar) --- */
+    --weight-light: 300;
+    --weight-normal: 400;
+    --weight-semibold: 600;
+    --weight-bold: 700;
 
     /* --- Shadows --- */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);

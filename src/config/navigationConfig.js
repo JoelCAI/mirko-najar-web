@@ -24,7 +24,7 @@ export const brandConfig = {
 
 export const themeConfig = {
   theme: 'light',       // 'light' o 'dark' (Color de textos/elementos cuando está arriba)
-  isTransparent: true   // true: Contenido inicia en pixel 0 (capa inferior). false: Contenido se desplaza 70px.
+  isTransparent: false   // true: Contenido inicia en pixel 0 (capa inferior). false: Contenido se desplaza 70px.
 };
 
 // --- MOTOR DE DISEÑO DINÁMICO: PALETA MÓDULO LIGHT ---

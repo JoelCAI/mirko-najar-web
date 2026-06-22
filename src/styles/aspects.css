@@ -1,0 +1,44 @@
+/* src/styles/aspects.css (O integrado en tus utilidades globales) */
+
+/* Contenedor estructural base */
+.aspect-box {
+  position: relative;
+  width: 100%;
+}
+.aspect-box > img,
+.aspect-box > picture > img,
+.aspect-box > iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- CATÁLOGO DE ARQUETIPOS DE RELACIÓN DE ASPECTO --- */
+
+/* 1. Ultra-Wide Premium (Ideal para Heros de Escritorio) */
+.aspect-hero-desktop {
+  aspect-ratio: 21 / 9;
+  min-height: 480px; /* Altura mínima de seguridad */
+}
+
+/* 2. Pantalla Ancha Estándar (Banners secundarios, videos, mapas) */
+.aspect-video-desktop {
+  aspect-ratio: 16 / 9;
+  min-height: 350px;
+}
+
+/* 3. Formato Fotográfico Tradicional */
+.aspect-photo-desktop {
+  aspect-ratio: 3 / 2;
+}
+
+/* --- CORRECCIONES EN LÍNEA TÁCTIL (MÓVIL) --- */
+@media (max-width: 768px) {
+  .aspect-mobile-square { aspect-ratio: 1 / 1; min-height: 320px; }
+  .aspect-mobile-portrait { aspect-ratio: 2 / 3; min-height: 400px; }
+  .aspect-mobile-classic { aspect-ratio: 4 / 3; min-height: 350px; }
+  .aspect-mobile-tall { aspect-ratio: 4 / 5; min-height: 380px; }
+}

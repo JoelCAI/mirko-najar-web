@@ -1,0 +1,276 @@
+/* =========================================================================
+   0. COMODINES POR DEFECTO (SISTEMA DE DISEÑO BASE)
+   ========================================================================= */
+.bg-default-dark {
+  background-color: var(--color-primary-dark) !important;
+  color: var(--color-text-light) !important;
+}
+
+.hover-bg-default-dark:not(:disabled):not(.btnLoading):hover {
+  background-color: rgba(var(--color-primary-dark-rgb, 17, 14, 13), 0.85) !important;
+  color: var(--color-text-light) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.bg-default-light {
+  background-color: var(--color-surface) !important;
+  color: var(--color-text-dark) !important;
+}
+
+.hover-bg-default-light:not(:disabled):not(.btnLoading):hover {
+  background-color: rgba(var(--color-text-dark-rgb, 0, 0, 0), 0.05) !important;
+  color: var(--color-text-dark) !important;
+}
+
+/* =========================================================================
+   1. FAMILIA A: PRIMARY PALETTE
+   ========================================================================= */
+
+/* Fondos Estáticos (Reposo) */
+.bg-custom-primary-light {
+  background-color: var(--palette-primary-300) !important;
+  color: var(--color-text-light) !important;
+}
+
+.bg-custom-primary {
+  background-color: var(--palette-primary-500) !important;
+  color: var(--color-text-light) !important;
+}
+
+.bg-custom-primary-dark {
+  background-color: var(--palette-primary-700) !important;
+  color: var(--color-white) !important;
+}
+
+/* Comodines de Acción (Hovers Espejados) */
+.hover-bg-custom-primary-light:not(:disabled):not(.btnLoading):hover {
+  background-color: var(--palette-primary-300) !important;
+  color: var(--color-text-light) !important;
+}
+
+.hover-bg-custom-primary:not(:disabled):not(.btnLoading):hover {
+  background-color: var(--palette-primary-500) !important;
+  color: var(--color-text-light) !important;
+}
+
+.btn[data-variant="neonGlow"].hover-bg-custom-primary:not(:disabled):not(.btnLoading):hover,
+.btn.btn-neonGlow.hover-bg-custom-primary:not(:disabled):not(.btnLoading):hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25), 0 0 20px var(--palette-primary-500) !important;
+}
+
+.hover-bg-custom-primary-dark:not(:disabled):not(.btnLoading):hover {
+  background-color: var(--palette-primary-700) !important;
+  color: var(--color-white) !important;
+}
+
+
+/* =========================================================================
+   2. FAMILIA B: SECONDARY PALETTE
+   ========================================================================= */
+
+/* Fondos Estáticos (Reposo) */
+.bg-custom-secondary-light {
+  background-color: var(--palette-secondary-300) !important;
+  color: var(--color-text-light) !important;
+}
+
+.bg-custom-secondary {
+  background-color: var(--palette-secondary-500) !important;
+  color: var(--color-text-light) !important;
+}
+
+.bg-custom-secondary-dark {
+  background-color: var(--palette-secondary-700) !important;
+  color: var(--color-white) !important;
+}
+
+/* Comodines de Acción (Hovers Espejados) */
+.hover-bg-custom-secondary-light:not(:disabled):not(.btnLoading):hover {
+  background-color: var(--palette-secondary-300) !important;
+  color: var(--color-text-light) !important;
+}
+
+.hover-bg-custom-secondary:not(:disabled):not(.btnLoading):hover {
+  background-color: var(--palette-secondary-500) !important;
+  color: var(--color-text-light) !important;
+}
+
+.hover-bg-custom-secondary-dark:not(:disabled):not(.btnLoading):hover {
+  background-color: var(--palette-secondary-700) !important;
+  color: var(--color-white) !important;
+}
+
+
+/* =========================================================================
+   3. FAMILIA C: TERTIARY PALETTE
+   ========================================================================= */
+
+/* Fondos Estáticos (Reposo) */
+.bg-custom-tertiary-light {
+  background-color: var(--palette-tertiary-300) !important;
+  color: var(--color-text-light) !important;
+}
+
+.bg-custom-tertiary {
+  background-color: var(--palette-tertiary-500) !important;
+  color: var(--color-text-light) !important;
+}
+
+.bg-custom-tertiary-dark {
+  background-color: var(--palette-tertiary-700) !important;
+  color: var(--color-white) !important;
+}
+
+/* Comodines de Acción (Hovers Espejados) */
+.hover-bg-custom-tertiary-light:not(:disabled):not(.btnLoading):hover {
+  background-color: var(--palette-tertiary-300) !important;
+  color: var(--color-text-light) !important;
+}
+
+.hover-bg-custom-tertiary:not(:disabled):not(.btnLoading):hover {
+  background-color: var(--palette-tertiary-500) !important;
+  color: var(--color-text-light) !important;
+}
+
+.hover-bg-custom-tertiary-dark:not(:disabled):not(.btnLoading):hover {
+  background-color: var(--palette-tertiary-700) !important;
+  color: var(--color-white) !important;
+}
+
+
+/* =========================================================================
+   4. MATRIZ DE DEGRADADOS INSTITUCIONALES (PROTECCIÓN DE CAPAS)
+   ========================================================================= */
+
+.bg-custom-gradient-light {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-white) 100%) !important;
+  color: var(--color-text-dark) !important;
+}
+
+.bg-custom-gradient-dark {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%) !important;
+  color: var(--color-text-light) !important;
+}
+
+.bg-custom-gradient-primary {
+  background: linear-gradient(135deg, var(--palette-primary-500) 0%, var(--palette-primary-700) 100%) !important;
+  color: var(--color-text-light) !important;
+}
+
+.bg-custom-gradient-secondary {
+  background: linear-gradient(135deg, var(--palette-secondary-500) 0%, var(--palette-secondary-700) 100%) !important;
+  color: var(--color-text-light) !important;
+}
+
+.bg-custom-gradient-tertiary {
+  background: linear-gradient(135deg, var(--palette-tertiary-500) 0%, var(--palette-tertiary-700) 100%) !important;
+  color: var(--color-text-light) !important;
+}
+
+.bg-custom-gradient-quaternary {
+  background: linear-gradient(135deg, var(--palette-quaternary-300) 0%, var(--palette-quaternary-500) 100%) !important;
+  color: var(--color-text-dark) !important;
+}
+
+
+/* =========================================================================
+   5. SISTEMA DE BORDES SEMÁNTICOS (CONTRATO DE MARCA SIMÉTRICO)
+   ========================================================================= */
+
+/* --- BORDES ESTÁTICOS BASE --- */
+.custom-border-primary {
+  border: 2px solid var(--palette-primary-500) !important;
+}
+
+.custom-border-secondary {
+  border: 2px solid var(--palette-secondary-500) !important;
+}
+
+.custom-border-tertiary {
+  border: 2px solid var(--palette-tertiary-500) !important;
+}
+
+.custom-border-transparent {
+  border: 2px solid transparent !important;
+}
+
+/* --- COMODINES DE ACCIÓN (Hovers Protegidos y Espejados) --- */
+.hover-custom-border-primary:not(:disabled):not(.btnLoading):hover {
+  border-color: var(--palette-primary-700) !important;
+}
+
+.hover-custom-border-secondary:not(:disabled):not(.btnLoading):hover {
+  border-color: var(--palette-secondary-700) !important;
+}
+
+.hover-custom-border-tertiary:not(:disabled):not(.btnLoading):hover {
+  border-color: var(--palette-tertiary-700) !important;
+}
+
+.hover-border-transparent:not(:disabled):not(.btnLoading):hover {
+  border-color: transparent !important;
+}
+
+/* =========================================================================
+   6. PALETAS OPERACIONALES (EDICIÓN, COMPORTAMIENTO Y LOGÍSTICA)
+   ========================================================================= */
+
+/* --- OPERATIONAL: EDIT / INFO --- */
+.bg-custom-edit {
+  background-color: var(--palette-edit-500) !important;
+  color: var(--color-text-light) !important;
+}
+.bg-custom-edit-light {
+  background-color: var(--palette-edit-300) !important;
+  color: var(--color-text-dark) !important;
+}
+.bg-custom-edit-dark {
+  background-color: var(--palette-edit-700) !important;
+  color: var(--white) !important;
+}
+
+/* --- OPERATIONAL: WARNING / DANGER --- */
+.bg-custom-warning {
+  background-color: var(--palette-warning-500) !important;
+  color: var(--color-text-light) !important;
+}
+.bg-custom-warning-light {
+  background-color: var(--palette-warning-300) !important;
+  color: var(--color-text-dark) !important;
+}
+.bg-custom-warning-dark {
+  background-color: var(--palette-warning-700) !important;
+  color: var(--color-white) !important;
+}
+
+/* --- OPERATIONAL: SUCCESS --- */
+.bg-custom-success {
+  background-color: var(--palette-success-500) !important;
+  color: var(--color-text-light) !important;
+}
+.bg-custom-success-light {
+  background-color: var(--palette-success-300) !important;
+  color: var(--color-text-dark) !important;
+}
+.bg-custom-success-dark {
+  background-color: var(--palette-success-700) !important;
+  color: var(--color-white) !important;
+}
+
+
+.btn[class*="hover-custom-border-primary"]:hover {
+  --btn-neon-color: var(--palette-primary-500) !important;
+}
+
+/* Cuando el botón usa hover secondary (Azul) */
+
+.btn[class*="hover-custom-border-secondary"]:hover {
+  --btn-neon-color: var(--palette-secondary-500) !important;
+}
+
+/* Cuando el botón usa hover tertiary (Naranja) */
+
+.btn[class*="hover-custom-border-tertiary"]:hover {
+  --btn-neon-color: var(--palette-tertiary-500) !important;
+}
+

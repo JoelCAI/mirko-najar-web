@@ -1,0 +1,70 @@
+/* src/styles/animations.css */
+
+/* Definas las coreografías matemáticas de la GPU */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Creas los activadores utilitarios por data-attributes */
+[data-animation="slide-left"] {
+  animation: slideInFromLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+[data-animation="slide-right"] {
+  animation: slideInFromRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==========================================================================
+   CATÁLOGO DE EFECTOS DISPONIBLES PARA EL HOOK (En src/styles/animations.css)
+   ========================================================================== */
+
+/* --- EFECTO 1: Entrar desde la Izquierda --- */
+.reveal-slide-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-slide-left[data-visible="true"] {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- EFECTO 2: Entrar desde la Derecha --- */
+.reveal-slide-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-slide-right[data-visible="true"] {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- EFECTO 3: Zoom In Premium (Escala) --- */
+.reveal-zoom-in {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-zoom-in[data-visible="true"] {
+  opacity: 1;
+  transform: scale(1);
+}

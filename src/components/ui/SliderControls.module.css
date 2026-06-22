@@ -1,0 +1,92 @@
+/* src/components/ui/SliderControls.module.css */
+
+/* =========================================================================
+   1. CONTROLES MANUALES (FLECHAS DE NAVEGACIÓN)
+   ========================================================================= */
+.arrowBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-primary-dark, #110E0D);
+  color: var(--color-white, #ffffff);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Sincronizado con el chasis */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border: none;
+  cursor: pointer;
+}
+
+/* Nota: Selectores limpios para posicionamiento lateral */
+.leftArrow  { left: var(--space-6, 24px); }
+.rightArrow { right: var(--space-6, 24px); }
+
+/* --- HOVER CONTROLADO POR HARDWARE (SOLO ESCRITORIO) --- */
+@media (min-width: 1025px) {
+  .arrowBtn:not(:disabled):hover {
+    transform: translateY(-50%) scale(1.08);
+    
+    /* 🌟 EL BLINDAJE: Controlamos fondo y texto en un único punto seguro */
+    background-color: var(--color-brand-text, #ffffff); /* El fondo muta a blanco o color de marca */
+    color: var(--color-primary-dark, #110E0D);          /* La flecha interna muta a oscuro para alto contraste */
+    
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    filter: brightness(1.05);
+  }
+}
+
+/* --- CÍRCULOS DE NAVEGACIÓN (DOTS / RECTÁNGULOS) --- */
+.dotsContainer {
+  position: absolute;
+  bottom: var(--space-6, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-3, 12px);
+  z-index: 12;
+  background-color: rgba(0, 0, 0, 0.35);
+  padding: 8px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: transparent; 
+  border: 2px solid var(--color-accent, #ff5722); 
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+}
+
+.dotActive {
+  background-color: var(--color-surface, #ffffff); 
+  transform: scale(1.25);
+}
+
+/* --- RESPONSIVE DE CONTROLES --- */
+@media (max-width: 1024px) {
+  .arrowBtn { 
+    width: 44px; 
+    height: 44px; 
+  }
+}
+
+@media (max-width: 600px) {
+  /* Ocultamos las flechas físicamente en móviles para favorecer el gesto de arrastre táctil (Swipe) */
+  .arrowBtn {
+    display: none !important;
+  }
+  
+  .dotsContainer {
+    bottom: var(--space-4, 16px);
+    padding: 6px 12px;
+  }
+}

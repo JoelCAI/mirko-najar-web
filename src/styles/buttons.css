@@ -1,0 +1,700 @@
+/* src/styles/buttons.css */
+
+/* =========================================================================
+   1. ESTILOS ESTRUCTURALES BASE
+   ========================================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--text-custom-font, var(--font-primary, sans-serif));
+  font-weight: var(--text-custom-weight, var(--weight-semibold, 600));
+  border-radius: var(--radius-md, 8px);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-decoration: none;
+  box-sizing: border-box;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  width: var(--custom-btn-width, auto);
+  
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-primary-dark);
+  outline-offset: 2px;
+}
+
+/* =========================================================================
+   2. SISTEMA UNIFICADO DE TAMAÑOS ESTÁTICOS (Desktop y Caídas Globales)
+   ========================================================================= */
+/* Si el tamaño es un string fijo (ej: data-size="md"), opera aquí directamente */
+.btn[data-size="xs"] { padding: 0 var(--space-3, 12px); font-size: 11px;                  height: 28px; }
+.btn[data-size="sm"] { padding: 0 var(--space-4, 16px); font-size: 13px;                  height: 34px; }
+.btn[data-size="md"] { padding: 0 var(--space-6, 24px); font-size: var(--text-sm, 14px); height: 42px; }
+.btn[data-size="lg"] { padding: 0 var(--space-8, 32px); font-size: 16px;                  height: 50px; }
+.btn[data-size="xl"] { padding: 0 var(--space-10, 40px); font-size: 18px;                 height: 58px; }
+
+/* =========================================================================
+   3. ACTIVADORES RESPONSIVOS COMPONENT-DRIVEN (Sin repetición)
+   ========================================================================= */
+
+/* --- EN ESCRITORIO: Mandan los atributos Desktop --- */
+@media (min-width: 769px) {
+  .btn[data-size="responsive"][data-desktop-size="xs"] { padding: 0 var(--space-3, 12px); font-size: 11px;                  height: 28px; }
+  .btn[data-size="responsive"][data-desktop-size="sm"] { padding: 0 var(--space-4, 16px); font-size: 13px;                  height: 34px; }
+  .btn[data-size="responsive"][data-desktop-size="md"] { padding: 0 var(--space-6, 24px); font-size: var(--text-sm, 14px); height: 42px; }
+  .btn[data-size="responsive"][data-desktop-size="lg"] { padding: 0 var(--space-8, 32px); font-size: 16px;                  height: 50px; }
+  .btn[data-size="responsive"][data-desktop-size="xl"] { padding: 0 var(--space-10, 40px); font-size: 18px;                 height: 58px; }
+}
+
+/* --- EN MÓVIL: Mandan los atributos Mobile y protegemos la usabilidad --- */
+@media (max-width: 768px) {
+  /* Si el cliente configuró md, lg o xl para móvil, se ejecuta de forma transparente */
+  .btn[data-size="responsive"][data-mobile-size="md"] { padding: 0 var(--space-6, 24px); font-size: var(--text-sm, 14px); height: 42px; }
+  .btn[data-size="responsive"][data-mobile-size="lg"] { padding: 0 var(--space-8, 32px); font-size: 16px;                  height: 50px; }
+  .btn[data-size="responsive"][data-mobile-size="xl"] { padding: 0 var(--space-10, 40px); font-size: 18px;                 height: 58px; }
+
+  /* ESCUDO DE CONTENCIÓN: Si por base de datos o error viene 'xs' o 'sm' en móvil, 
+     el chasis los plancha y los obliga a actuar como un 'md' seguro (42px) */
+  .btn[data-size="responsive"][data-mobile-size="xs"],
+  .btn[data-size="responsive"][data-mobile-size="sm"] { 
+    padding: 0 var(--space-6, 24px); 
+    font-size: var(--text-sm, 14px); 
+    height: 42px; 
+  }
+}
+
+
+/* --- VARIANTE A: CLASSIC (Destello de luz líquido transversal) --- */
+.btn[data-variant="classic"],
+.btn.btn-classic {
+  background-color: var(--color-bg-container, #110e0d);
+  color: var(--color-brand-text, #ffffff);
+  border: 2px solid transparent;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.btn[data-variant="classic"]::before,
+.btn.btn-classic::before {
+  content: ''; 
+  position: absolute; 
+  top: 0; 
+  left: -150%; 
+  width: 80%; 
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 100%
+  );
+  transform: skewX(-30deg);
+  transition: left 0.65s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 1;
+}
+
+/* El texto se mantiene por encima del destello de luz de forma segura */
+.btn[data-variant="classic"] span,
+.btn.btn-classic span {
+  position: relative;
+  z-index: 2;
+  pointer-events: none; /* Evita interferencias en el evento de hover */
+}
+
+.btn[data-variant="classic"]:hover,
+.btn.btn-classic:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.18);
+  
+}
+
+.btn.btn-classic:not([data-has-custom-border="true"]):hover {
+  filter: brightness(1.12);
+}
+
+.btn[data-variant="classic"]:hover::before,
+.btn.btn-classic:hover::before { 
+  left: 150%; 
+}
+
+/* --- VARIANTE B: SECONDARY (Cortina elegante desde la base) --- */
+.btn[data-variant="secondary"],
+.btn.btn-secondary {
+  color: var(--color-brand-text);
+  /* Dejamos el fondo libre para que gobiernen las utilidades del cliente,
+     pero blindamos el contexto de posicionamiento */
+  z-index: 1;
+  overflow: hidden; /* Crucial: corta la cortina cuando está en reposo (height: 0) */
+  position: relative;
+}
+
+/* La Cortina: Capa de contraste translúcida controlada por hardware */
+.btn[data-variant="secondary"]::after,
+.btn.btn-secondary::after {
+  content: ''; 
+  position: absolute; 
+  bottom: 0; /* Anclada firmemente a la base para que suba */
+  left: 0; 
+  width: 100%; 
+  height: 0; /* En reposo no ocupa espacio */
+  background-color: rgba(0, 0, 0, 0.14); /* Oscurece sutilmente el fondo inyectado */
+  
+  /* CAPA CRUCIAL: Se posiciona justo entre el fondo del botón y el texto */
+  z-index: 1; 
+  
+  /* Cinemática de fluidos para la subida */
+  transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* El Texto/Span: Forzamos su posición por encima de la cortina ascendente */
+.btn[data-variant="secondary"] span,
+.btn.btn-secondary span {
+  position: relative;
+  z-index: 2; /* Flota a salvo en la capa superior */
+  pointer-events: none;
+}
+
+/* Triggers de Hover y cinemática del chasis */
+.btn[data-variant="secondary"]:hover,
+.btn.btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Al quitar el !important de aquí, permitimos que las utilidades de bordes 
+   hover-custom-border-* decidan el color perimetral en hover */
+.btn.btn-secondary:not([data-has-custom-border="true"]):hover {
+  border-color: transparent;
+}
+
+/* Activación de la cortina: Sube al 100% de la altura */
+.btn[data-variant="secondary"]:hover::after,
+.btn.btn-secondary:hover::after { 
+  height: 100%; 
+}
+
+/* --- VARIANTE C NEONGLOW --- */
+.btn[data-variant="neonGlow"],
+.btn.btn-neonGlow {
+  /* Color de resalte por defecto si no se inyecta ninguna utilidad */
+  --btn-neon-color: var(--color-text-light);
+  
+  background-color: var(--color-primary-dark, #2D1B17);
+  color: var(--color-text-light, #F7F5F4);
+  border: 2px solid transparent;
+  z-index: 1;
+  position: relative;
+  transition: 
+    transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    background-color 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.btn[data-variant="neonGlow"]::before,
+.btn.btn-neonGlow::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent);
+  opacity: 1;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.btn[data-variant="neonGlow"] span,
+.btn.btn-neonGlow span {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* El Hover unificado: lee dinámicamente el valor de la variable */
+.btn[data-variant="neonGlow"]:hover,
+.btn.btn-neonGlow:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.10);
+  
+  /* El borde y el shadow mutan juntos usando el mismo canal de color */
+  border-color: var(--btn-neon-color) !important;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    0 0 16px var(--btn-neon-color) !important;
+}
+
+/* Apagado de seguridad */
+.btn[data-variant="neonGlow"]:disabled:hover,
+.btn.btn-neonGlow.btnLoading:hover {
+  box-shadow: none !important;
+  transform: none !important;
+  border-color: transparent !important;
+}
+
+/* --- VARIANTE D: DOUBLE CURTAIN SPLIT (Apertura de obturador) --- */
+.btn[data-variant="doubleCurtainSplit"],
+.btn.btn-doubleCurtainSplit {
+  /* Dejamos el fondo libre para las utilidades, pero preparamos el chasis mecánico */
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* La Persiana Superior e Inferior se orquestan con ::before y ::after */
+.btn[data-variant="doubleCurtainSplit"]::before,
+.btn.btn-doubleCurtainSplit::before,
+.btn[data-variant="doubleCurtainSplit"]::after,
+.btn.btn-doubleCurtainSplit::after {
+  content: '';
+  position: absolute;
+  left: -20%;
+  width: 140%; /* Extra para cubrir el sesgo del skew */
+  height: 51%; /* Cada una cubre exactamente la mitad (con 1% de solape físico) */
+  background-color: rgba(255, 255, 255, 0.12); /* Por defecto aclara de forma sofisticada */
+  z-index: 1;
+  transform: skewX(-45deg) scaleY(0); /* Escondidas e inclinadas en reposo */
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Posicionamiento de la persiana norte */
+.btn[data-variant="doubleCurtainSplit"]::before,
+.btn.btn-doubleCurtainSplit::before {
+  top: 0;
+  transform-origin: top center;
+}
+
+/* Posicionamiento de la persiana sur */
+.btn[data-variant="doubleCurtainSplit"]::after,
+.btn.btn-doubleCurtainSplit::after {
+  bottom: 0;
+  transform-origin: bottom center;
+  background-color: rgba(0, 0, 0, 0.12); /* La persiana sur oscurece para crear bimetalismo */
+}
+
+/* El Texto/Span: Se blinda flotando sobre la cinemática de las lamas */
+.btn[data-variant="doubleCurtainSplit"] span,
+.btn.btn-doubleCurtainSplit span {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Triggers de Hover y cinemática del chasis */
+.btn[data-variant="doubleCurtainSplit"]:hover,
+.btn.btn-doubleCurtainSplit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+}
+
+/* Disparo asíncrono y simétrico de las persianas */
+.btn[data-variant="doubleCurtainSplit"]:hover::before,
+.btn.btn-doubleCurtainSplit:hover::before {
+  transform: skewX(-45deg) scaleY(1);
+}
+
+.btn[data-variant="doubleCurtainSplit"]:hover::after,
+.btn.btn-doubleCurtainSplit:hover::after {
+  transform: skewX(-45deg) scaleY(1);
+}
+
+/* Control para estados de carga o bloqueo */
+.btn[data-variant="doubleCurtainSplit"]:disabled:hover,
+.btn.btn-doubleCurtainSplit.btnLoading:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+.btn[data-variant="doubleCurtainSplit"]:disabled::before,
+.btn[data-variant="doubleCurtainSplit"]:disabled::after,
+.btn.btn-doubleCurtainSplit.btnLoading::before,
+.btn.btn.btn-doubleCurtainSplit.btnLoading::after {
+  transform: none !important;
+}
+
+/* --- VARIANTE E: OBLIQUEECLIPSE --- */
+.btn[data-variant="obliqueEclipse"],
+.btn.btn-obliqueEclipse {
+  /* Chasis libre para que actúen tus utilidades de marca */
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* El Núcleo del Pulso: El anillo expansivo circular */
+.btn[data-variant="obliqueEclipse"]::before,
+.btn.btn-obliqueEclipse::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.25); /* Pulso de luz pura */
+  border-radius: 50%;
+  z-index: 1;
+  /* Centrado perfecto e inicio en escala cero (invisible) */
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 1;
+  /* Cinemática explosiva al inicio y suave al expandirse */
+  transition: transform 0.5s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 0.5s ease-out;
+}
+
+/* El Reflejo de Profundidad: El gradiente radial invertido */
+.btn[data-variant="obliqueEclipse"]::after,
+.btn.btn-obliqueEclipse::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Crea una viñeta inversa que ilumina el centro del color inyectado */
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+  z-index: 1;
+  opacity: 0; /* Apagado en reposo */
+  transition: opacity 0.4s ease;
+}
+
+/* El Texto/Span: Flota seguro sobre el oleaje radial */
+.btn[data-variant="obliqueEclipse"] span,
+.btn.btn-obliqueEclipse span {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Triggers de Hover: Elevación física y encendido del reflejo */
+.btn[data-variant="obliqueEclipse"]:hover,
+.btn.btn-obliqueEclipse:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Disparo de la onda expansiva líquida */
+.btn[data-variant="obliqueEclipse"]:hover::before,
+.btn.btn-obliqueEclipse:hover::before {
+  transform: translate(-50%, -50%) scale(18); /* Crece exponencialmente rompiendo los bordes */
+  opacity: 0; /* Se desvanece de forma natural al llegar al perímetro */
+}
+
+/* Activación del gradiente de profundidad de la viñeta */
+.btn[data-variant="obliqueEclipse"]:hover::after,
+.btn.btn-obliqueEclipse:hover::after {
+  opacity: 1;
+}
+
+/* Control estricto de apagado para estados bloqueados o spinners */
+.btn[data-variant="obliqueEclipse"]:disabled:hover,
+.btn.btn-obliqueEclipse.btnLoading:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+.btn[data-variant="obliqueEclipse"]:disabled::before,
+.btn[data-variant="obliqueEclipse"]:disabled::after,
+.btn.btn-obliqueEclipse.btnLoading::before,
+.btn.btn-obliqueEclipse.btnLoading::after {
+  transform: none !important;
+  opacity: 0 !important;
+}s
+
+/* --- VARIANTE F: KINETICMATRIX --- */
+.btn[data-variant="kineticMatrix"],
+.btn.btn-kineticMatrix {
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* La cortina de expulsión kinética */
+.btn[data-variant="kineticMatrix"]::before,
+.btn.btn-kineticMatrix::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%; /* Totalmente fuera de la pantalla a la izquierda */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.15); /* Capa reflectiva cinética */
+  z-index: 1;
+  transform: skewX(-15deg);
+  transition: transform 0.6s cubic-bezier(0.8, 0, 0.2, 1), left 0.6s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+.btn[data-variant="kineticMatrix"] span,
+.btn.btn-kineticMatrix span {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  display: inline-block;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Triggers de Hover */
+.btn[data-variant="kineticMatrix"]:hover::before,
+.btn.btn-kineticMatrix:hover::before {
+  left: 110%; /* Cruza el botón por completo barriendo el fondo */
+}
+
+/* El texto hace una pequeña micro-física reactiva hacia adelante */
+.btn[data-variant="kineticMatrix"]:hover span,
+.btn.btn-kineticMatrix:hover span {
+  transform: translateX(4px);
+}
+
+.btn[data-variant="kineticMatrix"]:hover,
+.btn.btn-kineticMatrix:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* --- VARIANTE G: CHRONO SLIDE (Desplazamiento por Vector Sesgado) --- */
+.btn[data-variant="chronoSlide"],
+.btn.btn-chronoSlide {
+  /* Chasis libre para que respire el color del cliente */
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+}
+
+/* La placa angular de barrido */
+.btn[data-variant="chronoSlide"]::before,
+.btn.btn-chronoSlide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%; /* Totalmente fuera del botón a la izquierda */
+  width: 120%; /* Ancho extra para compensar la inclinación */
+  height: 100%;
+  
+  /* Blanco translúcido premium que se fusiona con cualquier fondo de marca */
+  background-color: rgba(255, 255, 255, 0.16); 
+  
+  z-index: 1;
+  transform: skewX(-30deg); /* Inclinación geométrica limpia */
+  
+  /* Transición simétrica para que la vuelta a la izquierda sea ultra fluida */
+  transition: left 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* El texto flota seguro en la capa superior */
+.btn[data-variant="chronoSlide"] span,
+.btn.btn-chronoSlide span {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* TRIGGER HOVER: La placa cruza el botón de largo hacia la derecha */
+.btn[data-variant="chronoSlide"]:not(:disabled):not(.btnLoading):hover::before,
+.btn.btn-chronoSlide:not(:disabled):not(.btnLoading):hover::before {
+  left: 130%; 
+}
+
+/* Micro-física reactiva: el texto se desplaza sutilmente en el hover */
+.btn[data-variant="chronoSlide"]:not(:disabled):not(.btnLoading):hover span,
+.btn.btn-chronoSlide:not(:disabled):not(.btnLoading):hover span {
+  transform: translateX(4px);
+}
+
+.btn[data-variant="chronoSlide"]:hover,
+.btn.btn-chronoSlide:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Apagado estricto para estados de carga o deshabilitados */
+.btn[data-variant="chronoSlide"]:disabled:hover,
+.btn.btn-chronoSlide.btnLoading:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+.btn[data-variant="chronoSlide"]:disabled::before,
+.btn.btn-chronoSlide.btnLoading::before {
+  left: -130% !important;
+}
+.btn[data-variant="chronoSlide"]:disabled span,
+.btn.btn-chronoSlide.btnLoading span {
+  transform: none !important;
+}
+
+/* --- VARIANTE H: HORIZONTAL SPLIT BLADES (Cierre de Cuchillas Cruzadas) --- */
+.btn[data-variant="splitBlades"],
+.btn.btn-splitBlades {
+  /* Chasis libre para que actúen tus utilidades de marca */
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+}
+
+/* Base unificada para la cuchilla izquierda y derecha */
+.btn[data-variant="splitBlades"]::before,
+.btn.btn-splitBlades::before,
+.btn[data-variant="splitBlades"]::after,
+.btn.btn-splitBlades::after {
+  content: '';
+  position: absolute;
+  width: 55%; /* Cada una cubre un poco más de la mitad para un cruce perfecto */
+  height: 100%;
+  z-index: 1;
+  
+  /* Angulación geométrica idéntica */
+  transform: skewX(-25deg); 
+  
+  /* Transición de retorno calibrada para cuando el mouse SALGA */
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Cuchilla Izquierda (Entra desde el extremo izquierdo superior) */
+.btn[data-variant="splitBlades"]::before,
+.btn.btn-splitBlades::before {
+  top: 0;
+  left: -65%; /* Escondida a la izquierda */
+  background-color: rgba(255, 255, 255, 0.12); /* Aclara la mitad superior */
+  transform-origin: top left;
+}
+
+/* Cuchilla Derecha (Entra desde el extremo derecho inferior) */
+.btn[data-variant="splitBlades"]::after,
+.btn.btn-splitBlades::after {
+  bottom: 0;
+  right: -65%; /* Escondida a la derecha */
+  background-color: rgba(0, 0, 0, 0.12); /* Oscurece la mitad inferior */
+  transform-origin: bottom right;
+}
+
+/* El Texto/Span: Se blinda flotando sobre la colisión de las cuchillas */
+.btn[data-variant="splitBlades"] span,
+.btn.btn-splitBlades span {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* --- TRIGGERS EN HOVER --- */
+
+/* Las dos cuchillas se encuentran en el centro geométrico del botón */
+.btn[data-variant="splitBlades"]:not(:disabled):not(.btnLoading):hover::before,
+.btn.btn-splitBlades:not(:disabled):not(.btnLoading):hover::before {
+  transform: skewX(-25deg) translateX(120%);
+}
+
+.btn[data-variant="splitBlades"]:not(:disabled):not(.btnLoading):hover::after,
+.btn.btn-splitBlades:not(:disabled):not(.btnLoading):hover::after {
+  transform: skewX(-25deg) translateX(-120%);
+}
+
+.btn[data-variant="splitBlades"]:hover,
+.btn.btn-splitBlades:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Apagado estricto para estados bloqueados o spinners */
+.btn[data-variant="splitBlades"]:disabled:hover,
+.btn.btn-splitBlades.btnLoading:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+.btn[data-variant="splitBlades"]:disabled::before,
+.btn.btn-splitBlades.btnLoading::before {
+  transform: skewX(-25deg) translateX(0) !important;
+}
+.btn[data-variant="splitBlades"]:disabled::after,
+.btn.btn-splitBlades.btnLoading::after {
+  transform: skewX(-25deg) translateX(0) !important;
+}
+
+/* =========================================================================
+   4. SISTEMA DE BORDES SEMÁNTICOS (CONTRATO DE MARCA SIMÉTRICO)
+   ========================================================================= */
+
+/* --- BORDES ESTÁTICOS BASE (Si tu variable falla, cae en un color seguro) --- */
+.btn[data-has-custom-border="true"].custom-border-primary {
+   border-color: var(--palette-primary-500); 
+}
+
+.btn[data-has-custom-border="true"].custom-border-secondary {
+  border-color: var(--palette-secondary-500); 
+}
+
+.btn[data-has-custom-border="true"].custom-border-tertiary {
+   border-color: var(--palette-tertiary-500); 
+}
+
+.btn[data-has-custom-border="true"].custom-border-transparent {
+  border-color: transparent;
+}
+
+/* --- COMODINES DE ACCIÓN HOVER (Actualizados a la jerarquía semántica) --- */
+.btn[data-has-custom-border="true"].hover-custom-border-primary:not(:disabled):hover {
+  border-color: var(--palette-primary-700);
+}
+
+.btn[data-has-custom-border="true"].hover-custom-border-secondary:not(:disabled):hover {
+  border-color: var(--palette-secondary-700);
+}
+
+.btn[data-has-custom-border="true"].hover-custom-border-tertiary:not(:disabled):hover {
+   border-color: var(--palette-tertiary-700);
+}
+
+
+/* =========================================================================
+   5. ESTADOS DE CONTROL Y CARGA (Spinners / Deshabilitados)
+   ========================================================================= */
+.btn:disabled, 
+.btn.btnLoading { 
+  opacity: 0.6; cursor: not-allowed; transform: none !important; box-shadow: none !important; 
+}
+.btn:disabled::before, .btn:disabled::after, 
+.btn.btnLoading::before, .btn.btnLoading::after { display: none !important; }
+
+.spinner { 
+  width: 18px; height: 18px; border: 2px solid transparent; border-top-color: currentColor; border-radius: 50%; animation: btnSpin 0.6s linear infinite; 
+}
+@keyframes btnSpin { to { transform: rotate(360deg); } }
+
+/* =========================================================================
+   6. MOTOR DE ANIMACIÓN CÍCLICA DE ATENCIÓN
+   ========================================================================= */
+.attentionPulse { animation: attentionGlance 1.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
+@keyframes attentionGlance {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.03); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
+  100% { transform: scale(1); box-shadow: none; }
+}
+
+/* =========================================================================
+   7. CAPA DE CONTROL DE INYECCIÓN DE COLOR X (EL SANTO GRIAL MULTITENANT)
+   ========================================================================= */
+.btn[data-override="true"] {
+  background: var(--btn-custom-bg) !important;
+  color: var(--btn-custom-text) !important;
+  border-color: var(--btn-custom-border, transparent) !important;
+}
+.btn[data-override="true"]::before, .btn[data-override="true"]::after { display: none !important; }
+.btn[data-override="true"]:hover {
+  background: var(--btn-custom-bg-hover) !important;
+  color: var(--btn-custom-text-hover, var(--btn-custom-text)) !important;
+  border-color: var(--btn-custom-border-hover, transparent) !important;
+}
+
+/* =========================================================================
+   8. RESPUESTA EN DISPOSITIVOS MÓVILES (Foco en Feedback Táctil)
+   ========================================================================= */
+@media (max-width: 768px) {
+  .attentionPulse { animation: none !important; }
+  .btn:not(:disabled):active {
+    transform: scale(0.96) !important; transition: transform 0.1s ease !important; box-shadow: none !important;
+  }
+}
+

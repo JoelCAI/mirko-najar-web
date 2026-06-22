@@ -1,3 +1,53 @@
+/* --------------------------------------------------------------------------
+   0. MOTOR DE CONFIGURACIÓN SEMÁNTICA (Claro por defecto / Oscuro)
+-------------------------------------------------------------------------- */
+
+/* Cuando la app inicia en LIGHT (mapeamos tus variables estáticas de variables.css) */
+:root, [data-theme="light"] {
+  
+  --color-bg-container: var(--color-surface); 
+  --color-bg-secondary: var(--color-secondary); 
+  --color-bg-accent: var(--color-accent); 
+  --color-bg-contrast: var(--color-primary-dark);
+  --color-bg-harmony: var(--color-border);
+
+  --color-main-border: var(--color-border);           
+  
+  --color-brand-text: var(--color-text-dark); 
+  --color-brand-text-muted: var(--color-text-dark-muted); 
+  --color-brand-text-hover: var(--color-primary-dark);
+
+}
+
+/* Cuando el HTML cambia a DARK (Reconfiguración de los mismos comodines) */
+[data-theme="dark"] {
+
+  --color-bg-container: var(--color-primary-dark); 
+  --color-bg-secondary: var(--color-secondary); 
+  --color-bg-accent: var(--color-accent); 
+  --color-bg-contrast: var(--color-surface);
+  --color-bg-harmony: var(--color-border);  
+
+  --color-main-border: var(--color-primary);                   
+  
+  --color-brand-text: var(--color-text-light);    
+  --color-brand-text-muted: var(--color-text-light-muted);
+  --color-brand-text-hover: var(--color-white);
+  
+}
+
+html {
+  /* Control principal: Define que 1rem = 17px en pantallas grandes */
+  font-size: 17px;
+}
+
+@media (max-width: 1023px) {
+  html {
+    /* Comprime toda la escala tipográfica automáticamente a base 16px en móviles */
+    font-size: 16px;
+  }
+}
+
 /* 1. RESET GENERAL (Siempre arriba) */
 * {
   box-sizing: border-box;
@@ -9,12 +59,15 @@
 body {
   font-family: var(--font-primary);
   font-size: var(--text-base);
-  color: var(--color-text);
+  color: var(--color-brand-text);
   line-height: 1.6;
-  background-color: var(--color-bg);
+  background-color: var(--color-bg-container);
   /* Esto hace que las letras se vean mucho más nítidas */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* Transición suave para el cambio de tema macro global */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ul, ol {
@@ -26,25 +79,47 @@ a {
   color: inherit;
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font: inherit; /* Evita que los botones cambien la letra */
-}
-
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
 /* 3. TIPOGRAFÍA */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-secondary);
-  color: var(--color-primary-dark);
-  font-weight: 700;
+  font-weight: var(--weight-bold);
+  color: var(--color-brand-text);
   line-height: 1.2;
+}
+
+/* Asignación limpia de escala de tamaños */
+h1 { font-size: var(--text-4xl); } /* 48px desktop / 45px mobile */
+h2 { font-size: var(--text-3xl); } /* 36px desktop / 34px mobile */
+h3 { font-size: var(--text-2xl); } /* 28px desktop / 26px mobile (Cards) */
+h4 { font-size: var(--text-xl);  } /* 24px desktop / 22px mobile */
+h5 { font-size: var(--text-lg);  } /* 20px desktop / 19px mobile */
+h6 { font-size: var(--text-base); } /* 17px desktop / 16px mobile (Mismo tamaño body pero en bold) */
+
+button, 
+input, 
+select, 
+.nav-link,
+.badge,
+.price-tag {
+  font: inherit; 
+  line-height: 1; /* Elimina aire invisible para centrar al milímetro */
+}
+
+textarea {
+  font: inherit;
+  line-height: 1.5; /* Evita que las líneas de texto se choquen */
 }
 
 /* 4. CLASES DE UTILIDAD (Abajo para que tengan prioridad) */
@@ -56,6 +131,10 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: var(--site-gutter);
   padding-right: var(--site-gutter);
   box-sizing: border-box;
+}
+
+.leading-none {
+  line-height: 1 !important;
 }
 
 /* Desactivar el flash celeste nativo en todo el sitio para pantallas táctiles */
@@ -73,15 +152,4 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-user-select: none; /* Evita que el texto se sombree accidentalmente al mantener presionado */
     user-select: none;
   }
-}
-
-/* Ejemplo en tu CSS global para cualquier componente del sitio */
-body.light-theme {
-  background-color: var(--color-white);
-  color: var(--color-primary-dark);
-}
-
-body.dark-theme {
-  background-color: var(--color-primary-dark); /* O el fondo oscuro de tu paleta */
-  color: var(--color-white);
 }
