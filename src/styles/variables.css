@@ -81,9 +81,9 @@
     --palette-success-700: #0E682F;
    
     /* --- Typography (Pairing: Lato + Roboto Condensed) --- */
-    --font-primary: 'Lato', system-ui, sans-serif;
-    --font-secondary: 'Roboto Condensed', sans-serif;
-    --font-branding: 'Parisienne', cursive;
+    --font-primary: 'Lato', Roboto, Helvetica, Arial, sans-serif;
+    --font-secondary: 'Roboto Condensed','Arial Narrow', Arial, sans-serif-condensed, sans-serif;
+    --font-branding: 'Parisienne','Georgia', 'Times New Roman', cursive;
 
     /* Grupo 1: Textos de Lectura y Micro-copia (Saltos de 2px a 3px) */
     --text-xs: 0.706rem;   /* ~12px (Badges de descuento, TyC, microtags) */

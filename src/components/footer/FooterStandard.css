@@ -1,0 +1,278 @@
+/* src/components/footer/FooterStandard.css */
+
+.c-footer {
+  width: 100%;
+  background-color: var(--color-bg-container);
+  border-top: 1px solid var(--color-main-border);
+  padding: 4rem 0 2rem 0;
+  color: var(--color-brand-text);
+  /* El cambio climático sol/luna hereda la transición premium global */
+  transition: background-color 400ms cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.c-footer__container {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* ==========================================================================
+   🖥️ CONFIGURACIÓN DE REJILLA ESCRITORIO (REDUCE DOLORES DE CABEZA)
+   ========================================================================== */
+.c-footer__grid-desktop {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Estricto: 4 ranuras idénticas de igual tamaño */
+  gap: 2.5rem;
+  align-items: start; /* Forzado al eje inicial para alineación horizontal perfecta */
+}
+
+.c-footer__column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inyección de fuentes dinámicas del cliente con caídas de seguridad */
+.c-footer__logo {
+  font-family: var(--footer-typo-desktop-logo, inherit);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 1.25rem 0;
+  letter-spacing: 0.03em;
+}
+
+.c-footer__column-title,
+.c-footer__subgroup-title {
+  font-family: var(--footer-typo-desktop-titles, inherit);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0 0 1.25rem 0;
+  letter-spacing: 0.05em;
+}
+
+.c-footer__description {
+  font-family: var(--footer-typo-desktop-description, inherit);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* Gestión de Listas y Enlaces */
+.c-footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.c-footer__link a, 
+.c-footer__link {
+  font-family: var(--footer-typo-desktop-links, inherit);
+  color: var(--color-brand-text);
+  text-decoration: none;
+  opacity: 0.8;
+  display: inline-block;
+  transition: opacity 250ms ease, transform 250ms ease, color 250ms ease;
+}
+
+.c-footer__link:hover {
+  opacity: 1;
+  color: var(--color-brand-text-hover);
+  transform: translateX(4px);
+}
+
+/* Agrupaciones del Menú de Navegación */
+.c-footer__menu-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Bloque de Contacto Estructural */
+.c-footer__contact-item {
+  display: flex;
+  align-items: flex-start;
+  font-family: var(--footer-typo-desktop-items, inherit);
+}
+
+.c-footer__contact-link,
+.c-footer__contact-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--color-brand-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.c-footer__contact-link {
+  opacity: 0.85;
+  transition: opacity 250ms ease, color 250ms ease;
+}
+
+.c-footer__contact-link:hover {
+  opacity: 1;
+  color: var(--color-brand-text-hover);
+}
+
+.c-footer__icon-wrapper {
+  color: var(--color-brand-text-hover);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-top: 3px;
+}
+
+/* Contenedor del Mapa Embebido */
+.c-footer__map-wrapper {
+  width: 100%;
+  height: 160px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--color-main-border);
+}
+
+.c-footer__map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Ocultación de acordeones nativos */
+.c-footer__accordion-mobile {
+  display: none;
+}
+
+/* ==========================================================================
+   🌐 SECCIÓN INFERIOR INTERACTIVA (REDES Y COPYRIGHT)
+   ========================================================================== */
+.c-footer__bottom-bar {
+  border-top: 1px solid var(--color-main-border);
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.c-footer__social-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+.c-footer__social-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+.c-footer__social-link {
+  color: var(--color-brand-text);
+  opacity: 0.75;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 250ms ease, transform 250ms ease, color 250ms ease;
+}
+
+.c-footer__social-link:hover {
+  opacity: 1;
+  color: var(--color-brand-text-hover);
+  transform: scale(1.18);
+}
+
+.c-footer__copyright {
+  font-family: var(--footer-typo-desktop-copyright, inherit);
+  font-size: 0.88rem;
+  opacity: 0.65;
+  text-align: center;
+}
+
+/* ==========================================================================
+   📱 ADAPTACIÓN RESPONSIVA (DISPOSITIVOS MÓVILES < 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .c-footer {
+    padding: 2.5rem 0 1.5rem 0;
+  }
+
+  .c-footer__grid-desktop {
+    display: none; /* Apagado completo de la matriz horizontal */
+  }
+
+  .c-footer__accordion-mobile {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--color-main-border);
+  }
+
+  .c-footer__accordion-item {
+    border-top: 1px solid var(--color-main-border);
+    width: 100%;
+  }
+
+  .c-footer__accordion-trigger {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 1.25rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-brand-text);
+    cursor: pointer;
+  }
+
+  .c-footer__accordion-title {
+    font-family: var(--footer-typo-mobile-titles, inherit);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .c-footer__accordion-arrow {
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.8;
+    color: var(--color-brand-text-hover);
+  }
+
+  /* Animación nativa de alta tasa de refresco por CSS Grid CSS Flex collapse */
+  .c-footer__accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+
+  .c-footer__accordion-inner {
+    min-height: 0;
+    padding-bottom: 1.5rem;
+  }
+
+  /* Modificadores dinámicos de Apertura */
+  .c-footer__accordion-item--open .c-footer__accordion-arrow {
+    transform: rotate(180deg);
+  }
+
+  .c-footer__accordion-item--open .c-footer__accordion-content {
+    grid-template-rows: 1fr;
+  }
+
+  /* Re-ajuste de fuentes internas adaptadas a pantallas chicas */
+  .c-footer__logo { font-family: var(--footer-typo-mobile-logo, inherit); }
+  .c-footer__description { font-family: var(--footer-typo-mobile-description, inherit); }
+  .c-footer__link { font-family: var(--footer-typo-mobile-links, inherit); }
+  .c-footer__contact-item { font-family: var(--footer-typo-mobile-items, inherit); }
+  .c-footer__copyright { font-family: var(--footer-typo-mobile-copyright, inherit); }
+}

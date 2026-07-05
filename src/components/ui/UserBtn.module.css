@@ -1,0 +1,128 @@
+/* src/components/ui/UserBtn.module.css */
+
+/* Contenedor base del botón interactivo */
+.userBtn {
+  background-color: transparent !important; /* Forzado limpio en móviles */
+  border: none;
+  color: var(--color-brand-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+  outline: none;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.desktop {
+  width: 40px;
+  height: 40px;
+}
+
+.mobile {
+  width: 44px;
+  height: 44px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 🔒 HOVER EXCLUSIVO DESKTOP */
+@media (min-width: 1025px) and (hover: hover) {
+  .userBtn:hover {
+    background-color: var(--color-bg-accent) !important;
+    color: var(--color-surface) !important;
+  }
+
+  .desktopWrapper:hover .userBtn {
+    background-color: var(--color-bg-accent) !important;
+    color: var(--color-surface) !important;
+  }
+}
+
+/* Estado activo o presionado en móvil */
+.activeMobile {
+  background-color: var(--color-bg-accent) !important;
+  color: var(--color-surface) !important;
+}
+
+/* ESTRUCTURA DEL DROPDOWN DESKTOP */
+.desktopWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdownDesktop {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--color-bg-container);
+  border: 1px solid var(--color-main-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 0.5rem 0;
+  min-width: 160px;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 350ms cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 350ms cubic-bezier(0.4, 0, 0.2, 1), 
+              visibility 350ms;
+  z-index: 1060;
+}
+
+@media (min-width: 1025px) {
+  .desktopWrapper:hover .dropdownDesktop {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.dropdownDesktop a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--color-brand-text);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownDesktop li:hover {
+  background-color: var(--color-main-border);
+}
+
+/* DROPDOWN MÓVIL ENCAPSULADO */
+.mobileWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.userDropdownMobile {
+  position: absolute;
+  top: 50px;
+  right: 0; 
+  background: var(--color-bg-container);
+  border: 1px solid var(--color-main-border);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  padding: 0.5rem 0;
+  min-width: 150px;
+  z-index: 1100;
+  list-style: none;
+  margin: 0;
+}
+
+.userDropdownMobile a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--color-brand-text);
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+}

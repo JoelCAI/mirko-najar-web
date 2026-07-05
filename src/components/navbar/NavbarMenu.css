@@ -1,0 +1,195 @@
+/* ==========================================================================
+   MÓDULO DE NAVEGACIÓN (ÁRBOL DE 3 NIVELES)
+   ========================================================================== */
+
+.c-navbar__menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.c-navbar__item {
+  position: relative;
+}
+
+.c-navbar__link-container {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+
+.c-navbar__link {
+  color: var(--color-brand-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.c-navbar__arrow {
+  color: var(--color-brand-text);
+  transition: transform 0.3s ease;
+}
+
+/* --- DROPDOWN NIVEL 2 (ESCRITORIO) --- */
+.c-navbar__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--color-bg-container);
+  border: 1px solid var(--color-main-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  min-width: 220px;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 300ms ease, transform 300ms ease, visibility 300ms;
+  z-index: 1050;
+}
+
+.c-navbar__item--has-dropdown:hover .c-navbar__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.c-navbar__dropdown-item {
+  position: relative;
+}
+
+.c-navbar__sublink-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.c-navbar__sublink-wrapper a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-brand-text);
+  text-decoration: none;
+  width: 100%;
+}
+
+.c-navbar__sub-icon-container {
+  display: flex;
+  align-items: center;
+  color: var(--color-brand-text);
+}
+
+/* --- SUBSUBMENÚ NIVEL 3 (ESCRITORIO) --- */
+.c-navbar__subsubmenu {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  background-color: var(--color-bg-container);
+  border: 1px solid var(--color-main-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: opacity 300ms ease, transform 300ms ease, visibility 300ms;
+}
+
+.c-navbar__dropdown-item--has-subsub:hover .c-navbar__subsubmenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.c-navbar__subsub-item a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--color-brand-text);
+  text-decoration: none;
+}
+
+.c-navbar__dropdown-item:hover,
+.c-navbar__subsub-item:hover {
+  background-color: var(--color-main-border);
+}
+
+/* ==========================================================================
+   COMPORTAMIENTO RESPONSIVE (MÓVIL / TABLET COLAPSADO)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .c-navbar__menu {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: var(--color-bg-container);
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem;
+    overflow-y: auto;
+    transition: left 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+  }
+
+  .c-navbar__menu--open {
+    left: 0;
+  }
+
+  .c-navbar__item {
+    width: 100%;
+    border-bottom: 1px solid var(--color-main-border);
+  }
+
+  .c-navbar__link-container {
+    padding: 1rem 0;
+    justify-content: space-between;
+  }
+
+  .c-navbar__arrow--focused {
+    transform: rotate(180deg);
+  }
+
+  /* Despliegues Mobile */
+  .c-navbar__dropdown,
+  .c-navbar__subsubmenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: max-height 350ms ease-in-out;
+  }
+
+  .c-navbar__dropdown--active-mobile,
+  .c-navbar__subsubmenu--active-mobile {
+    max-height: 1000px; /* Permite expansión fluida */
+    padding: 0.5rem 0 0.5rem 1rem;
+  }
+
+  .c-navbar__sublink-wrapper {
+    padding: 0.75rem 0;
+  }
+
+  .c-navbar__left-arrow-sub {
+    transform: rotate(-90deg);
+    transition: transform 0.3s;
+  }
+
+  .c-navbar__left-arrow-sub--focused {
+    transform: rotate(0deg);
+  }
+  
+  .c-navbar__search-mobile {
+    padding: 1rem 0;
+    width: 100%;
+  }
+}

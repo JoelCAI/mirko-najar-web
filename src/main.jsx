@@ -3,7 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { ThemeProvider } from './context/ThemeProvider'; // <-- Importamos tu nuevo contexto
+
+// 🌟 NUEVAS IMPORTACIONES DE REDUX TOOLKIT
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 // Estilos Globales (La cascada se lee de ARRIBA hacia ABAJO)
 import 'modern-normalize/modern-normalize.css'; // 1. Reseteo del navegador (Base cero)
@@ -22,10 +25,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter>
-        {/* Envolvemos la App aquí para que el enrutador y los layouts lean el mismo satélite */}
-        <ThemeProvider>
+        {/* 🌟 Reemplazamos ThemeProvider por el Provider industrial inyectándole la store central */}
+        <Provider store={store}>
           <App />
-        </ThemeProvider>
+        </Provider>
       </BrowserRouter>
     </HelmetProvider>
   </React.StrictMode>

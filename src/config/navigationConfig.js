@@ -1,153 +1,93 @@
 /* src/config/navigationConfig.js */
-import { User, Phone, Wrench, Hammer, Paintbrush } from 'lucide-react';
 
-export const TYPOGRAPHY_SCALE = {
-  xs: "14px",
-  sm: "16px",
-  md: "18px",
-  lg: "20px",
-  xl: "24px"
+//  DICCIONARIO DE CONTROL MODULAR (Módulos que el inquilino puede prender/apagar)
+export const navbarSwitches = {
+  showBranding: true,    // Si se apaga, se oculta el logo/texto de marca por completo
+  showSearch: true,      // Módulo de barra de búsqueda inteligente
+  showMenu: true,        // Árbol de navegación principal
+  showCartBtn: true,     // ¡Nuevo módulo de carrito integrado!
+  showThemeToggle: true, // Interruptor Sol/Luna
+  showUserBtn: true,     // Botón/Dropdown de cuenta de usuario
+  showGlow: true,
+  glowOpacity: 0.8
 };
 
 export const brandConfig = {
-  type: 'text', // Opciones válidas: 'text' o 'image'
+  // 🕹️ Único control de activación: 'text' | 'image'
+  type: 'image', 
+
+  // Se activa SOLO si type es 'text'
   text: {
-    title: "Muebles Hogar"
-  },
-  image: {
-    src: "/assets/logo.svg", // Puedes cambiarlo a .png, .jpg o lo que requiera el cliente
-    alt: "Mi Hogar Arquitectura de Interiores",
-    height: "42px",          // Control de escala vertical adaptable
-    width: "auto"            // Mantiene la proporción horizontal intacta
-  }
-};
+    // ESCRITORIO
+    desktopTitle: "Muebles Hogar",
+    desktopSize: "var(--text-3xl)", // ~28px (Entran aprox 11-12 caracteres cómodos)
 
-export const themeConfig = {
-  theme: 'light',       // 'light' o 'dark' (Color de textos/elementos cuando está arriba)
-  isTransparent: false   // true: Contenido inicia en pixel 0 (capa inferior). false: Contenido se desplaza 70px.
-};
+    // TABLET
+    tabletTitle: "Muebles Hogar",
+    tabletSize: "var(--text-xl)",   // ~24px (Escala intermedia)
 
-// --- MOTOR DE DISEÑO DINÁMICO: PALETA MÓDULO LIGHT ---
-export const navbarColorLight = {
-  bgSolid: "var(--color-surface)",
-  brandText: "var(--color-primary-dark)",
-  textMenuColor: "var(--color-primary-dark)",
-  textMenuColorHover: "var(--color-accent)",
-  textMenuMobile: "var(--color-primary-dark)",
-  textMenuMobileActive: "var(--color-accent)",
-  
-  // Segundo punto: Control absoluto sobre el botón de Usuario (Fondo vs Icono)
-  backgroundIconUser: "transparent",
-  backgroundIconUserHover: "var(--color-accent)",
-  backgroundIconUserActive: "var(--color-accent)",
-  colorIconUser: "var(--color-primary-dark)",       // Estado normal
-  colorIconUserHover: "var(--color-border)",         // Estado hover/active
-  
-  // Segundo punto: Control absoluto sobre el botón de Toggle Sun/Moon
-  backgroundIconToggle: "transparent",
-  backgroundIconToggleHover: "var(--color-accent)",
-  backgroundIconToggleActive: "var(--color-accent)",
-  colorIconToggle: "var(--color-primary-dark)",     // Estado normal
-  colorIconToggleHover: "var(--color-border)",       // Estado hover/active
+    // MÓVIL
+    mobileTitle: "Hogar",
+    mobileSize: "var(--text-2xl)",  // ~17px (Tamaño seguro para móviles. Si elige --text-2xl, entrarán max ~8 letras)
 
-  // Tercer punto: Color explícito para el botón de cerrar (X) y hamburguesa en mobile
-  mobileMenuToggleColor: "var(--color-primary-dark)",
-  mobileMenuToggleColorActive: "var(--color-accent)",
-  
-  borderColor: "var(--color-border)",
-  hoverRow: "var(--color-border)",
-
-  searchBorderFocus: "var(--color-accent)"
-};
-
-// --- MOTOR DE DISEÑO DINÁMICO: PALETA MÓDULO DARK ---
-export const navbarColorDark = {
-  bgSolid: "var(--color-primary-dark)",              // Fondo principal oscuro
-  brandText: "var(--color-white)",                   // Texto logo en dark
-  textMenuColor: "var(--color-white)",               // Textos de enlaces
-  textMenuColorHover: "var(--color-secondary)",       // Hover usando tu color secundario
-  textMenuMobile: "var(--color-white)",
-  textMenuMobileActive: "var(--color-secondary)",
-  
-  backgroundIconUser: "transparent",
-  backgroundIconUserHover: "var(--color-secondary)",
-  backgroundIconUserActive: "var(--color-secondary)",
-  colorIconUser: "var(--color-white)",
-  colorIconUserHover: "var(--color-primary-dark)",   // Contraste oscuro sobre el fondo secondary
-  
-  backgroundIconToggle: "transparent",
-  backgroundIconToggleHover: "var(--color-secondary)",
-  backgroundIconToggleActive: "var(--color-secondary)",
-  colorIconToggle: "var(--color-white)",
-  colorIconToggleHover: "var(--color-primary-dark)",
-
-  mobileMenuToggleColor: "var(--color-white)",
-  mobileMenuToggleColorActive: "var(--color-secondary)",
-   
-  borderColor: "var(--color-border-dark, var(--color-primary))",
-  hoverRow: "var(--color-surface-dark, var(--color-accent))",
-
-  searchBorderFocus: "var(--color-border)"
-};
-
-/* --- REGISTRO DE LÍMITES TIPOGRÁFICOS (SEGURIDAD DE LAYOUT) --- */
-export const typographyLimits = {
-  desktop: {
-    logo: {
-      current: "38px",
-      min: "28px", // < 28px: Pierde jerarquía de marca.
-      max: "42px"  // > 42px: Choca con el alto del Navbar (70px).
-    },
-    menuItems: {
-      current: "18px", // 16px (var--text-base)
-      min: "14px",     // < 14px: Problemas de legibilidad (WCAG).
-      max: "18px"      // > 18px: Riesgo de desbordamiento en Laptops.
+    typography: {
+      fontFamily: "var(--font-branding)",
+      fontWeight: "var(--weight-normal)",
+      lineHeight: "1"
     }
   },
-  mobile: {
-    // Nota: Mantener intacto para preservar armonía en pantallas pequeñas.
-    logo: "28px",
-    menuItems: "1.25rem" // 20px (Para facilitar el toque táctil)
+  
+  // Se activa SOLO si type es 'image'
+  imageLight: {
+    alt: "Mi Hogar Arquitectura de Interiores",
+    // Pantallas grandes y Tablets (A partir de 769px en adelante)
+    desktopSrc: "/assets/brand/logo_160_40.svg",
+    // Pantallas medianas (Desde 401px hasta 768px) -> Tu logo de ~88px
+    tabletSrc: "/assets/brand/logo_120_40.svg",
+    // Pantallas micro (400px o menos) -> El Isotipo / Icono 1:1
+    mobileSrc: "/assets/brand/logo_40_40.png"
+  },
+  imageDark: {
+    alt: "Mi Hogar Arquitectura de Interiores",
+    desktopSrc: "/assets/brand/logo_dark_160_40.svg", // Tus nuevos archivos
+    tabletSrc: "/assets/brand/logo_dark_120_40.svg",
+    mobileSrc: "/assets/brand/logo_dark_40_40.svg"
+  } 
+};
+
+//  CONFIGURACIÓN TIPOGRÁFICA DEL MENÚ DE NAVEGACIÓN
+export const menuTypographyConfig = {
+  desktop: {
+    fontSize: "var(--text-base)", // 17px gracias a tu html font-size
+    fontFamily: "var(--font-primary)",
+    fontWeight: "var(--weight-medium)"
   }
 };
 
 export const navigationMenu = [
   {
-    title: "Nosotros",
-    path: "/nosotros",
+    pageId: "nosotros", // Nivel 1
     submenu: [
-      { label: "Quiénes Somos", path: "/nosotros", icon: User },
-      { label: "Contacto", path: "/contacto", icon: Phone }
+      { pageId: "nosotros" }, // Nivel 2
+      { pageId: "contacto" }
     ]
   },
   {
-    title: "Catálogo",
-    path: "/catalogo",
+    pageId: "catalogo", // Nivel 1
     submenu: []
   },
   {
-    title: "Servicios",
-    path: "/servicios",
+    pageId: "servicios", // Nivel 1
     submenu: [
+      { pageId: "fabricacion" }, // Nivel 2
       { 
-        label: "Fabricación a Medida", 
-        path: "/servicios/fabricacion", 
-        icon: Hammer 
-      },
-      { 
-        label: "Acabados Finos", 
-        path: "/servicios/acabados", 
-        icon: Paintbrush,
+        pageId: "acabados", // Nivel 2
         subSubmenu: [
-          { label: "Laqueado Premium", path: "/servicios/acabados/laqueado" },
-          { label: "Pintura Poliuretano", path: "/servicios/acabados/poliuretano" }
+          { pageId: "laqueado" },   // Nivel 3
+          { pageId: "poliuretano" } // Nivel 3
         ]
       },
-      { 
-        label: "Restauración", 
-        path: "/servicios/restauracion", 
-        icon: Wrench 
-      }
+      { pageId: "restauracion" } // Nivel 2
     ]
   }
 ];

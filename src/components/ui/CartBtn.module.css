@@ -1,0 +1,74 @@
+/* src/components/ui/CartBtn.module.css */
+
+/* Base compartida y limpia */
+.cartBtn {
+  background-color: transparent !important; /* Totalmente transparente en cualquier interacción móvil */
+  border: none;
+  color: var(--color-brand-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent; /* Adiós al recuadro azul/gris nativo de iOS/Android */
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modificadores de tamaño controlados por JS */
+.desktop {
+  width: 40px;
+  height: 40px;
+}
+
+.mobile {
+  width: 44px;
+  height: 44px;
+}
+
+.iconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   🔒 CONTROL DE HOVER ESTRICTO (Solo Escritorio con Mouse)
+   ========================================================================== */
+@media (min-width: 1025px) and (hover: hover) {
+  .cartBtn {
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), 
+                background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cartBtn:hover {
+    background-color: var(--color-bg-accent) !important;
+    color: var(--color-surface) !important;
+  }
+}
+
+/* ==========================================================================
+   BADGE INDICADOR
+   ========================================================================== */
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background-color: var(--palette-warning-500, #f59e0b);
+  color: var(--color-surface, #ffffff);
+  font-size: 10px;
+  font-weight: bold;
+  
+  min-width: 16px;
+  height: 16px;
+  aspect-ratio: 1 / 1; 
+  border-radius: 50%;
+  
+  padding: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: none;
+}

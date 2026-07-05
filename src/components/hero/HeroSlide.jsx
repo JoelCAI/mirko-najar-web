@@ -1,7 +1,7 @@
 // src/components/hero/HeroSlide.jsx
 import { Button } from '../ui/Button';
 import styles from './HeroSlider.module.css';
-import { themeConfig } from '../../config/navigationConfig'; // <-- Importamos tu config global del navbar
+import { themeConfig } from '../../config/themeConfig'; // <-- Importamos tu config global del navbar
 
 export const HeroSlide = ({ slide, index }) => {
   const positionClass = styles[`pos-${slide.textPosition}`] || styles['pos-center-center'];

@@ -1,0 +1,83 @@
+/* src/components/navbar/NavbarBrand.module.css */
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Corta horizontalmente con total seguridad */
+}
+
+.autoScalingText {
+  color: var(--color-brand-text);
+  white-space: nowrap;
+  display: inline-block;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  
+  /* Alineación vertical perfecta nativa */
+  line-height: 1 !important; 
+  
+  /* ESCRITORIO POR DEFECTO */
+  font-size: var(--client-desktop-size) !important;
+}
+
+/* Interruptores de visibilidad */
+.textDesktop { display: inline; }
+.textTablet  { display: none; }
+.textMobile  { display: none; }
+
+/* ==========================================================================
+   📐 BREAKPOINTS TIPOGRÁFICOS (Gobernados por tu escala)
+   ========================================================================== */
+
+@media (max-width: 768px) and (min-width: 401px) {
+  .textDesktop { display: none; }
+  .textTablet  { display: inline; }
+  .textMobile  { display: none; }
+  
+  .autoScalingText {
+    font-size: var(--client-tablet-size) !important; 
+  }
+}
+
+@media (max-width: 400px) {
+  .textDesktop { display: none; }
+  .textTablet  { display: none; }
+  .textMobile  { display: inline; }
+  
+  .autoScalingText {
+    font-size: var(--client-mobile-size) !important; 
+  }
+}
+
+/* ==========================================================================
+   🖼️ MANEJO DE IMÁGENES (Alineación Perfecta de Oro)
+   ========================================================================== */
+.pictureWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;      
+  max-height: 40px;  
+  width: auto;
+  overflow: hidden;
+}
+
+.responsiveImg {
+  display: block;
+  height: 40px;      
+  width: auto;       
+  max-width: 200px;  
+  object-fit: contain;
+}

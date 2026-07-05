@@ -32,7 +32,7 @@
     transform: translateY(-50%) scale(1.08);
     
     /* 🌟 EL BLINDAJE: Controlamos fondo y texto en un único punto seguro */
-    background-color: var(--color-brand-text, #ffffff); /* El fondo muta a blanco o color de marca */
+    background-color: var(--color-white, #ffffff); /* El fondo muta a blanco o color de marca */
     color: var(--color-primary-dark, #110E0D);          /* La flecha interna muta a oscuro para alto contraste */
     
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);

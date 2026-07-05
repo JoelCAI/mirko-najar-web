@@ -1,34 +1,11 @@
-// src/config/footerConfig.js
-import { TYPOGRAPHY_SCALE } from './navigationConfig'; 
+/* src/config/footerConfig.js */
 
-export const footerConfig = {
+export const footerData = {
   brand: {
     logoText: "MUEBLES HOGAR",
     description: "Pasión por el Diseño",
     copyright: `© ${new Date().getFullYear()} Muebles Hogar. Todos los derechos reservados.`
   },
-  
-  // CONTROL TIPOGRÁFICO DE COMPONENTE
-  typography: {
-    desktop: {
-      logo: TYPOGRAPHY_SCALE.md,          /* 18px */
-      titles: TYPOGRAPHY_SCALE.md,        /* Cambiado a .md (18px) para igualar a MADERA HOGAR */
-      description: TYPOGRAPHY_SCALE.sm,   /* 16px */
-      links: TYPOGRAPHY_SCALE.sm,         /* 16px */
-      items: TYPOGRAPHY_SCALE.sm,         /* 16px */
-      copyright: TYPOGRAPHY_SCALE.xs      /* 14px */   
-    },
-    mobile: {
-      logo: TYPOGRAPHY_SCALE.md,          /* 18px */
-      titles: TYPOGRAPHY_SCALE.xs,        /* 14px */
-      description: TYPOGRAPHY_SCALE.xs,   /* 14px */
-      links: TYPOGRAPHY_SCALE.xs,         /* 14px */
-      items: TYPOGRAPHY_SCALE.xs,         /* 14px */
-      copyright: TYPOGRAPHY_SCALE.xs      /* 14px */
-    }
-  },
-
-  // Agrupación unificada de menús para el Bloque 2
   navigation: [
     {
       title: "Nosotros",
@@ -55,7 +32,6 @@ export const footerConfig = {
       ]
     }
   ],
-
   contactInfo: {
     title: "Contacto",
     items: [
@@ -65,9 +41,6 @@ export const footerConfig = {
       { iconName: "Clock", text: "Lun - Vie: 9:00 AM - 6:00 PM", href: null }
     ]
   },
-
-  // CONFIGURACIÓN DE REDES SOCIALES DIVIDIDA EN DOS FILAS CENTRADAS INDEPENDIENTES
-  // Cada fila soporta hasta 4 iconos manteniendo simetría absoluta.
   socialLinksRow1: [
     { id: "facebook", url: "https://facebook.com", label: "Facebook" },
     { id: "instagram", url: "https://instagram.com", label: "Instagram" },
@@ -78,8 +51,17 @@ export const footerConfig = {
     { id: "linkedin", url: "https://linkedin.com", label: "LinkedIn" },
     { id: "youtube", url: "https://youtube.com", label: "YouTube" },
     { id: "pinterest", url: "https://pinterest.com", label: "Pinterest" },
-    // Puedes dejar 1, 2, 3 o 4 aquí y siempre se verán centrados respecto al total.
   ],
+  googleMapsEmbedUrl: "https://maps.google.com"
+};
 
-  googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.1718228168233!2d-76.99369992397127!3d-12.100344488141443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c7ef951e7fb7%3A0x64790a88090886ff!2sAv.%20Primavera%201230%2C%20Santiago%20de%20Surco%2015038!5e0!3m2!1ses-419!2spe!4v1716500000000!5m2!1ses-419!2spe"
+export const footerConfig = {
+  // ⚡ ORQUESTADOR DE SLOTS: El orden físico de las 4 columnas exactas en Escritorio
+  columnOrder: ['branding', 'empty', 'menu', 'contact'], 
+  switches: {
+    showBranding: true,
+    showMenu: true,
+    showContact: true,
+    showLocation: false // Si se activa, reemplaza un slot o expande según configuración
+  }
 };

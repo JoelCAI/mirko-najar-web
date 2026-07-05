@@ -2,216 +2,229 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as LucideIcons from 'lucide-react';
-import { ChevronDown, ChevronRight } from 'lucide-react';
-import { footerConfig } from '../../config/footerConfig';
-import { SOCIAL_VECTORS } from '../ui/SocialIcons';
-import styles from './FooterStandard.module.css';
+import { ChevronDown } from 'lucide-react';
 
+import { footerData, footerConfig } from '../../config/footerConfig';
+import { SOCIAL_VECTORS } from '../ui/SocialIcons'; // 🔥 Recuperamos tus vectores nativos libres de errores
 import { useTheme } from '../../hooks/useTheme'; 
-import { navbarColorLight, navbarColorDark } from '../../config/navigationConfig';
+
+import './FooterStandard.css';
 
 const FooterStandard = () => {
-  const { brand, navigation, contactInfo, socialLinksRow1, socialLinksRow2, googleMapsEmbedUrl, typography } = footerConfig;
-  const { theme } = useTheme(); 
+  const { theme } = useTheme(); // 🌙 Sincronización nativa con el Sol y la Luna
+  const [openSection, setOpenSection] = useState(null);
 
-  const [activeAccordion, setActiveAccordion] = useState(null);
-  const [activeDesktopMenu, setActiveDesktopMenu] = useState(null);
-
-  const toggleAccordion = (index) => {
-    setActiveAccordion(activeAccordion === index ? null : index);
+  const toggleSection = (sectionKey) => {
+    setOpenSection(openSection === sectionKey ? null : sectionKey);
   };
 
-  const activePalette = theme === 'light' ? navbarColorLight : navbarColorDark;
+  // 📐 Mapeo dinámico de variables tipográficas controladas por tu configuración
+  const typographyStyles = {
+    '--footer-typo-desktop-logo': footerConfig.typography?.desktop?.logo,
+    '--footer-typo-desktop-titles': footerConfig.typography?.desktop?.titles,
+    '--footer-typo-desktop-description': footerConfig.typography?.desktop?.description,
+    '--footer-typo-desktop-links': footerConfig.typography?.desktop?.links,
+    '--footer-typo-desktop-items': footerConfig.typography?.desktop?.items,
+    '--footer-typo-desktop-copyright': footerConfig.typography?.desktop?.copyright,
 
-  const themeStyles = {
-    '--dynamic-bg-solid': activePalette.bgSolid,
-    '--dynamic-brand-text': activePalette.brandText,
-    '--dynamic-text-menu-color': activePalette.textMenuColor,
-    '--dynamic-text-menu-color-hover': activePalette.textMenuColorHover,
-    '--dynamic-border-color': activePalette.borderColor,
-    '--dynamic-hover-row': activePalette.hoverRow,
+    '--footer-typo-mobile-logo': footerConfig.typography?.mobile?.logo,
+    '--footer-typo-mobile-titles': footerConfig.typography?.mobile?.titles,
+    '--footer-typo-mobile-description': footerConfig.typography?.mobile?.description,
+    '--footer-typo-mobile-links': footerConfig.typography?.mobile?.links,
+    '--footer-typo-mobile-items': footerConfig.typography?.mobile?.items,
+    '--footer-typo-mobile-copyright': footerConfig.typography?.mobile?.copyright,
+  };
 
-    '--footer-typo-desktop-logo': typography.desktop.logo,
-    '--footer-typo-desktop-titles': typography.desktop.titles,
-    '--footer-typo-desktop-description': typography.desktop.description,
-    '--footer-typo-desktop-links': typography.desktop.links,
-    '--footer-typo-desktop-items': typography.desktop.items,
-    '--footer-typo-desktop-copyright': typography.desktop.copyright,
+  // 🧱 Orquestador de Ranuras Dinámicas (Slots)
+  const renderColumnContent = (type) => {
+    switch (type) {
+      case 'branding':
+        if (!footerConfig.switches.showBranding) return null;
+        return (
+          <div className="c-footer__brand-block">
+            <h2 className="c-footer__logo">{footerData.brand.logoText}</h2>
+            <p className="c-footer__description">{footerData.brand.description}</p>
+          </div>
+        );
 
-    '--footer-typo-mobile-logo': typography.mobile.logo,
-    '--footer-typo-mobile-titles': typography.mobile.titles,
-    '--footer-typo-mobile-description': typography.mobile.description,
-    '--footer-typo-mobile-links': typography.mobile.links,
-    '--footer-typo-mobile-items': typography.mobile.items,
-    '--footer-typo-mobile-copyright': typography.mobile.copyright,
+      case 'menu':
+        if (!footerConfig.switches.showMenu) return null;
+        return (
+          <div className="c-footer__menu-groups">
+            {footerData.navigation.map((group, index) => (
+              <div key={index} className="c-footer__menu-subgroup">
+                <h3 className="c-footer__subgroup-title">{group.title}</h3>
+                <ul className="c-footer__list">
+                  {group.links.map((link, lIndex) => (
+                    <li key={lIndex} className="c-footer__item">
+                      <Link to={link.path} className="c-footer__link">{link.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        );
+
+      case 'contact':
+        if (!footerConfig.switches.showContact) return null;
+        return (
+          <div className="c-footer__contact-block">
+            <h3 className="c-footer__column-title">{footerData.contactInfo.title}</h3>
+            <ul className="c-footer__list">
+              {footerData.contactInfo.items.map((item, index) => {
+                const LucideIconComponent = LucideIcons[item.iconName];
+                const isExternalLink = item.href?.startsWith('http');
+                const extraProps = isExternalLink ? { target: "_blank", rel: "noopener noreferrer" } : {};
+
+                const content = (
+                  <>
+                    <div className="c-footer__icon-wrapper">
+                      {LucideIconComponent && <LucideIconComponent size={16} />}
+                    </div>
+                    <span className="c-footer__contact-text-span">{item.text}</span>
+                  </>
+                );
+
+                return (
+                  <li key={index} className="c-footer__contact-item">
+                    {item.href ? (
+                      <a href={item.href} className="c-footer__contact-link" {...extraProps}>{content}</a>
+                    ) : (
+                      <div className="c-footer__contact-text">{content}</div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+
+      case 'location':
+        if (!footerConfig.switches.showLocation || !footerData.googleMapsEmbedUrl) return null;
+        return (
+          <div className="c-footer__map-block">
+            <h3 className="c-footer__column-title">Ubicación</h3>
+            <div className="c-footer__map-wrapper">
+              <iframe
+                src={footerData.googleMapsEmbedUrl}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación"
+              ></iframe>
+            </div>
+          </div>
+        );
+
+      case 'empty':
+      default:
+        // Ranura vacía que conserva simetría en Desktop, desaparece en Mobile
+        return <div className="c-footer__column--empty" aria-hidden="true"></div>;
+    }
+  };
+
+  const getSectionTitle = (type) => {
+    if (type === 'branding') return footerData.brand.logoText;
+    if (type === 'menu') return "Navegación";
+    if (type === 'contact') return footerData.contactInfo.title;
+    if (type === 'location') return "Ubicación";
+    return "";
   };
 
   return (
-    <footer className={styles.footer} style={themeStyles}>
-      <div className={styles.container}>
-        <div className={styles.gridFourColumns}>
-          
-          {/* BLOQUE 1: MADERA HOGAR */}
-          <div className={styles.footerBlock}>
-            <div className={styles.boxHeaderStatic}>
-              <h2 className={styles.logoTextOnly}>{brand.logoText}</h2>
+    <footer 
+      className="c-footer" 
+      aria-label="Pie de página"
+      data-theme={theme} // Recibe el estado del tema de forma nativa para CSS
+      style={typographyStyles}
+    >
+      <div className="c-footer__container siteLayoutWrapper">
+        
+        {/* ==========================================================================
+            🖥️ ENTORNO DESKTOP: Rejilla Simétrica Rígida (4 Columnas)
+           ========================================================================== */}
+        <div className="c-footer__grid-desktop">
+          {footerConfig.columnOrder.slice(0, 4).map((colType, index) => (
+            <div key={`desk-col-${index}`} className={`c-footer__column c-footer__column--${colType}`}>
+              {renderColumnContent(colType)}
             </div>
-            <div className={styles.boxBodyStatic}>
-              <p className={styles.description}>{brand.description}</p>
-              {/* FILA INTERNA 1 DE REDES SOCIALES */}
-              {socialLinksRow1 && socialLinksRow1.length > 0 && (
-                <div className={styles.socials}>
-                  {socialLinksRow1.map((social) => {
-                    const RenderVector = SOCIAL_VECTORS[social.id];
-                    if (!RenderVector) return null;
-                    return (
-                      <a
-                        key={social.id}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.socialIcon}
-                        aria-label={social.label}
-                      >
-                        <RenderVector size={24} />
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
+          ))}
+        </div>
 
-              {/* FILA INTERNA 2 DE REDES SOCIALES */}
-              {socialLinksRow2 && socialLinksRow2.length > 0 && (
-                <div className={styles.socials} style={{ margin: '0px' }}>
-                  {socialLinksRow2.map((social) => {
-                    const RenderVector = SOCIAL_VECTORS[social.id];
-                    if (!RenderVector) return null;
-                    return (
-                      <a
-                        key={social.id}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.socialIcon}
-                        aria-label={social.label}
-                      >
-                        <RenderVector size={24} />
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* BLOQUE 2: EXPLORAR */}
-          <div className={`${styles.footerBlock} ${activeAccordion === 1 ? styles.isOpen : ''}`}>
-            <div className={styles.boxHeader} onClick={() => toggleAccordion(1)}>
-              <h3 className={styles.columnTitle}>EXPLORAR</h3>
-              <ChevronDown className={styles.accordionArrow} size={18} />
-            </div>
-            <div className={styles.boxBody}>
-              <div className={styles.navigationMenuContainer}>
-                {navigation.map((group, groupIdx) => {
-                  const isMenuOpen = activeDesktopMenu === groupIdx;
-                  
-                  // Manejador de clic móvil para abrir sub-acordeones individualmente
-                  const handleGroupClick = (e) => {
-                    // Si estamos en pantalla de escritorio (detectable por hover), no hacemos nada
-                    if (window.innerWidth >= 768) return;
-                    e.stopPropagation(); // Evita interferencias con el acordeón padre
-                    setActiveDesktopMenu(activeDesktopMenu === groupIdx ? null : groupIdx);
-                  };
-
-                  return (
-                    <div 
-                      key={groupIdx} 
-                      className={`${styles.desktopMenuParent} ${isMenuOpen ? styles.isOpenSubmenu : ''}`}
-                      onMouseEnter={() => window.innerWidth >= 768 && setActiveDesktopMenu(groupIdx)}
-                      onMouseLeave={() => window.innerWidth >= 768 && setActiveDesktopMenu(null)}
-                    >
-                      <div className={styles.menuTriggerRow} onClick={handleGroupClick}>
-                        <span className={styles.menuTriggerText}>{group.title}</span>
-                        <ChevronRight className={styles.submenuArrowRight} size={16} />
-                      </div>
-
-                      <div className={`${styles.floatingSubmenu} ${isMenuOpen ? styles.submenuVisible : ''}`}>
-                        <ul className={styles.linkList}>
-                          {group.links.map((link, linkIdx) => (
-                            <li key={linkIdx} className={styles.linkItem}>
-                              <Link to={link.path}>{link.label}</Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+        {/* ==========================================================================
+            📱 ENTORNO MOBILE: Acordeones Flexibles (Filtra 'empty')
+           ========================================================================== */}
+        <div className="c-footer__accordion-mobile">
+          {footerConfig.columnOrder
+            .filter(type => type !== 'empty')
+            .map((colType, index) => {
+              const isOpen = openSection === colType;
+              const title = getSectionTitle(colType);
+              
+              return (
+                <div key={`mob-col-${index}`} className={`c-footer__accordion-item ${isOpen ? 'c-footer__accordion-item--open' : ''}`}>
+                  <button 
+                    type="button" 
+                    className="c-footer__accordion-trigger"
+                    onClick={() => toggleSection(colType)}
+                    aria-expanded={isOpen}
+                  >
+                    <span className="c-footer__accordion-title">{title}</span>
+                    <ChevronDown size={18} className="c-footer__accordion-arrow" />
+                  </button>
+                  <div className="c-footer__accordion-content">
+                    <div className="c-footer__accordion-inner">
+                      {renderColumnContent(colType)}
                     </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* BLOQUE 3: CONTACTO */}
-          <div className={`${styles.footerBlock} ${activeAccordion === 2 ? styles.isOpen : ''}`}>
-            <div className={styles.boxHeader} onClick={() => toggleAccordion(2)}>
-              <h3 className={styles.columnTitle}>{contactInfo.title}</h3>
-              <ChevronDown className={styles.accordionArrow} size={18} />
-            </div>
-            <div className={styles.boxBody}>
-              <ul className={styles.contactList}>
-                {contactInfo.items.map((item, itemIdx) => {
-                  const LucideIconComponent = LucideIcons[item.iconName];
-                  const isExternalLink = item.href?.startsWith('http');
-                  const extraProps = isExternalLink ? { target: "_blank", rel: "noopener noreferrer" } : {};
-
-                  return (
-                    <li key={itemIdx} className={styles.contactItem}>
-                      <div className={styles.iconCenterWrapper}>
-                        {LucideIconComponent && <LucideIconComponent size={16} />}
-                      </div>
-                      <div className={styles.textContentWrapper}>
-                        {item.href ? (
-                          <a href={item.href} {...extraProps}>{item.text}</a>
-                        ) : (
-                          <span>{item.text}</span>
-                        )}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-
-          {/* BLOQUE 4: UBICACIÓN */}
-          {googleMapsEmbedUrl && (
-            <div className={`${styles.footerBlock} ${activeAccordion === 3 ? styles.isOpen : ''}`}>
-              <div className={styles.boxHeader} onClick={() => toggleAccordion(3)}>
-                <h3 className={styles.columnTitle}>UBICACIÓN</h3>
-                <ChevronDown className={styles.accordionArrow} size={18} />
-              </div>
-              <div className={styles.boxBody}>
-                <div className={styles.mapWrapper}>
-                  <iframe
-                    src={googleMapsEmbedUrl}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Ubicación de la empresa"
-                  ></iframe>
+                  </div>
                 </div>
-              </div>
-            </div>
-          )}
-
+              );
+            })}
         </div>
 
-        {/* BARRA DE COPYRIGHT */}
-        <div className={styles.bottomBar}>
-          <div className={styles.copyrightText}>
-            {brand.copyright}
+        {/* ==========================================================================
+            🌐 FILA INFERIOR: Redes Sociales (Vectores Locales) e Info Legal
+           ========================================================================== */}
+        <div className="c-footer__bottom-bar">
+          
+          <div className="c-footer__social-wrapper">
+            {/* Fila 1 de Redes */}
+            {footerData.socialLinksRow1?.length > 0 && (
+              <div className="c-footer__social-row">
+                {footerData.socialLinksRow1.map((social) => {
+                  const RenderVector = SOCIAL_VECTORS[social.id];
+                  if (!RenderVector) return null;
+                  return (
+                    <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" className="c-footer__social-link" aria-label={social.label}>
+                      <RenderVector size={22} />
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+            
+            {/* Fila 2 de Redes */}
+            {footerData.socialLinksRow2?.length > 0 && (
+              <div className="c-footer__social-row">
+                {footerData.socialLinksRow2.map((social) => {
+                  const RenderVector = SOCIAL_VECTORS[social.id];
+                  if (!RenderVector) return null;
+                  return (
+                    <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" className="c-footer__social-link" aria-label={social.label}>
+                      <RenderVector size={22} />
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <div className="c-footer__copyright">
+            <p>{footerData.brand.copyright}</p>
           </div>
         </div>
+
       </div>
     </footer>
   );

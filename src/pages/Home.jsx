@@ -1,26 +1,33 @@
 // src/pages/Home.jsx
-import HeroSlider from '../components/hero/HeroSlider';
-// Importamos la nueva lista unificada
-import { heroSliders } from '../config/heroSliderConfig';
+import { HERO_REGISTRY } from '../layouts/ComponentRegistry';
+import { mockCmsConfig } from '../config/cmsLayoutConfig';
+import { heroSliders } from '../config/heroSliderConfig'; // Tus datos del slider
 import { useTheme } from '../hooks/useTheme';
 import styles from './Home.module.css';
 
 const Home = () => {
-  // Escuchamos directamente el tema activo global ('light' o 'dark')
   const { theme } = useTheme();
 
-  // Filtrado reactivo en tiempo de ejecución:
-  // Deja pasar el slide si coincide con el tema activo O si está marcado como 'both'
+  // 1. Buscamos dinámicamente qué Hero quiere el cliente, con un fallback seguro
+  const SelectedHero = HERO_REGISTRY[mockCmsConfig.activeHeroType] || HERO_REGISTRY.hero_slider;
+
+  // 2. Filtrado reactivo en tiempo de ejecución (aplica si es tipo slider)
   const activeSlides = heroSliders.filter(
     (slide) => slide.themeVisibility === theme || slide.themeVisibility === 'both'
   );
 
+  // 3. Estructuramos los datos que le enviaremos al Hero según el tipo elegido
+  // Si es un slider necesita el array completo; si es un hero estático podría necesitar solo el primer elemento o un objeto limpio.
+  const heroProps = mockCmsConfig.activeHeroType === 'hero_slider' 
+    ? { slides: activeSlides, currentTheme: theme }
+    : { data: heroSliders[0], currentTheme: theme }; // Ajuste adaptativo para heros estáticos
+
   return (
     <div className={styles.homeWrapper}>
-      {/* Le pasamos el set de sliders ya filtrado y el tema actual */}
-      <HeroSlider slides={activeSlides} currentTheme={theme} />
+      {/* 🌟 RENDERIZADO POLIMÓRFICO: Cambia de comportamiento mágicamente en base al CMS */}
+      <SelectedHero {...heroProps} />
       
-      {/* Siguientes secciones */}
+      {/* Siguientes secciones (Features, Galería, etc.) */}
     </div>
   );
 };

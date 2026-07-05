@@ -3,7 +3,7 @@ import { useSlider } from '../../hooks/useSlider';
 import { HeroSlide } from './HeroSlide';
 import { SliderControls } from '../ui/SliderControls';
 import styles from './HeroSlider.module.css';
-import { themeConfig } from '../../config/navigationConfig';
+import { themeConfig } from '../../config/themeConfig';
 
 
 
