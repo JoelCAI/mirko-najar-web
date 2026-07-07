@@ -11,11 +11,8 @@ export const themeSlice = createSlice({
   initialState,
   reducers: {
     toggleTheme: (state) => {
-      // En RTK podemos mutar el estado de forma "directa" porque usa Immer por debajo de forma segura
       state.value = state.value === 'dark' ? 'light' : 'dark';
-      
-      // Sincronizamos los efectos secundarios inmediatamente
-      document.documentElement.setAttribute('data-theme', state.value);
+      // Solo guardamos en el storage; la sincronización del DOM la maneja React de forma reactiva
       localStorage.setItem('app-theme', state.value);
     },
   },

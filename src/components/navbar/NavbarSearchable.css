@@ -207,8 +207,8 @@
   .c-navbar__search-mobile {
     display: block;
     width: 100%; 
-    margin-top: -25px !important;
-    margin-bottom: calc(1rem + 25px) !important; 
+    margin-top: -20px !important;
+    margin-bottom: calc(1rem + 20px) !important; 
   }
 
   .c-navbar__item { width: 100%; }
