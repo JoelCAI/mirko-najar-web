@@ -35,7 +35,11 @@ const UserBtn = ({ isMobile = false, closeMainMenu }) => {
 
   if (isMobile) {
     return (
-      <div className={styles.mobileWrapper} ref={containerRef}>
+      /* ⚡ Si está abierto en móvil, aplicamos la clase de apagado activo forzado */
+      <div 
+        className={`${styles.mobileWrapper} ${isOpenMobile ? 'u-mobile-active-glow-off' : ''}`} 
+        ref={containerRef}
+      >
         <button 
           type="button"
           className={`${styles.userBtn} ${styles.mobile} ${isOpenMobile ? styles.activeMobile : ''}`}
@@ -61,7 +65,8 @@ const UserBtn = ({ isMobile = false, closeMainMenu }) => {
   }
 
   return (
-    <div className={styles.desktopWrapper}>
+    /* ⚡ En escritorio usamos las clases interactivas: tienen glow normal en reposo, y mueren en hover */
+    <div className={`${styles.desktopWrapper} u-glow-off-interactive u-svg-glow-off-interactive`}>
       <button 
         type="button" 
         className={`${styles.userBtn} ${styles.desktop}`}
@@ -70,7 +75,6 @@ const UserBtn = ({ isMobile = false, closeMainMenu }) => {
         <UserIcon size={20} />
       </button>
 
-      {/* El dropdown de escritorio se apoya en el hover del contenedor modular */}
       <ul className={styles.dropdownDesktop} role="menu">
         {userMenuOptions.map((opt, i) => (
           <li key={i} role="none">

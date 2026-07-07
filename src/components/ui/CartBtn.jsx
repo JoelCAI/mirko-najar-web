@@ -18,22 +18,23 @@ const CartBtn = ({ isMobile = false, toggleCartMenu }) => {
   };
 
   return (
-    <button 
-      type="button" 
-      className={`${styles.cartBtn} ${isMobile ? styles.mobile : styles.desktop}`} 
-      onClick={handleCartClick}
-      aria-label="Ver carrito de compras"
-    >
-      <div className={styles.iconWrapper}>
-        <ShoppingCart size={isMobile ? 22 : 20} strokeWidth={isMobile ? 1.5 : 1.8} />
-        {totalItems > 0 && (
-          <span className={styles.badge}>
-            {totalItems}
-          </span>
-        )}
-      </div>
-    </button>
-  );
+  <button 
+    type="button" 
+    /* ⚡ Cambiamos a la versión interactiva en escritorio. En móvil se queda normal */
+    className={`${styles.cartBtn} ${isMobile ? styles.mobile : `${styles.desktop} u-svg-glow-off-interactive`}`} 
+    onClick={handleCartClick}
+    aria-label="Ver carrito de compras"
+  >
+    <div className={styles.iconWrapper}>
+      <ShoppingCart size={isMobile ? 22 : 20} strokeWidth={isMobile ? 1.5 : 1.8} />
+      {totalItems > 0 && (
+        <span className={styles.badge}>
+          {totalItems}
+        </span>
+      )}
+    </div>
+  </button>
+);
 };
 
 export default CartBtn;

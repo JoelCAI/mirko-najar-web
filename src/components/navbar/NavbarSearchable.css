@@ -519,76 +519,21 @@
           drop-shadow(-1px -1px 3px rgba(17, 14, 13, var(--client-glow-opacity)));
 }
 
-/* ==========================================================================
-   🎛️ DESACTIVACIÓN TOTAL AUTOMÁTICA EN SCROLL & SUBMENÚS INTERNOS
-   ========================================================================== */
-/* Aseguramos limpieza estricta: los links internos del menú desplegable jamás tendrán shadow */
-.c-navbar__dropdown .c-navbar__link,
-.c-navbar--scrolled .c-navbar__link,
-.c-navbar--scrolled .c-navbar__arrow,
-.c-navbar--scrolled .c-navbar__toggle-menu,
-.c-navbar--scrolled .c-navbar__icon-btn,
-.c-navbar__icon-btn:hover,
-.c-navbar__toggle-menu:hover,
-.c-navbar__toggle-menu--open {
+.u-glow-off-interactive:hover,
+.u-glow-off-interactive:hover * {
   text-shadow: none !important;
 }
 
-.c-navbar__search-desktop *,
-.c-navbar--scrolled .c-navbar__brand-container img,
-.c-navbar--scrolled .c-navbar__mobile-actions svg,
-.c-navbar--scrolled .c-navbar__desktop-actions-wrapper svg,
-.c-navbar--scrolled .c-navbar__toggle-menu svg,
-.c-navbar__icon-btn:hover svg,
-.c-navbar__toggle-menu:hover svg,
-.c-navbar__toggle-menu--open svg {
+/* Apaga el filter del SVG SOLO en hover */
+.u-svg-glow-off-interactive:hover,
+.u-svg-glow-off-interactive:hover svg {
   filter: none !important;
 }
 
-.c-navbar .c-navbar__dropdown,
-.c-navbar .c-navbar__dropdown *,
-.c-navbar .c-navbar__subsubmenu,
-.c-navbar .c-navbar__subsubmenu * {
-  text-shadow: none !important;
-}
-
-/* Apaga los filtros y sombras de los iconos o elementos interactivos del buscador */
-.c-navbar .c-navbar__search-desktop,
-.c-navbar .c-navbar__search-desktop *,
-.c-navbar .c-navbar__search-mobile,
-.c-navbar .c-navbar__search-mobile * {
+/* 📱 Fuerza el apagado total en móvil SOLO cuando el menú está abierto/activo */
+.u-mobile-active-glow-off,
+.u-mobile-active-glow-off svg,
+.u-mobile-active-glow-off * {
   text-shadow: none !important;
   filter: none !important;
-}
-
-.textSmartGlowLight .c-navbar__mobile-actions button:hover,
-.textSmartGlowLight .c-navbar__desktop-actions-wrapper button:hover,
-.textSmartGlowDark .c-navbar__mobile-actions button:hover,
-.textSmartGlowDark .c-navbar__desktop-actions-wrapper button:hover {
-  text-shadow: none !important;
-  filter: drop-shadow(0 0 0 transparent) !important;
-}
-
-.c-navbar.textSmartGlowLight .c-navbar__mobile-actions .c-navbar__icon-btn:hover,
-.c-navbar.textSmartGlowDark .c-navbar__mobile-actions .c-navbar__icon-btn:hover,
-.c-navbar.textSmartGlowLight .c-navbar__desktop-actions-wrapper .c-navbar__icon-btn:hover,
-.c-navbar.textSmartGlowDark .c-navbar__desktop-actions-wrapper .c-navbar__icon-btn:hover,
-.c-navbar.textSmartGlowLight .c-navbar__mobile-actions .c-navbar__icon-btn:active,
-.c-navbar.textSmartGlowDark .c-navbar__mobile-actions .c-navbar__icon-btn:active,
-.c-navbar.textSmartGlowLight .c-navbar__desktop-actions-wrapper .c-navbar__icon-btn:active,
-.c-navbar.textSmartGlowDark .c-navbar__desktop-actions-wrapper .c-navbar__icon-btn:active {
-  text-shadow: none !important;
-}
-
-/* 2. Limpieza de Filtros SVG en los Iconos (Carrito, Usuario, Theme, etc.) */
-.c-navbar.textSmartGlowLight .c-navbar__mobile-actions .c-navbar__icon-btn:hover svg,
-.c-navbar.textSmartGlowDark .c-navbar__mobile-actions .c-navbar__icon-btn:hover svg,
-.c-navbar.textSmartGlowLight .c-navbar__desktop-actions-wrapper .c-navbar__icon-btn:hover svg,
-.c-navbar.textSmartGlowDark .c-navbar__desktop-actions-wrapper .c-navbar__icon-btn:hover svg,
-.c-navbar.textSmartGlowLight .c-navbar__mobile-actions .c-navbar__icon-btn:active svg,
-.c-navbar.textSmartGlowDark .c-navbar__mobile-actions .c-navbar__icon-btn:active svg,
-.c-navbar.textSmartGlowLight .c-navbar__desktop-actions-wrapper .c-navbar__icon-btn:active svg,
-.c-navbar.textSmartGlowDark .c-navbar__desktop-actions-wrapper .c-navbar__icon-btn:active svg {
-  filter: none !important;
-  -webkit-filter: none !important;
 }
