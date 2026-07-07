@@ -165,10 +165,17 @@
 
 .c-footer__icon-wrapper {
   color: var(--color-brand-text-hover);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  height: 15px;
+  width: 15px;
+  transform: translateY(1.2px);
+}
+
+.c-footer__menu-parent {
+  position: relative;
 }
 
 /* DESPLEGABLES FLOTANTES DESKTOP */

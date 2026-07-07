@@ -207,7 +207,8 @@
   .c-navbar__search-mobile {
     display: block;
     width: 100%; 
-    margin-bottom: 1rem; 
+    margin-top: -25px !important;
+    margin-bottom: calc(1rem + 25px) !important; 
   }
 
   .c-navbar__item { width: 100%; }
@@ -522,7 +523,10 @@
 .c-navbar--scrolled .c-navbar__link,
 .c-navbar--scrolled .c-navbar__arrow,
 .c-navbar--scrolled .c-navbar__toggle-menu,
-.c-navbar--scrolled .c-navbar__icon-btn {
+.c-navbar--scrolled .c-navbar__icon-btn,
+.c-navbar__icon-btn:hover,
+.c-navbar__toggle-menu:hover,
+.c-navbar__toggle-menu--open {
   text-shadow: none !important;
 }
 
@@ -530,7 +534,10 @@
 .c-navbar--scrolled .c-navbar__brand-container img,
 .c-navbar--scrolled .c-navbar__mobile-actions svg,
 .c-navbar--scrolled .c-navbar__desktop-actions-wrapper svg,
-.c-navbar--scrolled .c-navbar__toggle-menu svg {
+.c-navbar--scrolled .c-navbar__toggle-menu svg,
+.c-navbar__icon-btn:hover svg,
+.c-navbar__toggle-menu:hover svg,
+.c-navbar__toggle-menu--open svg {
   filter: none !important;
 }
 
