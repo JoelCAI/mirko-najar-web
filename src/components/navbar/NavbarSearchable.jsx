@@ -40,10 +40,16 @@ const NavbarSearchable = () => {
 
   // Lógica de Modificadores existentes
   const scrollModifier = isScrolled ? 'c-navbar--scrolled' : '';
-  const isCurrentlyTransparent = !isScrolled && themeConfig.isTransparent;
+  
+  // ⚡ CORRECCIÓN: Si el menú móvil está abierto, forzamos que NO sea transparente 
+  // para que el árbol desplegable tenga un fondo sólido y no se superponga con el Hero
+  const isCurrentlyTransparent = !isScrolled && themeConfig.isTransparent && !isMenuOpen;
   const transparentModifier = isCurrentlyTransparent ? 'c-navbar--transparent' : '';
   
-  // ⚡ SINCRO REDUX: Evaluamos el 'theme' que viene directo de la Store central
+  // Modificador de estado abierto para congelar el body o dar estilos macros al nav
+  const openMenuModifier = isMenuOpen ? 'c-navbar--menu-open' : '';
+  
+  // ⚡ SINCRO REDUX: Evaluamos el 'theme' (Solo aplica glow si se mantiene transparente)
   let glowModifier = '';
   if (isCurrentlyTransparent && navbarSwitches.showGlow) {
     glowModifier = theme === 'dark' ? 'textSmartGlowDark' : 'textSmartGlowLight';
@@ -54,7 +60,7 @@ const NavbarSearchable = () => {
 
   return (
     <nav 
-      className={`c-navbar ${scrollModifier} ${transparentModifier} ${glowModifier}`.trim()} 
+      className={`c-navbar ${scrollModifier} ${transparentModifier} ${glowModifier} ${openMenuModifier}`.trim()} 
       aria-label="Navegación Principal"
       style={{ '--client-glow-opacity': dynamicOpacity }}
     >
