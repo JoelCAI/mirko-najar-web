@@ -1,15 +1,11 @@
 // src/components/navbar/NavbarSearchable.jsx
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react'; 
-
-import { themeConfig } from '../../config/themeConfig';
+import { useSelector } from 'react-redux'; // 👈 1. CONEXIÓN DIRECTA A REDUX
 import { navbarSwitches } from '../../config/navigationConfig';
-
-// 🌟 IMPORTACIÓN CLAVE: Tu hook unificado de Redux
 import { useTheme } from '../../hooks/useTheme';
 
 import SearchBar from '../search/SearchBar'; 
-
 import NavbarBrand from './NavbarBrand';
 import NavbarMenu from './NavbarMenu';
 import ThemeToggle from '../ui/ThemeToggle';
@@ -23,8 +19,10 @@ const NavbarSearchable = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  // 🌟 CONEXIÓN DIRECTA A REDUX: Eliminamos MutationObserver y estados locales duplicados
   const { theme } = useTheme(); 
+  
+  // 🎯 2. LEEMOS EL VALOR REAL DESDE REDUX (Eliminamos el acoplamiento estático)
+  const isNavbarTransparentFromConfig = useSelector((state) => state.config.navbar?.isTransparent);
   
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
   const [activeMobileSubSubmenu, setActiveMobileSubSubmenu] = useState(null);
@@ -41,15 +39,13 @@ const NavbarSearchable = () => {
   // Lógica de Modificadores existentes
   const scrollModifier = isScrolled ? 'c-navbar--scrolled' : '';
   
-  // ⚡ CORRECCIÓN: Si el menú móvil está abierto, forzamos que NO sea transparente 
-  // para que el árbol desplegable tenga un fondo sólido y no se superponga con el Hero
-  const isCurrentlyTransparent = !isScrolled && themeConfig.isTransparent && !isMenuOpen;
+  // ⚡ 3. CORRECCIÓN APLICADA: Ahora evalúa de forma reactiva el valor inyectado
+  const isCurrentlyTransparent = !isScrolled && isNavbarTransparentFromConfig && !isMenuOpen;
   const transparentModifier = isCurrentlyTransparent ? 'c-navbar--transparent' : '';
   
-  // Modificador de estado abierto para congelar el body o dar estilos macros al nav
   const openMenuModifier = isMenuOpen ? 'c-navbar--menu-open' : '';
   
-  // ⚡ SINCRO REDUX: Evaluamos el 'theme' (Solo aplica glow si se mantiene transparente)
+  // SINCRO REDUX GLOW
   let glowModifier = '';
   if (isCurrentlyTransparent && navbarSwitches.showGlow) {
     glowModifier = theme === 'dark' ? 'textSmartGlowDark' : 'textSmartGlowLight';
@@ -87,7 +83,7 @@ const NavbarSearchable = () => {
           {navbarSwitches.showUserBtn && <UserBtn isMobile={true} closeMainMenu={() => setIsMenuOpen(false)} />}
 
           <button 
-            type="button"
+            type="button" 
             className={`c-navbar__toggle-menu ${isMenuOpen ? 'c-navbar__toggle-menu--open' : ''}`} 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}

@@ -1,0 +1,20 @@
+{
+  "page_labels": {
+    "override": true,
+    "nosotros": { "label": "", "sections": [] },
+    "contacto": {
+      "label": "Cotiza un Proyecto",
+      "sections": [{ "id": "formulario", "label": "Formulario de Contacto" }]
+    },
+    "catalogo": { "label": "Ver Muebles", "sections": [] },
+    "servicios": { "label": "Servicios de Taller", "sections": [] },
+    "fabricacion": { "label": "Muebles a Medida", "sections": [] },
+    "acabados": {
+      "label": "Acabados Finos",
+      "sections": [
+        { "id": "laqueado", "label": "Laqueado de Interiores" },
+        { "id": "poliuretano", "label": "Pintura Alto Brillo" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,447 @@
+{
+  "prendas_superiores": [
+    {
+      "id": "p1",
+      "name": "Casaca Denim Oversize Premium",
+      "slug": "casaca-denim-oversize",
+      "category": "prendas_superiores",
+      "description": "Casaca denim de algodón pesado, diseño clásico oversize con lavado stonewash. Costuras reforzadas para alta durabilidad.",
+      "price": 189.90,
+      "currency": "PEN",
+      "sku": "TX-CAS-001",
+      "visible": true,
+      "availabilityStatus": "custom",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&w=1080",
+        "thumbnail": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&w=200&h=200&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1611312449412-6cefac5dc3e4?auto=format&w=1080"
+        ]
+      },
+      "specs": {
+        "dimensions": "Tallas S, M, L, XL",
+        "weight": "0.85kg",
+        "material": "100% Algodón Denim"
+      },
+      "customizer": {
+        "type": "Talla y Color",
+        "options": [
+          {
+            "label": "Talla M / Azul Clásico",
+            "skuModifier": "-M-BLU",
+            "priceModifier": 0.00
+          },
+          {
+            "label": "Talla L / Negro Oscuro",
+            "skuModifier": "-L-BLK",
+            "priceModifier": 10.00
+          }
+        ]
+      },
+      "delivery": {
+        "supported": true,
+        "rule": "by_zone",
+        "feeOverride": null,
+        "allowAgencyPickup": true,
+        "isFragile": false
+      }
+    },
+    {
+      "id": "p2",
+      "name": "Polera Hoodie Minimalista de Algodón",
+      "slug": "polera-hoodie-minimalista",
+      "category": "prendas_superiores",
+      "description": "Polera con capucha y bolsillo canguro. Interior perchado súper suave, ideal para media estación.",
+      "price": 129.00,
+      "currency": "PEN",
+      "sku": "TX-HUD-002",
+      "visible": true,
+      "availabilityStatus": "custom",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&w=1080",
+        "thumbnail": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&w=200&h=200&fit=crop",
+        "gallery": []
+      },
+      "specs": {
+        "dimensions": "Tallas S, M, L",
+        "weight": "0.60kg",
+        "material": "80% Algodón, 20% Poliéster"
+      },
+      "customizer": {
+        "type": "Selección de Talla",
+        "options": [
+          {
+            "label": "Talla S",
+            "skuModifier": "-S",
+            "priceModifier": 0.00
+          },
+          {
+            "label": "Talla M",
+            "skuModifier": "-M",
+            "priceModifier": 0.00
+          }
+        ]
+      },
+      "delivery": {
+        "supported": true,
+        "rule": "by_zone",
+        "feeOverride": null,
+        "allowAgencyPickup": true,
+        "isFragile": false
+      }
+    },
+    {
+      "id": "p3",
+      "name": "Camisa de Lino Slim Fit",
+      "slug": "camisa-lino-slim-fit",
+      "category": "prendas_superiores",
+      "description": "Camisa manga larga de lino italiano transpirable. Perfecta para un look casual elegante bajo el sol.",
+      "price": 149.90,
+      "currency": "PEN",
+      "sku": "TX-CAM-003",
+      "visible": true,
+      "availabilityStatus": "custom",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&w=1080",
+        "thumbnail": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&w=200&h=200&fit=crop",
+        "gallery": []
+      },
+      "specs": {
+        "dimensions": "Tallas M, L, XL",
+        "weight": "0.30kg",
+        "material": "100% Lino Orgánico"
+      },
+      "customizer": {
+        "type": "Talla y Ajuste",
+        "options": [
+          {
+            "label": "Talla M / Blanco Puro",
+            "skuModifier": "-M-WHT",
+            "priceModifier": 0.00
+          },
+          {
+            "label": "Talla L / Celeste Pastel",
+            "skuModifier": "-L-BLU",
+            "priceModifier": 0.00
+          }
+        ]
+      },
+      "delivery": {
+        "supported": true,
+        "rule": "by_zone",
+        "feeOverride": null,
+        "allowAgencyPickup": true,
+        "isFragile": false
+      }
+    },
+    {
+      "id": "p4",
+      "name": "Camiseta Pima básica cuello redondo",
+      "slug": "camiseta-pima-basica",
+      "category": "prendas_superiores",
+      "description": "Polera básica confeccionada en algodón pima peruano, reconocida por su suavidad extrema y brillo sutil.",
+      "price": 59.90,
+      "currency": "PEN",
+      "sku": "TX-POL-004",
+      "visible": true,
+      "availabilityStatus": "custom",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&w=1080",
+        "thumbnail": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&w=200&h=200&fit=crop",
+        "gallery": []
+      },
+      "specs": {
+        "dimensions": "Tallas S, M, L",
+        "weight": "0.18kg",
+        "material": "100% Algodón Pima"
+      },
+      "customizer": {
+        "type": "Color de Prenda",
+        "options": [
+          {
+            "label": "Negro",
+            "skuModifier": "-BLK",
+            "priceModifier": 0.00
+          },
+          {
+            "label": "Gris Melange",
+            "skuModifier": "-GRY",
+            "priceModifier": 0.00
+          }
+        ]
+      },
+      "delivery": {
+        "supported": true,
+        "rule": "fixed",
+        "feeOverride": null,
+        "allowAgencyPickup": true,
+        "isFragile": false
+      }
+    }
+  ],
+  "prendas_inferiores": [
+    {
+      "id": "p5",
+      "name": "Pantalón Chino Stretch Slim",
+      "slug": "pantalon-chino-stretch",
+      "category": "prendas_inferiores",
+      "description": "Pantalón estilo chino con tecnología elástica para máxima flexibilidad durante el día de trabajo o salidas.",
+      "price": 139.00,
+      "currency": "PEN",
+      "sku": "TX-CHI-005",
+      "visible": true,
+      "availabilityStatus": "custom",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&w=1080",
+        "thumbnail": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&w=200&h=200&fit=crop",
+        "gallery": []
+      },
+      "specs": {
+        "dimensions": "Tallas 30, 32, 34, 36",
+        "weight": "0.50kg",
+        "material": "98% Algodón, 2% Elastano"
+      },
+      "customizer": {
+        "type": "Medida de Cintura",
+        "options": [
+          {
+            "label": "Talla 32 / Beige",
+            "skuModifier": "-32-BEI",
+            "priceModifier": 0.00
+          },
+          {
+            "label": "Talla 34 / Azul Marino",
+            "skuModifier": "-34-NAV",
+            "priceModifier": 0.00
+          }
+        ]
+      },
+      "delivery": {
+        "supported": true,
+        "rule": "by_zone",
+        "feeOverride": null,
+        "allowAgencyPickup": true,
+        "isFragile": false
+      }
+    },
+    {
+      "id": "p6",
+      "name": "Jeans Rectos Clásicos Raw",
+      "slug": "jeans-rectos-clasicos",
+      "category": "prendas_inferiores",
+      "description": "Jeans rígidos de corte recto. Diseñados para amoldarse a tu cuerpo con el uso continuado.",
+      "price": 169.90,
+      "currency": "PEN",
+      "sku": "TX-JNS-006",
+      "visible": true,
+      "availabilityStatus": "custom",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&w=1080",
+        "thumbnail": "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&w=200&h=200&fit=crop",
+        "gallery": []
+      },
+      "specs": {
+        "dimensions": "Tallas 30, 32, 34",
+        "weight": "0.75kg",
+        "material": "100% Rígido Denim"
+      },
+      "customizer": {
+        "type": "Tallas Disponibles",
+        "options": [
+          {
+            "label": "Talla 30",
+            "skuModifier": "-30",
+            "priceModifier": 0.00
+          },
+          {
+            "label": "Talla 34",
+            "skuModifier": "-34",
+            "priceModifier": 0.00
+          }
+        ]
+      },
+      "delivery": {
+        "supported": true,
+        "rule": "by_zone",
+        "feeOverride": null,
+        "allowAgencyPickup": true,
+        "isFragile": false
+      }
+    },
+    {
+      "id": "p7",
+      "name": "Pantalón Jogger Urbano",
+      "slug": "pantalon-jogger-urbano",
+      "category": "prendas_inferiores",
+      "description": "Pantalón urbano tipo jogger con pretina y tobilleras elásticas. Confort deportivo para la calle.",
+      "price": 99.90,
+      "currency": "PEN",
+      "sku": "TX-JOG-007",
+      "visible": true,
+      "availabilityStatus": "custom",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1551854838-212c50b4c184?auto=format&w=1080",
+        "thumbnail": "https://images.unsplash.com/photo-1551854838-212c50b4c184?auto=format&w=200&h=200&fit=crop",
+        "gallery": []
+      },
+      "specs": {
+        "dimensions": "Tallas S, M, L",
+        "weight": "0.45kg",
+        "material": "70% Algodón, 30% Poliéster"
+      },
+      "customizer": {
+        "type": "Variante Color",
+        "options": [
+          {
+            "label": "Talla M / Verde Militar",
+            "skuModifier": "-M-GRN",
+            "priceModifier": 0.00
+          },
+          {
+            "label": "Talla M / Negro Carbono",
+            "skuModifier": "-M-BLK",
+            "priceModifier": 0.00
+          }
+        ]
+      },
+      "delivery": {
+        "supported": true,
+        "rule": "by_zone",
+        "feeOverride": null,
+        "allowAgencyPickup": true,
+        "isFragile": false
+      }
+    }
+  ],
+  "calzado": [
+    {
+      "id": "p8",
+      "name": "Zapatillas Urbanas de Cuero Blanco",
+      "slug": "zapatillas-cuero-blanco",
+      "category": "calzado",
+      "description": "Zapatillas minimalistas de cuero vacuno legítimo con suela de caucho vulcanizado cosida al cuerpo.",
+      "price": 289.00,
+      "currency": "PEN",
+      "sku": "TX-ZAP-008",
+      "visible": true,
+      "availabilityStatus": "custom",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&w=1080",
+        "thumbnail": "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&w=200&h=200&fit=crop",
+        "gallery": [
+          "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&w=1080"
+        ]
+      },
+      "specs": {
+        "dimensions": "Tallas 39 al 43",
+        "weight": "1.20kg",
+        "material": "Cuero Vacuno Natural"
+      },
+      "customizer": {
+        "type": "Talla de Calzado",
+        "options": [
+          {
+            "label": "Talla 41",
+            "skuModifier": "-41",
+            "priceModifier": 0.00
+          },
+          {
+            "label": "Talla 42",
+            "skuModifier": "-42",
+            "priceModifier": 0.00
+          }
+        ]
+      },
+      "delivery": {
+        "supported": true,
+        "rule": "by_zone",
+        "feeOverride": null,
+        "allowAgencyPickup": true,
+        "isFragile": false
+      }
+    },
+    {
+      "id": "p9",
+      "name": "Botas de Gamuza Chelsea Desert",
+      "slug": "botas-gamuza-chelsea",
+      "category": "calzado",
+      "description": "Botas tipo Chelsea confeccionadas en gamuza suave con paneles elásticos laterales y tirador trasero.",
+      "price": 349.90,
+      "currency": "PEN",
+      "sku": "TX-BOT-009",
+      "visible": true,
+      "availabilityStatus": "custom",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&w=1080",
+        "thumbnail": "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&w=200&h=200&fit=crop",
+        "gallery": []
+      },
+      "specs": {
+        "dimensions": "Tallas 40, 41, 42",
+        "weight": "1.40kg",
+        "material": "Gamuza Genuina, Suela Crepé"
+      },
+      "customizer": {
+        "type": "Talla y Color Gamuza",
+        "options": [
+          {
+            "label": "Talla 40 / Marrón Tabaco",
+            "skuModifier": "-40-BRN",
+            "priceModifier": 0.00
+          },
+          {
+            "label": "Talla 41 / Gris Ceniza",
+            "skuModifier": "-41-GRY",
+            "priceModifier": 0.00
+          }
+        ]
+      },
+      "delivery": {
+        "supported": true,
+        "rule": "by_zone",
+        "feeOverride": null,
+        "allowAgencyPickup": true,
+        "isFragile": false
+      }
+    },
+    {
+      "id": "p10",
+      "name": "Mocasines de Cuero Casual",
+      "slug": "mocasines-cuero-casual",
+      "category": "calzado",
+      "description": "Mocasines slip-on de estructura flexible y ligera. Ideales para uso diario informal sin perder el estilo.",
+      "price": 249.00,
+      "currency": "PEN",
+      "sku": "TX-MOC-010",
+      "visible": true,
+      "availabilityStatus": "custom",
+      "images": {
+        "main": "https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&w=1080",
+        "thumbnail": "https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&w=200&h=200&fit=crop",
+        "gallery": []
+      },
+      "specs": {
+        "dimensions": "Tallas 39 al 42",
+        "weight": "0.90kg",
+        "material": "100% Cuero Nobuck"
+      },
+      "customizer": {
+        "type": "Talla",
+        "options": [
+          {
+            "label": "Talla 42",
+            "skuModifier": "-42",
+            "priceModifier": 0.00
+          }
+        ]
+      },
+      "delivery": {
+        "supported": true,
+        "rule": "by_zone",
+        "feeOverride": null,
+        "allowAgencyPickup": true,
+        "isFragile": false
+      }
+    }
+  ]
+}

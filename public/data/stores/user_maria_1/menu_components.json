@@ -1,0 +1,180 @@
+{
+  "complements": {
+    "salsas_gratuitas": {
+      "displayType": "checkbox",
+      "label": "Selecciona tus cremas (Máx. 4):",
+      "options": [
+        {
+          "id": "crema_mayo",
+          "name": "Mayonesa Casera",
+          "price": 0.00,
+          "thumbnail": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&w=150&h=150&fit=crop"
+        },
+        {
+          "id": "crema_aji",
+          "name": "Ají Pollero",
+          "price": 0.00,
+          "thumbnail": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&w=150&h=150&fit=crop"
+        }
+      ]
+    },
+    "adicionales_pago": {
+      "displayType": "checkbox",
+      "label": "¡Agrégale más sabor! (Opcional):",
+      "options": [
+        {
+          "id": "ext_queso",
+          "name": "Extra Queso Cheddar",
+          "price": 2.50,
+          "thumbnail": "https://images.unsplash.com/photo-1552763485-69021f1e076b?auto=format&w=150&h=150&fit=crop"
+        },
+        {
+          "id": "ext_tocino",
+          "name": "Extra Tocino",
+          "price": 3.50,
+          "thumbnail": "https://images.unsplash.com/photo-1606851282886-c56654a1d490?auto=format&w=150&h=150&fit=crop"
+        }
+      ]
+    },
+    "bebidas_personales": {
+      "displayType": "radio",
+      "label": "Elige tu bebida:",
+      "options": [
+        {
+          "id": "beb_ik_500",
+          "name": "Inca Kola 500ml",
+          "price": 4.50,
+          "thumbnail": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&w=150&h=150&fit=crop"
+        },
+        {
+          "id": "beb_cc_500",
+          "name": "Coca Cola 500ml",
+          "price": 4.50,
+          "thumbnail": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&w=150&h=150&fit=crop"
+        }
+      ]
+    },
+    "rations": {
+      "displayType": "radio",
+      "label": "Acompañamientos de la casa:",
+      "options": [
+        {
+          "id": "rat_papas_chicas",
+          "name": "Papas Fritas Chicas",
+          "price": 4.00,
+          "thumbnail": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&w=150&h=150&fit=crop"
+        },
+        {
+          "id": "rat_papas_medianas",
+          "name": "Papas Nativas Medianas",
+          "price": 6.00,
+          "thumbnail": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&w=150&h=150&fit=crop"
+        }
+      ]
+    },
+    "ensaladas": {
+      "displayType": "radio",
+      "label": "Elige tu ensalada de acompañamiento:",
+      "options": [
+        {
+          "id": "ens_coleslaw",
+          "name": "Ensalada Coleslaw (Col y Zanahoria)",
+          "price": 5.00,
+          "thumbnail": "https://images.unsplash.com/photo-1625938146369-adc83368bda7?auto=format&w=150&h=150&fit=crop"
+        },
+        {
+          "id": "ens_fresca",
+          "name": "Ensalada Fresca de la Casa",
+          "price": 4.50,
+          "thumbnail": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&w=150&h=150&fit=crop"
+        }
+      ]
+    },
+    "postres_personales": {
+      "displayType": "checkbox",
+      "label": "¡Date un gustito dulce al final! (Opcional):",
+      "options": [
+        {
+          "id": "pos_brownie",
+          "name": "Brownie con Fudge de la Casa",
+          "price": 6.50,
+          "thumbnail": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&w=150&h=150&fit=crop"
+        },
+        {
+          "id": "pos_keke_zanahoria",
+          "name": "Keke de Zanahoria Personal",
+          "price": 5.50,
+          "thumbnail": "https://images.unsplash.com/photo-1607349913338-fca6f7fc42d0?auto=format&w=150&h=150&fit=crop"
+        }
+      ]
+    }
+  },
+  "delivery_setup": {
+    "max_delivery_distance_km": 8.0,
+    "currency": "PEN",
+    "zones": [
+      {
+        "zone_id": "z1",
+        "range_km": [0.0, 1.0],
+        "cost": 3.00,
+        "label": "Zona Cercana (Hasta 1 km)"
+      },
+      {
+        "zone_id": "z2",
+        "range_km": [1.01, 2.0],
+        "cost": 5.00,
+        "label": "Zona Urbana A (De 1 a 2 km)"
+      },
+      {
+        "zone_id": "z3",
+        "range_km": [2.01, 4.0],
+        "cost": 7.50,
+        "label": "Zona Urbana B (De 2 a 4 km)"
+      },
+      {
+        "zone_id": "z4",
+        "range_km": [4.01, 6.0],
+        "cost": 10.00,
+        "label": "Zona Extendida (De 4 a 6 km)"
+      },
+      {
+        "zone_id": "z5",
+        "range_km": [6.01, 8.0],
+        "cost": 13.00,
+        "label": "Límite de Cobertura (De 6 a 8 km)"
+      }
+    ]
+  },
+  "promotions": {
+    "volume_discounts": [
+      {
+        "id": "promo_burger_trio",
+        "type": "category_volume",
+        "targetCategory": "hamburguesas_solas",
+        "minQuantity": 3,
+        "discountType": "percentage_on_items",
+        "value": 15.00,
+        "announcementText": "¡Combo Grupal! Recibe 15% de descuento en tus hamburguesas llevando 3 o más unidades."
+      },
+      {
+        "id": "promo_delivery_gratis",
+        "type": "cart_threshold",
+        "targetCategory": "global",
+        "minCartAmount": 60.00,
+        "discountType": "free_delivery",
+        "value": 100.00,
+        "announcementText": "¡Envío Gratis! Si tu pedido supera los S/. 60.00, el costo de delivery es totalmente costo cero."
+      },
+      {
+        "id": "promo_antojo_postre",
+        "type": "cross_sell_bundle",
+        "targetCategory": "combos",
+        "minQuantity": 2,
+        "discountType": "fixed_discount_on_add_on",
+        "addOnComponentId": "pos_brownie",
+        "value": 3.00,
+        "announcementText": "¡Promoción Dulce! Por la compra de 2 combos, llévate un Brownie con S/. 3.00 de descuento."
+      }
+    ]
+  }
+}

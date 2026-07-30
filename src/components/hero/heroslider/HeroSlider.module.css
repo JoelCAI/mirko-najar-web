@@ -1,0 +1,216 @@
+/* src/components/hero/heroslider/HeroSlider.module.css */
+
+/* =========================================================================
+   1. CAPA DE PROTECCIÓN INTELIGENTE PARA EL NAVBAR
+   ========================================================================= */
+.navbarProtectionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140px; 
+  z-index: 5;    
+  pointer-events: none; 
+  transition: background 0.4s ease;
+}
+
+.navbarOverlayDark {
+  background: linear-gradient(
+    to bottom, 
+    rgba(17, 14, 13, 0.8) 0%, 
+    rgba(17, 14, 13, 0.3) 50%, 
+    rgba(17, 14, 13, 0) 100%
+  );
+}
+
+.navbarOverlayLight {
+  background: linear-gradient(
+    to bottom, 
+    rgba(255, 255, 255, 0.85) 0%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* =========================================================================
+   2. ESTRUCTURA MACRO DEL SLIDER (TRACK & CONTAINER)
+   ========================================================================= */
+.sliderContainer {
+  position: relative;
+  width: 100%;
+  max-width: 100vw; 
+  height: clamp(550px, 80vh, 900px);
+  overflow: hidden !important;
+  background-color: #000;
+}
+
+.sliderTrack {
+  display: flex;
+  height: 100%;
+  width: 100%; 
+  overflow: visible; 
+  touch-action: pan-y; 
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0; 
+  overflow: hidden;
+}
+
+/* =========================================================================
+   3. ÁREA DE MAQUETACIÓN DE TEXTOS (TARJETA LÍQUIDA)
+   ========================================================================= */
+.contentArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100vw;
+  height: 100%;
+  z-index: 3;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.textCard {
+  max-width: 750px;
+  background: transparent;
+  position: relative;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.textGroup {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.buttonWrapper {
+  position: relative;
+  z-index: 6; 
+  margin-top: var(--space-4, 16px);
+}
+
+/* =========================================================================
+   4. MICROTIPOGRAFÍAS LOCALES DEL RIEL
+   ========================================================================= */
+.title {
+  font-size: clamp(2.0rem, 4.0vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.25; 
+  margin-bottom: var(--space-1, 4px);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 400;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+/* Variaciones de Color Puro */
+.titleDark    { color: var(--color-primary-dark, #110E0D); }
+.titleLight   { color: var(--color-white, #ffffff); }
+.subtitleDark { color: var(--color-primary-dark, #110E0D); }
+.subtitleLight{ color: var(--color-white, #ffffff); }
+
+/* =========================================================================
+   5. MATRIZ DE POSICIONAMIENTO DINÁMICO (DESKTOP)
+   ========================================================================= */
+@media (min-width: 601px) {
+  .pos-top-left       { align-items: flex-start; justify-content: flex-start; }
+  .pos-top-center      { align-items: flex-start; justify-content: center; }
+  .pos-top-right       { align-items: flex-start; justify-content: flex-end; }
+
+  .pos-center-left    { align-items: center;     justify-content: flex-start; }
+  .pos-center-center  { align-items: center;     justify-content: center; }
+  .pos-center-right   { align-items: center;     justify-content: flex-end; }
+
+  .pos-bottom-left    { align-items: flex-end;   justify-content: flex-start; }
+  .pos-bottom-center  { align-items: flex-end;   justify-content: center; }
+  .pos-bottom-right   { align-items: flex-end;   justify-content: flex-end; }
+
+  /* Re-alineación interna de la tarjeta según la coordenada elegida */
+  .pos-top-center .textCard, .pos-center-center .textCard, .pos-bottom-center .textCard { text-align: center; align-items: center; }
+  .pos-top-right .textCard,  .pos-center-right .textCard,  .pos-bottom-right .textCard  { text-align: right;  align-items: flex-end; }
+
+  .pos-top-center .textGroup, .pos-center-center .textGroup, .pos-bottom-center .textGroup { align-items: center; text-align: center; }
+  .pos-top-right .textGroup,  .pos-center-right .textGroup,  .pos-bottom-right .textGroup  { align-items: flex-end; text-align: right; }
+
+  /* 🛡️ ESCUDO DE CONVIVENCIA CON CONTROLES (Dentro de @media (min-width: 601px)) */
+  .sliderWithControls .pos-center-left .textCard   { margin-left: 90px; }
+  .sliderWithControls .pos-bottom-left .textCard  { margin-left: 90px; margin-bottom: 50px; }
+  
+  /* Usa de forma inteligente el desfase dinámico que inyecta React */
+  .sliderWithControls .pos-top-left .textCard     { 
+    margin-left: 90px; 
+    margin-top: var(--navbar-offset-top, 30px); 
+  }
+
+  .sliderWithControls .pos-bottom-center .textCard { margin-bottom: 50px; }
+
+  .sliderWithControls .pos-center-right .textCard  { margin-right: 90px; }
+  .sliderWithControls .pos-bottom-right .textCard { margin-right: 90px; margin-bottom: 50px; }
+  
+  /* Aplica de igual forma al lado derecho superior */
+  .sliderWithControls .pos-top-right .textCard    { 
+    margin-right: 90px; 
+    margin-top: var(--navbar-offset-top, 30px); 
+  }
+}
+
+/* =========================================================================
+   6. RESPONSIVE / MEDIA QUERIES (TABLET & MOBILE)
+   ========================================================================= */
+@media (max-width: 1024px) {
+  .sliderContainer { height: 60vh; }
+}
+
+@media (max-width: 600px) {
+  .sliderContainer { height: 520px; }
+  
+  .contentArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .textCard { 
+    text-align: center; 
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    box-sizing: border-box;
+    margin: 0 !important; 
+    transition: transform 0.3s ease;
+  }
+
+  .textGroup {
+    align-items: center !important;
+    text-align: center !important;
+    width: 100%;
+  }
+
+  /* Lógica de offsets adaptativa para móviles */
+  .mob-top-center .textCard    { transform: translateY(var(--mobile-y-offset, 0px)); }
+  .mob-center-center .textCard { transform: translateY(0px); }
+  .mob-bottom-center .textCard { transform: translateY(80px); }
+}

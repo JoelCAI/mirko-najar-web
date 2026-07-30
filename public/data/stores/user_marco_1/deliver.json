@@ -1,0 +1,81 @@
+{
+  "rules": {
+    "by_zone": {
+      "zones": [
+        {
+          "id": "zone_a",
+          "name": "Zona A (Cercana)",
+          "coverage": [
+            "Surco",
+            "San Borja",
+            "Miraflores",
+            "San Isidro"
+          ],
+          "weightFees": [
+            {
+              "maxWeightKg": 5,
+              "fee": 15.00
+            },
+            {
+              "maxWeightKg": 10,
+              "fee": 35.00
+            },
+            {
+              "maxWeightKg": 15,
+              "fee": 80.00
+            },
+            {
+              "maxWeightKg": 20,
+              "fee": 150.00
+            }
+          ],
+          "deliveryTime": "2-3 días",
+          "notes": null
+        },
+        {
+          "id": "zone_b",
+          "name": "Zona B (Metropolitana)",
+          "coverage": [
+            "La Molina",
+            "San Miguel",
+            "Los Olivos",
+            "Chorrillos"
+          ],
+          "weightFees": [
+            {
+              "maxWeightKg": 5,
+              "fee": 25.00
+            },
+            {
+              "maxWeightKg": 10,
+              "fee": 55.00
+            },
+            {
+              "maxWeightKg": 15,
+              "fee": 120.00
+            },
+            {
+              "maxWeightKg": 20,
+              "fee": 220.00
+            }
+          ],
+          "deliveryTime": "3-5 días",
+          "notes": null
+        }
+      ]
+    },
+    "fixed": {
+      "defaultFee": 15.00,
+      "deliveryTime": "24-48 horas",
+      "notes": "Tarifa plana válida para productos ligeros."
+    },
+    "free_shipping": {
+      "enabled": true,
+      "threshold": 3500.00,
+      "appliesToZones": [
+        "zone_a",
+        "zone_b"
+      ]
+    }
+  }
+}

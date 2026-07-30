@@ -1,0 +1,47 @@
+{
+  "identity": {
+    "name": "Muebles Hogar",
+    "legalName": "Muebles Hogar SAC",
+    "taxId": "20512345678",
+    "type": "FurnitureStore",
+    "description": "Diseñamos y fabricamos muebles personalizados modernos para hogares y oficinas en Lima."
+  },
+  "location": {
+    "streetAddress": "Av. Primavera 1230",
+    "addressLocality": "Santiago de Surco",
+    "addressRegion": "Lima",
+    "addressCountry": "PE",
+    "postalCode": "15038",
+    "latitude": -12.100344,
+    "longitude": -76.993699,
+    "googleMapsUrl": "https://maps.google.com/?q=-12.100344,-76.993699"
+  },
+  "contact": {
+    "phone": "+51 918 471 292",
+    "email": "info@muebleshogar.com",
+    "website": "https://muebleshogar.com"
+  },
+  "media": {
+    "favicon": "https://muebleshogar.com/favicon.ico",
+    "logo": "https://muebleshogar.com/images/logo.png",
+    "ogImage": "https://muebleshogar.com/images/og-image.jpg"
+  },
+  "seo": {
+    "defaultTitle": "Muebles Hogar | Muebles Personalizados en Lima",
+    "titleTemplate": "%s | Muebles Hogar",
+    "defaultDescription": "Diseñamos muebles modernos personalizados para hogares y oficinas en Lima."
+  },
+  "knowledgeGraph": {
+    "sameAs": [
+      "https://facebook.com/muebleshogar",
+      "https://instagram.com/muebleshogar",
+      "https://linkedin.com/company/muebleshogar",
+      "https://youtube.com/@muebleshogar"
+    ]
+  },
+  "integrations": {
+    "googleAnalyticsId": "G-12345678",
+    "googleSiteVerification": "google-site-verification-string-abc123",
+    "googleBusinessProfileUrl": "https://maps.google.com/?cid=123456789"
+  }
+}

@@ -2,16 +2,117 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Core 1.0</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Control de indexación para motores de búsqueda -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="GOOGLEBOT" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+
+    <!-- Enlace Canonical para evitar contenido duplicado -->
+    <link rel="canonical" href="https://muebleshogar.com" />
+
+    <!-- SEO Base Estático (El Worker lo sobreescribirá dinámicamente en producción) -->
+    <title>Muebles Hogar | Muebles Personalizados en Lima</title>
+    <meta name="description" content="Diseñamos muebles modernos personalizados para hogares y oficinas en Lima." />
+    <meta name="keywords" content="muebles en lima, muebles personalizados, muebles modernos, muebles para hogar, muebles para oficina" />
+    
+    <!-- Token público de verificación de Google Search Console -->
+    <meta name="google-site-verification" content="google-site-verification-code-goes-here" />
+
+    <!-- Open Graph (Redes Sociales y previsualizaciones de WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Muebles Hogar" />
+    <meta property="og:title" content="Muebles Hogar | Muebles Personalizados en Lima" />
+    <meta property="og:description" content="Diseñamos muebles modernos personalizados para hogares y oficinas en Lima." />
+    <meta property="og:image" content="/images/og-image.jpg" />
+    <meta property="og:url" content="https://muebleshogar.com" />
+    <meta property="og:locale" content="es_PE" />
+
+    <!-- Twitter Cards (Optimización para X) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Muebles Hogar | Muebles Personalizados en Lima" />
+    <meta name="twitter:description" content="Diseñamos muebles modernos personalizados para hogares y oficinas en Lima." />
+    <meta name="twitter:image" content="/images/og-image.jpg" />
+
+    <!-- Favicons Avanzados y Adaptativos -->
+    <link rel="shortcut icon" href="/public/favicon/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
     <!-- Preload de las fuentes críticas para evitar saltos de diseño (CLS) -->
     <link rel="preload" href="/fonts/Parisienne-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/Lato-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/RobotoCondensed-Bold.woff2" as="font" type="font/woff2" crossorigin>  
+
+    <!-- Datos estructurados JSON-LD (Semántica para Googlebot) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://muebleshogar.com#business",
+        "name": "Muebles Hogar",
+        "legalName": "Muebles Hogar SAC",
+        "description": "Diseñamos y fabricamos muebles personalizados modernos para hogares, oficinas y departamentos en Lima.",
+        "telephone": "+51 918 471 292",
+        "email": "info@muebleshogar.com",
+        "priceRange": "$$",
+        "currenciesAccepted": "PEN",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Primavera 1230",
+          "addressLocality": "Santiago de Surco",
+          "addressRegion": "Lima",
+          "addressCountry": "PE",
+          "postalCode": "15038"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -12.100344,
+          "longitude": -76.993699
+        },
+        "sameAs": [
+          "https://facebook.com/muebleshogar",
+          "https://instagram.com/muebleshogar",
+          "https://linkedin.com/company/muebleshogar",
+          "https://youtube.com/@muebleshogar"
+        ]
+      }
+    </script>
   </head>
   <body>
+    
+    <!-- Nodo raíz donde se montará React -->
     <div id="root"></div>
+
+    <!-- 
+      INYECCIÓN INDUSTRIAL DEL MASTER JSON (Generado por el Edge en Producción)
+      Este objeto completo matchea 1:1 con la estructura esperada por configSlice e initial state.
+    -->
+    <script>
+      window.__INITIAL_CONFIG__ = {
+        meta: { 
+          templateType: "VIRTUAL_STORE", 
+          version: "v1-core" 
+        },
+        navbar: { 
+          active: true, 
+          activeType: "navbar_searchable", 
+          isTransparent: true 
+        },
+        hero: { 
+          active: true, 
+          activeType: "hero_slider" 
+        },
+        footer: { 
+          active: true, 
+          activeType: "footer_standard" 
+        }
+      };
+    </script>
+
+    <!-- Script principal que arranca e inicializa React y Redux -->
     <script type="module" src="/src/main.jsx"></script>
+
   </body>
 </html>

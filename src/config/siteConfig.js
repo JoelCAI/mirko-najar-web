@@ -3,7 +3,7 @@ export const siteConfig = {
   // ID único del cliente en base de datos D1
   tenantId: "ebanisterias_najar_001", 
   //Incrementa este número cuando cambies datos en la base de datos
-  catalogVersion: 1, 
+  catalogVersion: 2, 
   // Nombre comercial del tenant actual
   clientName: "Mirko Najar - Ebanistería", 
   // Endpoint API central de Cloudflare

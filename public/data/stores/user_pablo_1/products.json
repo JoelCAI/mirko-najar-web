@@ -1,0 +1,472 @@
+[
+  {
+    "id": "p1",
+    "name": "Mesa de Roble Moderna para Comedor",
+    "slug": "mesa-roble-moderna",
+    "category": "mobiliario",
+    "description": "Hermosa mesa de roble macizo con acabados de alta durabilidad. Perfecta para comedores modernos.",
+    "price": 1850.00,
+    "currency": "PEN",
+    "sku": "MH-MESA-001",
+    "visible": true,
+    "availabilityStatus": "custom",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&w=200&h=200&fit=crop",
+      "gallery": [
+        "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&w=1080"
+      ]
+    },
+    "specs": {
+      "dimensions": "180cm x 90cm x 75cm",
+      "weight": "45kg",
+      "material": "Roble Macizo"
+    },
+    "customizer": {
+      "type": "Acabado de Madera",
+      "options": [
+        { "label": "Acabado Natural", "skuModifier": "-NAT", "priceModifier": 0.00 },
+        { "label": "Acabado Oscuro (Nogalizado)", "skuModifier": "-NOG", "priceModifier": 150.00 }
+      ]
+    },
+    "delivery": {
+      "supported": true,
+      "rule": "by_zone",
+      "feeOverride": null,
+      "allowAgencyPickup": true,
+      "isFragile": true
+    }
+  },
+  {
+    "id": "p2",
+    "name": "Silla de Comedor Nórdica en Haya",
+    "slug": "silla-nordica-haya",
+    "category": "mobiliario",
+    "description": "Silla ergonómica de madera de haya con asiento tapizado en lino gris.",
+    "price": 320.00,
+    "currency": "PEN",
+    "sku": "MH-SILLA-002",
+    "visible": true,
+    "availabilityStatus": "in_stock",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "45cm x 50cm x 85cm",
+      "weight": "6kg",
+      "material": "Madera de Haya y Lino"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "by_zone",
+      "feeOverride": null,
+      "allowAgencyPickup": true,
+      "isFragile": false
+    }
+  },
+  {
+    "id": "p3",
+    "name": "Gran Armario Empotrado de Cedro",
+    "slug": "gran-armario-cedro",
+    "category": "mobiliario",
+    "description": "Ropero colosal de 4 cuerpos hecho en cedro aromático. Requiere transporte especial y armado in-situ.",
+    "price": 4200.00,
+    "currency": "PEN",
+    "sku": "MH-ARMA-003",
+    "visible": true,
+    "availabilityStatus": "backorder",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1558882224-cca166733360?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1558882224-cca166733360?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "240cm x 60cm x 220cm",
+      "weight": "115kg",
+      "material": "Madera de Cedro Puro"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "by_zone",
+      "feeOverride": 250.00,
+      "allowAgencyPickup": false,
+      "isFragile": true
+    }
+  },
+  {
+    "id": "p4",
+    "name": "Cera Orgánica para Mantenimiento de Madera",
+    "slug": "cera-organica-madera",
+    "category": "cuidado",
+    "description": "Frasco de cera de abejas natural para hidratar y proteger tus muebles de madera.",
+    "price": 45.00,
+    "currency": "PEN",
+    "sku": "MH-CERA-004",
+    "visible": true,
+    "availabilityStatus": "in_stock",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "8cm x 8cm x 10cm",
+      "weight": "0.5kg",
+      "material": "Cera de Abejas y Aceites Naturales"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "fixed",
+      "feeOverride": null,
+      "allowAgencyPickup": true,
+      "isFragile": false
+    }
+  },
+  {
+    "id": "p5",
+    "name": "Servicio de Restauración y Barnizado (Por Metro)",
+    "slug": "servicio-restauracion-barnizado",
+    "category": "servicios",
+    "description": "Restauramos la vida de tus muebles antiguos directo en tu domicilio. El precio base es por metro lineal.",
+    "price": 180.00,
+    "currency": "PEN",
+    "sku": "MH-SERV-005",
+    "visible": true,
+    "availabilityStatus": "custom",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "N/A",
+      "weight": "0kg",
+      "material": "Insumos Premium de Poliuretano"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": false,
+      "rule": "none",
+      "feeOverride": null,
+      "allowAgencyPickup": false,
+      "isFragile": false
+    }
+  },
+  {
+    "id": "p6",
+    "name": "Centro de Entretenimiento Flotante",
+    "slug": "centro-entretenimiento-flotante",
+    "category": "mobiliario",
+    "description": "Mueble para TV de hasta 65 pulgadas. Diseño minimalista con pasacables ocultos.",
+    "price": 890.00,
+    "currency": "PEN",
+    "sku": "MH-ENTR-006",
+    "visible": true,
+    "availabilityStatus": "in_stock",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "160cm x 35cm x 40cm",
+      "weight": "28kg",
+      "material": "MDF Hidrófugo Enchapado en Pino"
+    },
+    "customizer": {
+      "type": "Color de Melamina",
+      "options": [
+        { "label": "Blanco Minimal", "skuModifier": "-BLA", "priceModifier": 0.00 },
+        { "label": "Negro Texturizado", "skuModifier": "-NEG", "priceModifier": 50.00 }
+      ]
+    },
+    "delivery": {
+      "supported": true,
+      "rule": "by_zone",
+      "feeOverride": null,
+      "allowAgencyPickup": true,
+      "isFragile": true
+    }
+  },
+  {
+    "id": "p7",
+    "name": "Espejo de Pared con Marco de Raíz de Olivo",
+    "slug": "espejo-marco-olivo",
+    "category": "decoracion",
+    "description": "Espejo artesanal único. El marco aprovecha las formas orgánicas de la raíz del olivo.",
+    "price": 550.00,
+    "currency": "PEN",
+    "sku": "MH-ESPE-007",
+    "visible": true,
+    "availabilityStatus": "in_stock",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "90cm x 90cm x 5cm",
+      "weight": "12kg",
+      "material": "Cristal de Alta Densidad y Raíz de Olivo"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "by_zone",
+      "feeOverride": null,
+      "allowAgencyPickup": false,
+      "isFragile": true
+    }
+  },
+  {
+    "id": "p8",
+    "name": "Mesa de Centro Industrial Fierro y Pino",
+    "slug": "mesa-centro-industrial",
+    "category": "mobiliario",
+    "description": "Mesa ratona con estructura de fierro negro mate y tablero grueso de pino oregón.",
+    "price": 680.00,
+    "currency": "PEN",
+    "sku": "MH-MCTR-008",
+    "visible": true,
+    "availabilityStatus": "in_stock",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1532372320978-9b4d7a92b24d?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1532372320978-9b4d7a92b24d?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "100cm x 60cm x 45cm",
+      "weight": "18kg",
+      "material": "Fierro Estructural y Pino Oregón"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "by_zone",
+      "feeOverride": null,
+      "allowAgencyPickup": true,
+      "isFragile": false
+    }
+  },
+  {
+    "id": "p9",
+    "name": "Repisa Flotante Hexagonal (Set de 3)",
+    "slug": "repisas-flotantes-hexagonal",
+    "category": "decoracion",
+    "description": "Set de tres repisas geométricas para plantas o libros pequeños. Incluye kit de instalación fácil.",
+    "price": 140.00,
+    "currency": "PEN",
+    "sku": "MH-REPI-009",
+    "visible": true,
+    "availabilityStatus": "in_stock",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1594040226829-7f251ab46d80?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1594040226829-7f251ab46d80?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "30cm x 30cm x 15cm",
+      "weight": "3.5kg",
+      "material": "Madera de Shihuahuaco"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "fixed",
+      "feeOverride": null,
+      "allowAgencyPickup": true,
+      "isFragile": false
+    }
+  },
+  {
+    "id": "p10",
+    "name": "Cama Queen Size Japonesa Tatami",
+    "slug": "cama-queen-tatami",
+    "category": "mobiliario",
+    "description": "Estructura de cama baja estilo oriental. Fabricada íntegramente con ensambles tradicionales sin clavos.",
+    "price": 2900.00,
+    "currency": "PEN",
+    "sku": "MH-CAMA-010",
+    "visible": true,
+    "availabilityStatus": "custom",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "210cm x 170cm x 25cm",
+      "weight": "55kg",
+      "material": "Madera de Caoba"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "by_zone",
+      "feeOverride": null,
+      "allowAgencyPickup": false,
+      "isFragile": false
+    }
+  },
+  {
+    "id": "p11",
+    "name": "Tabla de Picar Premium para Asados",
+    "slug": "tabla-picar-premium",
+    "category": "cocina",
+    "description": "Tabla robusta reversible con canal de jugos. Curada con aceites minerales aptos para alimentos.",
+    "price": 210.00,
+    "currency": "PEN",
+    "sku": "MH-TABL-011",
+    "visible": true,
+    "availabilityStatus": "in_stock",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "50cm x 35cm x 4cm",
+      "weight": "4.2kg",
+      "material": "Madera de Teca de Alta Densidad"
+    },
+    "customizer": {
+      "type": "Grabado Láser Personalizado",
+      "options": [
+        { "label": "Sin Grabado", "skuModifier": "-STD", "priceModifier": 0.00 },
+        { "label": "Con Nombre/Logo Grabado", "skuModifier": "-LAS", "priceModifier": 35.00 }
+      ]
+    },
+    "delivery": {
+      "supported": true,
+      "rule": "fixed",
+      "feeOverride": null,
+      "allowAgencyPickup": true,
+      "isFragile": false
+    }
+  },
+  {
+    "id": "p12",
+    "name": "Escritorio Ergónomico Home Office",
+    "slug": "escritorio-ergonomico-home-office",
+    "category": "mobiliario",
+    "description": "Escritorio amplio con dos cajones invisibles de apertura push y pasacables de aluminio.",
+    "price": 1150.00,
+    "currency": "PEN",
+    "sku": "MH-ESCR-012",
+    "visible": true,
+    "availabilityStatus": "in_stock",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "140cm x 70cm x 75cm",
+      "weight": "32kg",
+      "material": "Tablero Enchapado en Encina y Patas de Acero"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "by_zone",
+      "feeOverride": null,
+      "allowAgencyPickup": true,
+      "isFragile": false
+    }
+  },
+  {
+    "id": "p13",
+    "name": "Perchero de Pie Minimalista",
+    "slug": "perchero-pie-minimalista",
+    "category": "decoracion",
+    "description": "Perchero vertical tipo árbol con 6 ganchos dispuestos a diferentes alturas. Muy estable.",
+    "price": 195.00,
+    "currency": "PEN",
+    "sku": "MH-PERC-013",
+    "visible": true,
+    "availabilityStatus": "in_stock",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "40cm x 40cm x 175cm",
+      "weight": "5.5kg",
+      "material": "Madera Maciza de Tornillo"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "fixed",
+      "feeOverride": null,
+      "allowAgencyPickup": true,
+      "isFragile": false
+    }
+  },
+  {
+    "id": "p14",
+    "name": "Barra de Bar Rústica de Madera Recuperada",
+    "slug": "barra-bar-rustica",
+    "category": "mobiliario",
+    "description": "Mueble de bar con soporte para 12 botellas y colgador para copas. Hecho con vigas rescatadas.",
+    "price": 2450.00,
+    "currency": "PEN",
+    "sku": "MH-BARR-014",
+    "visible": true,
+    "availabilityStatus": "backorder",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "150cm x 50cm x 105cm",
+      "weight": "72kg",
+      "material": "Madera Estructural Reciclada Curada"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "by_zone",
+      "feeOverride": 180.00,
+      "allowAgencyPickup": false,
+      "isFragile": false
+    }
+  },
+  {
+    "id": "p15",
+    "name": "Macetero Cúbico de Exterior en Madera",
+    "slug": "macetero-cubico-exterior",
+    "category": "decoracion",
+    "description": "Macetero tratado especialmente para resistir la humedad y los rayos UV del exterior.",
+    "price": 110.00,
+    "currency": "PEN",
+    "sku": "MH-MACE-015",
+    "visible": true,
+    "availabilityStatus": "in_stock",
+    "images": {
+      "main": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&w=1080",
+      "thumbnail": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&w=200&h=200&fit=crop",
+      "gallery": []
+    },
+    "specs": {
+      "dimensions": "40cm x 40cm x 40cm",
+      "weight": "8kg",
+      "material": "Madera de Copaiba con Recubrimiento Asfáltico Interior"
+    },
+    "customizer": null,
+    "delivery": {
+      "supported": true,
+      "rule": "by_zone",
+      "feeOverride": null,
+      "allowAgencyPickup": true,
+      "isFragile": false
+    }
+  }
+]

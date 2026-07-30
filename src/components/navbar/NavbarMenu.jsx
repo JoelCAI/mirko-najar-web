@@ -1,3 +1,5 @@
+// src/components/navbar/NavbarMenu.jsx
+
 import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronLeft } from 'lucide-react';
 import { navigationMenu, menuTypographyConfig } from '../../config/navigationConfig';
@@ -49,14 +51,30 @@ const NavbarMenu = ({ isMenuOpen, setIsMenuOpen, activeMobileSubmenu, setActiveM
         return (
           <li key={index} className={`c-navbar__item ${hasSubmenu ? 'c-navbar__item--has-dropdown' : ''}`} role="none">
             {hasSubmenu ? (
-              <div className="c-navbar__link-container" onClick={() => handleNavClick(index, hasSubmenu)}>
+              /* 🎯 Trackeamos la apertura de un menú principal que tiene submenú */
+              <div 
+                className="c-navbar__link-container" 
+                onClick={() => handleNavClick(index, hasSubmenu)}
+                data-analytics-click="menu-principal-expandir"
+                data-analytics-id={rawItem.pageId || `menu-idx-${index}`}
+                data-analytics-label={item.title}
+              >
                 <Text as="span" className={`c-navbar__link ${isCurrentActive ? 'c-navbar__link--focused' : ''}`} customTypographyStyles={menuTypographyConfig.desktop}>
                   {item.title}
                 </Text>
                 <ChevronDown size={16} className={`c-navbar__arrow ${isCurrentActive ? 'c-navbar__arrow--focused' : ''}`} />
               </div>
             ) : (
-              <Link to={item.path} className="c-navbar__link" role="menuitem" onClick={() => setIsMenuOpen(false)}>
+              /* 🎯 Trackeamos el clic a un enlace directo de primer nivel */
+              <Link 
+                to={item.path} 
+                className="c-navbar__link" 
+                role="menuitem" 
+                onClick={() => setIsMenuOpen(false)}
+                data-analytics-click="menu-principal-clic"
+                data-analytics-id={rawItem.pageId}
+                data-analytics-label={item.title}
+              >
                 <Text as="span" customTypographyStyles={menuTypographyConfig.desktop}>{item.title}</Text>
               </Link>
             )}
@@ -81,11 +99,15 @@ const NavbarMenu = ({ isMenuOpen, setIsMenuOpen, activeMobileSubmenu, setActiveM
                       }}
                     >
                       <div className="c-navbar__sublink-wrapper">
+                        {/* 🎯 Trackeamos el clic en un enlace de segundo nivel (submenú) */}
                         <Link 
                           to={hasSubSub ? '#' : subItem.path} 
                           role="menuitem"
                           onClick={() => !hasSubSub && setIsMenuOpen(false)}
                           className={isSubActive ? 'c-navbar__link--focused' : ''}
+                          data-analytics-click={hasSubSub ? "submenu-expandir" : "submenu-clic"}
+                          data-analytics-id={rawSubItem.pageId || `submenu-idx-${subIndex}`}
+                          data-analytics-label={subItem.title}
                         >
                           {subItem.icon && (
                             <span className="c-navbar__sub-icon-container">
@@ -103,7 +125,15 @@ const NavbarMenu = ({ isMenuOpen, setIsMenuOpen, activeMobileSubmenu, setActiveM
                             const subSub = getPageData(rawSubSub);
                             return (
                               <li key={ssIndex} className="c-navbar__subsub-item" role="none">
-                                <Link to={subSub.path} role="menuitem" onClick={() => setIsMenuOpen(false)}>
+                                {/* 🎯 Trackeamos el clic en un enlace de tercer nivel (sub-submenú) */}
+                                <Link 
+                                  to={subSub.path} 
+                                  role="menuitem" 
+                                  onClick={() => setIsMenuOpen(false)}
+                                  data-analytics-click="subsubmenu-clic"
+                                  data-analytics-id={rawSubSub.pageId}
+                                  data-analytics-label={subSub.title}
+                                >
                                   {subSub.title}
                                 </Link>
                               </li>

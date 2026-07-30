@@ -3,7 +3,7 @@ import NavbarSearchable from '../components/navbar/NavbarSearchable';
 import FooterStandard from '../components/footer/FooterStandard';
 
 // 🌟 Importamos las diferentes variantes de Hero
-import HeroSlider from '../components/hero/HeroSlider';
+import HeroSlider from '../components/hero/heroslider/HeroSlider';
 // Estos los crearás más adelante, pero ya dejamos el espacio en la matriz
 import HeroWaves from '../components/hero/HeroWaves'; 
 import HeroGradient from '../components/hero/HeroGradient';

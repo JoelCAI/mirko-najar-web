@@ -1,0 +1,57 @@
+{
+  "systemRoutes": {
+    "home": "/",
+    "catalog": "/productos",
+    "cart": "/carrito",
+    "login": "/login",
+    "register": "/registro",
+    "help": "/ayuda",
+    "notFound": "/404"
+  },
+  "dynamicPrefixes": {
+    "category": "/categoria",
+    "product": "/producto"
+  },
+  "customPages": [
+    {
+      "pageId": "nosotros",
+      "slug": "/nosotros",
+      "template": "AboutUs"
+    },
+    {
+      "pageId": "contacto",
+      "slug": "/contacto",
+      "template": "ContactForm"
+    },
+    {
+      "pageId": "servicios",
+      "slug": "/servicios",
+      "template": "ServicesHub"
+    },
+    {
+      "pageId": "fabricacion",
+      "slug": "/servicios/fabricacion",
+      "template": "GenericText"
+    },
+    {
+      "pageId": "acabados",
+      "slug": "/servicios/acabados",
+      "template": "GenericText"
+    },
+    {
+      "pageId": "laqueado",
+      "slug": "/servicios/acabados/laqueado",
+      "template": "GenericText"
+    },
+    {
+      "pageId": "poliuretano",
+      "slug": "/servicios/acabados/poliuretano",
+      "template": "GenericText"
+    },
+    {
+      "pageId": "restauracion",
+      "slug": "/servicios/restauracion",
+      "template": "GenericText"
+    }
+  ]
+}

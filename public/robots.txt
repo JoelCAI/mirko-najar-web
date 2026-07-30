@@ -1,5 +1,11 @@
 User-agent: *
 Allow: /
 
-# Indica dónde está tu sitemap
-Sitemap: https://tu-dominio.com/sitemap.xml
+# Evitar que rastreen páginas privadas o sin valor de contenido original
+Disallow: /carrito
+Disallow: /login
+Disallow: /registro
+Disallow: /404
+
+# Ubicación del Mapa del Sitio
+Sitemap: https://somosinnovar.com/sitemap.xml

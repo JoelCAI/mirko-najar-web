@@ -3,6 +3,11 @@ import { useEffect } from 'react';
 import { useTheme } from './hooks/useTheme';
 import AppRouter from './router/AppRouter';
 
+// 🚀 Importamos el JSON estático de configuración de negocio
+import localBusiness from './config/localBusiness.json';
+// 📊 Importamos nuestro rastreador inteligente
+import AnalyticsTracker from './analytics/AnalyticsTracker';
+
 function App() {
   const { theme } = useTheme();
 
@@ -18,7 +23,17 @@ function App() {
     }
   }, [theme]); // Se ejecuta al cargar la página Y cada vez que el usuario presione el Sol/Luna
 
-  return <AppRouter />;
+  return (
+    <>
+      {/* 
+        📊 Pasamos la sección de integraciones al tracker.
+        Si localBusiness.json viene del servidor, el tracker leerá el ID al vuelo.
+      */}
+      <AnalyticsTracker analyticsConfig={localBusiness.integrations} />
+      
+      <AppRouter />
+    </>
+  );
 }
 
 export default App;

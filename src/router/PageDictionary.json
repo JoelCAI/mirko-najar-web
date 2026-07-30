@@ -1,0 +1,79 @@
+{
+  "pages": {
+    "home": {
+      "label": "Inicio",
+      "defaultPath": "/",
+      "defaultIcon": "Home"
+    },
+    "catalog": {
+      "label": "Catálogo de Productos",
+      "defaultPath": "/productos",
+      "defaultIcon": "ShoppingBag"
+    },
+    "cart": {
+      "label": "Carrito de Compras",
+      "defaultPath": "/carrito",
+      "defaultIcon": "ShoppingCart"
+    },
+    "login": {
+      "label": "Iniciar Sesión",
+      "defaultPath": "/login",
+      "defaultIcon": "LogIn"
+    },
+    "register": {
+      "label": "Registrarse",
+      "defaultPath": "/registro",
+      "defaultIcon": "UserPlus"
+    },
+    "help": {
+      "label": "Centro de Ayuda",
+      "defaultPath": "/ayuda",
+      "defaultIcon": "HelpCircle"
+    },
+    "notFound": {
+      "label": "Página no Encontrada",
+      "defaultPath": "/404",
+      "defaultIcon": "AlertTriangle"
+    },
+    "nosotros": {
+      "label": "Quiénes Somos",
+      "defaultPath": "/nosotros",
+      "defaultIcon": "Users"
+    },
+    "contacto": {
+      "label": "Contacto",
+      "defaultPath": "/contacto",
+      "defaultIcon": "Mail"
+    },
+    "servicios": {
+      "label": "Servicios",
+      "defaultPath": "/servicios",
+      "defaultIcon": "Briefcase"
+    },
+    "fabricacion": {
+      "label": "Fabricación a Medida",
+      "defaultPath": "/servicios/fabricacion",
+      "defaultIcon": "Hammer"
+    },
+    "acabados": {
+      "label": "Acabados Finos",
+      "defaultPath": "/servicios/acabados",
+      "defaultIcon": "Paintbrush"
+    },
+    "laqueado": {
+      "label": "Laqueado Premium",
+      "defaultPath": "/servicios/acabados/laqueado",
+      "defaultIcon": "Sparkles"
+    },
+    "poliuretano": {
+      "label": "Pintura Poliuretano",
+      "defaultPath": "/servicios/acabados/poliuretano",
+      "defaultIcon": "Layers"
+    },
+    "restauracion": {
+      "label": "Restauración",
+      "defaultPath": "/servicios/restauracion",
+      "defaultIcon": "RotateCcw"
+    }
+  }
+}

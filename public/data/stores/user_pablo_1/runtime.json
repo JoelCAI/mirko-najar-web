@@ -1,0 +1,50 @@
+{
+  "page_labels": {
+    "override": true,
+    
+    "nosotros": { 
+      "override": false,
+      "visible": true,
+      "label": "",
+      "sections": [] 
+    },
+    
+    "contacto": {
+      "override": false,
+      "visible": true,
+      "label": "",
+      "sections": [] 
+    },
+    
+    "catalogo": { 
+      "override": false,
+      "visible": true,
+      "label": "",
+      "sections": [] 
+    },
+    
+    "servicios": { 
+      "override": false,
+      "visible": true,
+      "label": "",
+      "sections": [] 
+    },
+    
+    "fabricacion": { 
+      "override": false,
+      "visible": true,
+      "label": "",
+      "sections": [] 
+    },
+    
+    "acabados": {
+      "override": true,
+      "visible": true,
+      "label": "",
+      "sections": [
+        { "id": "laqueado", "label": "Laqueado" },
+        { "id": "poliuretano", "label": "Pintura Poliuretano" }
+      ]
+    }
+  }
+}
